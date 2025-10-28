@@ -7,9 +7,8 @@ See the README in the plugin repo for information on how to set it up.
 
 --- 
 
-# Unofficial University of Southampton BSc Mathematics Notes, written by a current 1st-year student.
 
-These notes are **not official** and are based on my understanding of lectures, problem sheets, and independent reading.  
+### These notes are **not official** and are based on my understanding of lectures, problem sheets, and independent reading.  
 
 This repo contains my working notes for first-year mathematics modules at the Southampton Topics currently include:
 
