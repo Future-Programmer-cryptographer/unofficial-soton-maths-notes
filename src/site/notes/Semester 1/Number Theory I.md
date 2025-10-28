@@ -2,8 +2,7 @@
 {"dg-publish":true,"permalink":"/semester-1/number-theory-i/"}
 ---
 
-
-# [Link to typed lecture notes](https://blackboard.soton.ac.uk/ultra/courses/_233973_1/outline)
+# Link back to [[Semester 1/Home page\|Home page]]
 
 # Intro...  [HTML version ](https://www.southampton.ac.uk/~wright/1001/)
 
