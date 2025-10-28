@@ -15,7 +15,7 @@ This repo contains my working notes for first-year mathematics modules at the So
 
 The aim is to build a clear, student-friendly guide that complements the official course materials, rather than replaces them.
 
-These notes are **unofficial** and may contain errors or simplifications.  
+These notes may contain errors or simplifications.  
 Always cross-check with official lecture notes, textbooks, or lecturers’ guidance before relying on them.
 
 If you spot a mistake or think something could be explained better, feel free to open an **issue** or submit a **pull request**!
