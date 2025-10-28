@@ -2,7 +2,7 @@
 {"dg-publish":true,"permalink":"/semester-1/calculus-i/"}
 ---
 
-
+# Link back to [[Semester 1/Home page\|Home page]]
 # [Link to typed notes: ](https://blackboard.soton.ac.uk/ultra/courses/_233978_1/outline/edit/document/_7502405_1?courseId=_233978_1&view=content&state=view)
 # General notes 
 - Test: 60% of the mark 
