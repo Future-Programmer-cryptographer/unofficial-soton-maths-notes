@@ -2,7 +2,7 @@
 {"dg-publish":true,"permalink":"/semester-1/intro-to-probability-and-stats/"}
 ---
 
-
+# Link back to [[Semester 1/Home page\|Home page]]
 # [Link to typed notes ](https://heogden.github.io/math1063/)
 
 
