@@ -164,7 +164,8 @@ Knowing that one event happened gives you no new information about the other.
 Notice how this is different to **mutually exclusive**, which means that both events cannot happen at the same time, so $P(A \cap B) = 0$
 
 Formally, 
-If $$ P(B|A) = P(B) \text{ or } P(A|B) = P(A)$$
+If 
+$$ P(B|A) = P(B) \text{ or } P(A|B) = P(A)$$
 Then 
 $$ P(B|A) = \frac{P(A \cap B)}{P(A)} = P(B)$$
 $$ P(A \cap B) = P(A) P(B) $$
@@ -244,7 +245,8 @@ So the CDF is essentially the area under the PDF curve up to $x$
 
 For a CRV, the PDF is the derivative of the CDF 
 
-If $$F(x) = \int_{-\infty}^x f(t) dt $$
+If 
+$$F(x) = \int_{-\infty}^x f(t) dt $$
 And we differentiate both sides with respect to $x$ we get: 
 
 $$ f(x) = \frac{d \space F(x)}{dx} $$
