@@ -2,7 +2,8 @@
 {"dg-publish":true,"permalink":"/semester-1/home-page/","tags":["gardenEntry"]}
 ---
 
-Unofficial University of Southampton BSc Mathematics Notes, written by a current 1st-year student.
+# Unofficial University of Southampton BSc Mathematics Notes
+## Written by a current 1st-year student.
 
 These notes are **not official** and are based on my understanding of lectures, problem sheets, and independent reading.  
 
