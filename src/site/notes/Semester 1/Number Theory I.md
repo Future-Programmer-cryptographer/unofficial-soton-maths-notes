@@ -4,36 +4,10 @@
 
 # Link back to [[Semester 1/Home page\|Home page]]
 
-# Intro...  [HTML version ](https://www.southampton.ac.uk/~wright/1001/)
-
-
-- Dr Nick Wright - Regular office hrs from week 3 on Mondays - 1-2pm 
-	- Contact email: wright@soton.ac.uk or teams 
-	- Put MATH1001 in the subject line! 
-- Coursework- 20% 
-	- Set on Thurs, due the following Tues 
-	- Only 1 exercise marked, 2nd set for practice purposes 
-	- Self-marking + submit again 
-- class test: 10% 
-	- Friday, 21st Nov 
-	- Paper test -  closed book 
-	- Last year’s class test will be on blackboard 
-- Final exam: 70% 
-	- Sometime in January  
-
-- Study integers and aim to prove results about integers  
-- How to prove numbers are transcendental like $\pi$ or $e$ [[Tags/questions\|questions]]
-
-Consider the problem below: 
-
-$$p \text{ is prime iff } (p-1)! \text{ is divisible by } p$$
-or this one - we might cover this if we have time… 
-$$ \text{There are infinitely many integer solutions to the equation } a^2 + b^2 = c^2 \text{ where a, b, c have no common factors} $$
-
-- How can people even get started with proving this stuff.. like with Fermat- where on earth do you start? [[Tags/questions\|questions]] 
+#   [HTML version ](https://www.southampton.ac.uk/~wright/1001/)
 
 ---
-# Introduction to Proofs and Logic 
+# 1. Introduction to Proofs and Logic 
 
 [[Tags/Definition\|Definition]] A **statement** (or proposition) is an expression that can be assigned the value of true or false 
 
@@ -295,7 +269,7 @@ Hence, our premise is false, so $$ \forall a,b \in \mathbb{Z}, \space a^2 \neq b
 
 ---
 
-# Integers 
+# 2. Integers 
 
 **Axioms** - set of properties that we accept without requiring a proof 
 How do we know that axioms are axioms? 
@@ -510,5 +484,35 @@ So $r_1 = r_2$ and therefore $q_1 = q_2$
 
 So the pair $(q,r)$ is unique 
 
-# Divisibility and Euclid’s Theorem 
+# 3. Divisibility and Euclid’s Theorem 
+
+[[Tags/Definition\|Definition]] An integer $d$ is a **divisor** of the integer $a$ iff there is an integer $b$ such that $db =d$
+
+Notation - $d|a$ means $d$ is the divisor of $a$ (i.e $\frac{a}{d}$ is a integer but we’re not allowed to write it in division/fraction form)
+
+Fun fact - not every integer is a divisor of every other integer 
+
+## Greatest Common Divisor
+[[Tags/Definition\|Definition]] The **greatest common divisor** of $a$ and $b$ is the unique integer $d$ satisfying: 
+- $d|a$ and $d|b$ 
+- If $c|a$ and $c|b$ then $c \leq d$ so that no common divisor exceeds $d$ 
+
+Notation - the greatest common divisor of $a$ and $b$ is given by: $\gcd(a, b)$
+
+## Euclidean Algorithm 
+
+Basically, we repeatedly apply the remainder theorem on numbers and do some shifting until the remainder is 0. The proof of the Euclidean will be covered later in the module 
+ 
+$$ a= q_0b + r_0 , \quad 0 \leq r_0 < b$$
+$$ b= q_1r_0 + r_1 , \quad 0 \leq r_1 < r_0$$
+$$ r_0= q_2r_1 + r_2 , \quad 0 \leq r_2 < r_1$$
+$$ \cdots $$
+$$ r_i = q_{i+2}r_{i+1} + r_{i+2} , \quad 0 \leq r_{i+2} < r_{i+1}$$
+$$ \cdots $$
+$$ r_{n-2}= q_nr_{n-1} + r_n , \quad 0 \leq r_n < r_{n-1}$$
+$$ r_{n-1}= q_{n+1}r_{n} + 0 , \quad 0 \leq 0 < r_n$$
+
+where $r_n = \gcd(a,b)$
+
+The reason this works is because if $a > b$, then the $\gcd(a,b) = \gcd (a-b, b)$
 
