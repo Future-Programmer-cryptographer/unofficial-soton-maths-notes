@@ -6,24 +6,9 @@
 # [Link to typed notes ](https://heogden.github.io/math1063/)
 
 
-# Intro 
-- 3 lectures each week 
-- Online recordings for problem classes 
-- R labs in weeks 2-4 
-- Small group tutorials 
-- Office hours - Thursdays 13:00-13:45 in B56 
-- 10% problem sheets 
-	- Due on 7pm Mondays 
-	- Do questions after Thursday lecture 
-- 20% online test 
-	- Week 5 
-	- Week 10 
-- 70% final exam 
-	- January 
-
 ---
 
-# Into to Stats
+# 1. Into to Stats
 Mean 
 $$ \bar{x} = \frac{1}{n} \cdot \sum{x_n}$$
 Median: the middle value in an ordered list of observations 
@@ -88,7 +73,7 @@ The standard deviation is the square root of variance
 $$ s = sd(x) = \sqrt{Var(x)} $$ 
 
 ---
-# Intro to Probability 
+# 2. Intro to Probability 
 
 ### Definitions 
 
@@ -144,12 +129,6 @@ Now suppose we want to choose $k$ items from $n$ distinct ones, but the order do
 In other ways, when we go from permutations to combinations, we don't care what order the items are chose in, only which items were chosen. So as we've already counted the same group multiple times for every possible order with permutations, we need to divide by how many times we've 'overcounted', which is $k!$ 
 
 $$ {n \choose k} = \frac{P(n,k)}{k!}  = \frac{n!}{(n-k)! \space k!}$$
-
-
-### General Urn problem and hypergeometric distribution 
-
-
-
 ### Conditional probability and Bayes’ Theorem 
 
 At its simplest, probability is just chance of an event, so it's: 
@@ -207,7 +186,7 @@ Which simplifies to $P(A^`) P(B^`)$
 
 ---
 
-# Probability Distributions 
+# 3. Probability Distributions 
 
 Random variables are denoted by uppercase letters, like $X, Y, Z$ 
 
@@ -525,19 +504,92 @@ The random variable $X$ represents the trial number on which the first success o
 
 ### PMF for a geometric distribution 
 
-To get a success on the $k$-th trial, we must have $(k-1)$ failures first, followed by $1$ success. Each success has a probability of $p$ and each failure has a probability of $(1-p)$ 
+To get a success on the $x$-th trial, we must have $(x-1)$ failures first, followed by $1$ success. Each success has a probability of $p$ and each failure has a probability of $(1-p)$ 
 
-$$ P(X=x) = (1-p)^{k-1}p, \space k = 1,2,3$$
+$$ P(X=x) = (1-p)^{x-1}p, \space x = 1,2,3$$
 
+### CDF 
+
+$$P (X \leq x) =  1-(1-p^x), \quad P(X> x) = (1-p)^x$$
+
+Note - R assumes the number of failures until first success, instead of the number of trials until the first success. So if $X \sim Geo(p), X-1$ is the number of failures 
 ### Memoryless distribution 
 
+The geometric distribution is memoryless, i.e 
+$$ P(X > s +k \space | X > k) = P(X > s) $$
+
+This means just that the probability we still have to wait for $s$ for more trials doesn't depend on how long we've already waited for. No other discrete distribution has this property! 
+### Expectation of a geometric distribution 
+
+For the intuition, imagine playing a game where: 
+- Every trial has a chance $p$ of success 
+
+How many tries do we expect to need before success? 
+
+If $p$ was large, then we'd succeed quickly, resulting in a small expected $X$ 
+If $p$ was small, then we would have to wait much longer, so a large expected $X$ 
+
+So the average should: 
+- Decrease when $p$ increases 
+- Increase when $p$ decreases 
+$$ E(X) = \frac{1}{p} $$
+The proof involves using negative binomial series, something which will not be covered in lectures, but it’s in the notes. A much nicer proof is covered in 2nd year Statistical Inference module 
+
+### Variance of a geometric distribution 
+
+Going back our previous analogy, the variance here is how spread out the time between our successes. So if $p$ was big, we would succeed quickly, resulting in a smaller variance. And if $p$ was small, we could have to wait a long time, so a big variance 
+
+$$ Var(X) = \frac{1-p}{p^2}$$
+
+## Hypergeometric Distribution 
+
+This distribution is all about sampling without replacement, i.e. the realistic binomial 
+
+Suppose we have a population of $N$ total individuals: 
+- A proportion $p$ are of type $S$ (success)
+- The remaining $1-p$ are of type $F$ (failures)
+
+So the total number of type $S$ individuals is $Np$ and type $F$ is $N(1-p)$
+
+Now, we want to sample $n$ individuals without replacement. Let $X$ = the number of type $S$ Is our sample, then $X$ follows a hypergeometric distribution: 
+
+$$ X \sim HypGeo(N, n, p)$$
+Then it's PMF is given by: 
+$$ f(x) = P(X=x) = \frac{{Np \choose x}{N(1-p) \choose n-x}}{N \choose n} \quad x = 0,1,2\dots n$$
+
+The numerator counts how many ways to get exactly $x$ succeses, and $n-x$ failures, and the denominator normalises so that the probabilities sum to 1 
 
 
+### Expectation 
 
+$$ E(X) = np$$
+Notice how the expectation is the same as the binomial distribution, and that's because we are drawing without replacement 
+### Variance 
 
+$$Var(X) = np(1-p) \frac{N-n}{N-1} $$
 
+## Negative Binomial Distribution 
 
+The negative binomial distribution models the number of trials needed to achieve a fixed number of successes, $r$ in independent Bernoulli trials. In other words, it's how long till we get $r$ successes. 
 
+If we just wanted $1$ success, then the negative binomial is the same as the geometric distribution, which stop when we get our first success. 
 
+$$ NegBin(r=1, p) \equiv Geo(p) $$
+### PMF 
+
+Imagine flipping a coin where $p=0.3$ of getting heads. And we want to know how many flips it will takes to get 3 heads. That random variable $X$ follows a negative binomial distribution, the PMF for which is given by: 
+
+$$ X \sim NegBin(r,p)$$
+$$ f(x) = P(X=x) = {{x-1} \choose {r-1}} (1-p)^{x-r}p^r, \quad x = r, r+1…$$
+
+### Expectation 
+
+Each success takes $1/p$ trials on average, and we need $r$ of them
+
+$$ E(X) = \frac{r}{p}$$
+
+### Variance 
+
+$$ Var(X) = r\frac{1-p}{p^2}$$
 
 
