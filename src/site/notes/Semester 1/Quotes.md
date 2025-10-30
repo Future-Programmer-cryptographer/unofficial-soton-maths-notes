@@ -86,7 +86,7 @@
 
 > In this room we don’t care about integers, so calculus can go away 
 > And that’s me skipping some steps because I’m bored 
->  #NW  - 22/10
+> #NW  - 22/10
 
 > The crowd is getting excited - #ST - 22/10 
 
@@ -100,16 +100,16 @@
 
 > 4 equations and 4 unknowns - #ST - 24/10 
 
- >In the morning first you put your socks on and you put your shoes on. In the evening you have to do in the opposite order. Don’t try and take your socks off without taking your shoes off  #iL - 23/10
+ >In the morning first you put your socks on and you put your shoes on. In the evening you have to do in the opposite order. Don’t try and take your socks off without taking your shoes off  #IL 23/10
 
 > The solution to all technical problems, switching off and switching on again 
 > “What’s the best way to revised for Number Theory”? 
 > Not to build a set of real numbers… 
-> - #NW - 24/10 
+> #NW - 24/10 
 
 > Suppose I am trapped on a desert island and don’t have a calculator 
 > If I do it in two ways those two ways are the same… long winded way of saying that there’s only one way to do things 
-> - #AM - 27/10
+> #AM - 27/10
 
 > It wasn’t just all about triangles and Pythagoras - #AM - 29/10 
 
