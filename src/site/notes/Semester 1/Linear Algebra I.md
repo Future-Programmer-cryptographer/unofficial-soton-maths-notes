@@ -4,13 +4,12 @@
 
 
 `If any issues - email math1048@soton.ac.uk 
-- Online, open book test 
 
 [Link to Cam notes](https://www.damtp.cam.ac.uk/user/sjc1/teaching/VandM/notes.pdf)
 
 # [Link to typed notes: ](https://blackboard.soton.ac.uk/ultra/courses/_233978_1/outline/edit/document/_7502405_1?courseId=_233978_1&view=content&state=view)
 
-# Complex Numbers 
+# 1. Complex Numbers 
 $$ \mathbb{C} = \{  a+bi \mid a,b \in \mathbb{R}  \} $$
 $$ \mathrm{Re}(a+bi) = a$$
 $$\mathrm{Im}(a+bi) = b$$
@@ -189,7 +188,7 @@ Hence, if $z$ is a root, so is $\bar{z}$
 
 ---
 
-# Real $n$ space $\mathbb{R}^n$
+# 2. Real $n$ space $\mathbb{R}^n$
 
 [[Tags/Definition\|Definition]] The real n-space $\mathbb{R}^n$ is the collection of n-tuple of real numbers 
 
@@ -409,7 +408,7 @@ And every point on the plane is reachable by some combination of $\lambda$ and $
 
 ## Vector product 
 
-To find perpendicular/orthogonal vectors, we need to have something that lets us calculate that, and this is where the vector product comes in. The ’trick’ so to speak of calculating this is similar to finding determinants in matrices #explainbetter 
+To find perpendicular/orthogonal vectors, we need to have something that lets us calculate that, and this is where the vector product comes in. The ’trick’ so to speak of calculating this is similar to finding determinants in matrices
 
 Why can you only do vector products in $\mathbb{R}^3$? 
 - Something to do with groups and symmetries of numbers 
@@ -483,13 +482,10 @@ $$ \vec{PN} = \vec{PA} - proj_{a}(\vec{PA})$$
 
 The distance is therefore given by the norm or the magnitude of both sides 
 $$ ||\vec{PN}|| = || \vec{PA} - \frac{(\vec{PA} \cdot A)}{\vec{a} \cdot \vec{a}}a|| $$
-Which is exactly equivalent to (but we haven't proved yet) - #email Ian? 
- 
-$$ \equiv \frac{|\vec{PA} \times \vec{a}|}{|\vec{a}|} $$
 
 ---
 
-# Matrix Algebra 
+# 3. Matrix Algebra 
 
 ## Definitions 
 
@@ -781,7 +777,7 @@ $$ A^2 = A \cdot A , \quad A^3 = A \cdot A \cdot A  $$
 - If $A$ and $B$ commute, ($AB = BA$) then $(AB)^n = A^n B^n$ 
 - $A^{-n} = (A^{-1})^n$ 
 
-# 3. Systems of Linear Equations
+# 4. Systems of Linear Equations
 
 A system of $m$ equations in $n$ unknown can be written as: 
 And in matrix form:
@@ -845,11 +841,13 @@ a_{11} & \cdots & a_{1n} & b_1 \\
 
 a_{m1} & \cdots & a_{mn} & b_m
 
-\end{pmatrix}.$$
+\end{pmatrix}$$
 
 ## Row Operations
 
-There are 3 allowed row operations that allows us to simplify systems without changing the solution set: 
+There are 3 allowed row operations that allows us to simplify systems without changing the solution set. I.e. matrices are are row equivalent 
+
+- Row operation are invertible, i.e. their inverses are also row operations 
 
 ### Row Scaling 
 $$ R_{i} \rightarrow \lambda R_{i}$$
@@ -861,17 +859,141 @@ $$ R_{i} \rightarrow R_{i} + \mu R_{j}, \quad i \neq j, \mu \in \mathbb{R}$$
 
 ## Gaussian Elimination 
 
-The idea here to use the row operations listed above to reduce the augmented matrix to **row echleon form (REF)** or **reduced row echleon form (RREF)**
+Consider we're trying to solve a system of simultaneous linear equations like 
+$$ \begin{cases}
+x + 2y - z = 3 \\ 
+2x + y + z = 8 \\
+-3x + y + 2z = -5
+\end{cases}$$
+Instead of solving one variable at a time using substitution, we can turn this into an augmented matrix. 
+
+So we instead have: 
+$$
+\begin{pmatrix}
+
+1 & 2 & -1& 3 \\
+
+2 & 1 & 1 & 8 \\
+
+-3 & 1 & 2 & -5
+
+\end{pmatrix}
+$$
+So each row is an equation, and each column, except the last one, is one variable's coefficients. 
+
+The idea now is to use the row operations listed above to reduce the augmented matrix to **row echleon form (REF)** or **reduced row echleon form (RREF)**
+
+A **pivot** is the first non-zero entry in a row of a matrix 
+
+A matrix is is REF if: 
+- Every **pivot** is to the right of all pivots above it 
+- Zero rows are at the bottom 
+
+A matrix is in RREF if: 
+- It’s already in REF 
+- Every pivot is $1$ 
+- Every column containing a pivot has all entries equal to $0$ 
+
+[[Tags/Definition\|Definition]] Gaussian Elimination is the method of solving linear equations by starting with $(A \,|\, \mathbf{b})$ and performing row operations to put $A$ into RREF, then reading the solutions . 
+
+Each row in the matrix represents a plane in 3D (or a line in 2D or a hyperplane in higher dimensions). So Gaussian elimination is essentially rotating and scaling these planes until they're "aligned with the axes". The intersection point doesn't change, we just manipulate it to make it easier to understand
+
+### Reading solutions 
+
+Once our matrix is in REF, the augmented matrix will correspond to the solutions of the equation 
+
+$$
+
+\begin{pmatrix}
+1 & 0 & 0 & \alpha \\
+0 & 1 & 0 & \beta \\
+0 & 0 & 1 & \gamma \\
+\end{pmatrix}
+$$
+$$
+\begin{pmatrix}
+x = \alpha\\
+y = \beta\\
+z = \gamma
+\end{pmatrix}
+$$
 
 
+### Reducing a matrix to RREF 
+
+Our goal is to transform a given matrix $A$ into a version where: 
+
+$$
+A{_{RREF}} = \begin{pmatrix}
+
+1 & 0 & 0 &\cdots & * \\
+0 & 1 &0 & \cdots & *\\
+0 & 0 & 1 & \cdots &  \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 0
+\end{pmatrix}
+$$
+- Each row starts with a $1$ (pivot) which is to the right of the pivot above it 
+- Each pivot column has zeros above and below the pivot 
+- Any rows of all zeroes go to the bottom 
+
+The means that: 
+- Each pivot correspond to a leading variable
+
+To reduce a matrix to RREF: 
+- Starts with the first non-zero column going from left to right - this will be our pivot column 
+- If the first entry is non-zero, use that, otherwise, swap that row with one below so that the pivot moves to the top of the block 
+- Make the pivot $1$ using row operations 
+- Use row operations to make all entries below the pivot = $0$ 
+- Now move diagonally (one column to the right and down) and repeat the process until all pivots have zeroes below 
+- And go back and make all entries above the pivot zero 
 
 
+## Matrix inverses using row operations 
 
+[[Tags/Definition\|Definition]] A system of linear equation is **consistent** iff the augmented matrix, when put into this REF has no rows of the form $(0… 0 | b)$ with $b \neq 0$ 
 
+Each matrix has a unique matrix in RREF 
 
+If $A$ is invertible, then there is a unique solution given by $\mathbf{x} = A^{-1} \mathbf{b}$ 
 
+Given any $\mathbf{x}$ with $A\mathbf{x} = \mathbf{b}$ 
 
+$$ \mathbf{x} = I_{n}\mathbf{x} = (A^{-1}A)\mathbf{x} = A^{-1}(A\mathbf{x}) = A^{-1}\mathbf{b}$$
 
+Here, the key idea is that row operations that turn $A$ into $I$ will also turn $I$ into $A^{-1}$.
+
+[[Tags/Definition\|Definition]] **Elementary matrix** - A matrix obtained from the identity matrix $I_n$ by doing one row operations. Doing row operations is the same as multiplying by elementary matrices 
+
+Each elementary matrix is invertible, and it’s inverse is an elementary matrix of the same type. Ie. if we multiply $E$ by any matrix $A$, we perform that same row operation on $A$. 
+
+So if we do several operations: 
+$$  E_{2} E_{1} A = I$$
+then 
+$$ A^{-1} = E_{2} E_{1}$$
+
+Suppose we want to find the inverse of: 
+$$ A = \begin{pmatrix}
+1 & 0 \\ 
+1 & 1
+\end{pmatrix} $$
+We'll use row operations that turn $A$ into $I$ 
+
+We already have the pivot $1$ in the top-left, now we need to make the element below it $0$ to get the identity matrix, so our row operation is: 
+$$ R_{2} = R_{2} - R_{1}$$
+The elementary matrix of that operation (which recall is obtained by performing the row operation on the identity matrix) is therefore:
+
+$$ E = \begin{pmatrix}
+1 & 0 \\
+-1 & 1
+\end{pmatrix} $$
+So here we have found matrix ($E$) corresponding to the row operations that transforms $A$ into $I$, so we have that $EA = I$, and therefore, $E$ is by definition $A^{-1}$ 
+
+If $A$ is an $n \times n$ matrix, then: 
+- $A$ is invertible 
+- The unique solution to $A \mathbf{x} = \mathbf{0}$ is $\mathbf{x}  = \mathbf{0}$
+- The RREF of $A$ is $I_n$ 
+- $A$ is a product of elementary matrices 
 
 
 
