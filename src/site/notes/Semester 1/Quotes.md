@@ -9,7 +9,7 @@
 
 > So have I actually told you what linear algebra is...? I'm not sure I know really" 
 > A complex number is a... can't really call it a number, it's a **thing** of the form $a+bi$
-> - #IL- 29/09 
+> #IL- 29/09 
 
 > “What is the meaning of life?” well the answer to that question is of course 42
 > According to the ISO - zero is a natural number 
