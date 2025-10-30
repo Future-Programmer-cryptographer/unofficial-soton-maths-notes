@@ -23,15 +23,15 @@
 > I’ve done further maths so I understand this but people who haven’t done further maths may struggle with $e^{i\theta}$ - random person in IL’s lecture - 06/10
 > Circumcircle 
 > Don’t tell anybody I told you about $\mathbb{R}^0$
-> - #IL 
+> #IL 
 
 > Mathematicians are lazy people, they will think really hard and work really hard to be lazy 
 > In mathematics, two wrongs really do make a right 
-> - #NW - 08/10
+> #NW - 08/10
 
 > When I was a student, one of my colleagues taught himself to move his eyes like a thunderbird puppet.. I don’t know how he did it, and I’m not encouraging you guys to do it… 
 > Oh I’m zooming ahead but I’m getting behind as well 
-> - #IL - 08/10 
+> #IL - 08/10 
 
 > The idea is, well, what is the filling that goes in that sandwich 
 > #NW - 09/10 
