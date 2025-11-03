@@ -3,10 +3,7 @@
 ---
 
 
-`If any issues - email math1048@soton.ac.uk 
-
-[Link to Cam notes](https://www.damtp.cam.ac.uk/user/sjc1/teaching/VandM/notes.pdf)
-
+# Link back to [[Semester 1/Home page\|Home page]]
 # [Link to typed notes: ](https://blackboard.soton.ac.uk/ultra/courses/_233978_1/outline/edit/document/_7502405_1?courseId=_233978_1&view=content&state=view)
 
 # 1. Complex Numbers 
@@ -967,33 +964,96 @@ Here, the key idea is that row operations that turn $A$ into $I$ will also turn 
 
 Each elementary matrix is invertible, and it’s inverse is an elementary matrix of the same type. Ie. if we multiply $E$ by any matrix $A$, we perform that same row operation on $A$. 
 
-So if we do several operations: 
-$$  E_{2} E_{1} A = I$$
-then 
-$$ A^{-1} = E_{2} E_{1}$$
-
-Suppose we want to find the inverse of: 
-$$ A = \begin{pmatrix}
-1 & 0 \\ 
-1 & 1
-\end{pmatrix} $$
-We'll use row operations that turn $A$ into $I$ 
-
-We already have the pivot $1$ in the top-left, now we need to make the element below it $0$ to get the identity matrix, so our row operation is: 
-$$ R_{2} = R_{2} - R_{1}$$
-The elementary matrix of that operation (which recall is obtained by performing the row operation on the identity matrix) is therefore:
-
-$$ E = \begin{pmatrix}
-1 & 0 \\
--1 & 1
-\end{pmatrix} $$
-So here we have found matrix ($E$) corresponding to the row operations that transforms $A$ into $I$, so we have that $EA = I$, and therefore, $E$ is by definition $A^{-1}$ 
-
 If $A$ is an $n \times n$ matrix, then: 
 - $A$ is invertible 
 - The unique solution to $A \mathbf{x} = \mathbf{0}$ is $\mathbf{x}  = \mathbf{0}$
 - The RREF of $A$ is $I_n$ 
-- $A$ is a product of elementary matrices 
+- $A$ is a product of $n \times n$ elementary matrices 
+
+If $A$ and $B$ are $n \times n$ matrices and $AB = I_n$, then both $A$ and $B$ are invertible and $A^{-1} = B$ and $B^{-1} = A$ 
+
+### Algorithm for finding inverses using row operations 
+
+Suppose we have an $n \times n$ matrix $A$ and we want to find  $A^{-1}$ or show that it is not invertible 
+
+We first form an augmented matrix: 
+$$ \begin{pmatrix}
+A | I_n
+\end{pmatrix}
+_{n \times 2n}
+$$
+Then we apply row operations to this matrix to being the left half $A$ to $I_n$. If this works, then we get: $(I_n | A^{-1})$ so $A$ is invertible. It if doesn’t work, then $A$ is not invertible 
+
+Since we can get from $A$ to $I_n$ by applying finitely many row operations, there are elementary $n \times n$ matrices $E_1, E_2, … E_k = B$ s.t. 
+
+$$ E_k(E_2(E_1A)) = I_n \implies (E_k… E_1)A = I_n \implies BA = I_{n}$$
+$$ \implies B = A^{-1} $$
+#### Why the RHS equals $A^{-1}$
+
+As each row operation can be represented by an elementary matrix $E$, when we do all of them in sequence, we're multiplying their product: 
+$$ E_{k} E_{k-1}\dots E_{1}A = I \implies (E_{k}E_{k-1}\dots E_{1}) = A^{-1}$$
+But in the augmented matrix form, we've been applying those same exact operations to the identity matrix on the RHS, so the RHS ends up being: 
+$$ E_{k}E_{k-1}\dots E_{1}I = A^{-1}$$
+And therefore: 
+$$ (A|I_{n}) \rightarrow (I_{n}|A^{-1}) $$
+#### Example 
+
+Suppose we want to find the inverse of the matrix: 
+$$  A = \begin{pmatrix}
+2 &1 \\
+1& 1 
+\end{pmatrix}$$
+First we write it in the augmented form: 
+
+$$
+\begin{pmatrix}
+2 & 1 & | &1 & 0 \\
+1 & 1 & | &0 & 1 \\
+\end{pmatrix}
+$$
+We want to scale so that the first pivot is 1, so we have: $R_1 \rightarrow R_1 - R_2$. Remember to perform the same row operations on the RHS as well 
+$$
+\begin{pmatrix}
+1 & 0 & | &1 & -1 \\
+1 & 1 & | &0 & 1 \\
+\end{pmatrix}
+$$
+Next, we want to eliminate below the pivot: $R_2 \rightarrow R_2 - R_1$
+$$
+\begin{pmatrix}
+1 & 0 & | &1 & -1 \\
+0 & 1 & | &-1 & 2 \\
+\end{pmatrix}
+$$
+Now, as the LHS is $I_2$, this means the RHS is by definition $A^{-1}$. And we can check this by computing: 
+$$ AA^{-1} =\begin{pmatrix}
+2 &1 \\
+1& 1 
+\end{pmatrix} 
+\begin{pmatrix}
+1 &-1 \\
+-1& 2 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+1 &0 \\
+0& 1 
+\end{pmatrix}
+= I_{2}
+$$
+
+## Rank of a Matrix 
+
+[[Tags/Definition\|Definition]] Given a $m \times n$ matrix $A$, the **rank** of $A$ is the number of non-zero rows in **any** REF of $A$ 
+
+The rank essentially measures how many independent rows or columns a matrix has. So for an $n \times n$ matrix, having rank $n$ means that all its columns and rows are linearly dependent. So in this case: 
+- No row/column can be written as a combination of others 
+- Every pivot position is filled 
+- So Gaussian elimination can turn $A$ into $I_n$ so that no zero rows appear 
+- This means we can find $A^{-1}$ 
+Therefore, if $A$ is an $n \times n$ matrix then $A$ is invertible $\iff$ $rank(A) = n$ 
+
+
 
 
 
