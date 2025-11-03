@@ -8,7 +8,7 @@
 # Semester 1 
 
 > So have I actually told you what linear algebra is...? I'm not sure I know really" 
-> A complex number is a... can't really call it a number, it's a **thing** of the form $a+bi$
+> A complex number is a... can't really call it a number, it's a thing of the form $a+bi$
 > #IL- 29/09 
 
 > “What is the meaning of life?” well the answer to that question is of course 42
@@ -48,7 +48,7 @@
 > #IL - 10/10
 
 > Being an air traffic control isn’t as hard as you think it was, maybe it was... Air traffic control is even easier if the tracks of two planes intersect in the sky.. - #IL - 13/10
-> “What is a plane?” Something that flies in the air - #JM 
+> “What is a plane?” Something that flies in the air - Jack 
 
 > Cross products aren’t even associate, they’re just kinda bad - #NW - 13/10 
 
@@ -109,11 +109,28 @@
 
 > Suppose I am trapped on a desert island and don’t have a calculator 
 > If I do it in two ways those two ways are the same… long winded way of saying that there’s only one way to do things 
-> #AM - 27/10
+> #ArM - 27/10
 
-> It wasn’t just all about triangles and Pythagoras - #AM - 29/10 
+> It wasn’t just all about triangles and Pythagoras - #ArM - 29/10 
 
 > Nobody heard me swear on the recording did they, I hope not #IL - 29/10 
- 
+
+> ”I’m bad at Maths” - Tom 
+> “WHY ARE YOU HEREEEEE” - Callum
+> #HO - 30/10 
+
+> Nobody else thinks it’s funny, aw….
+> Proof one… we’re all scared of them aren’t we, I’m not scared of them 
+>  #IL - 31/10 
+
+> I have confirmed my own hypothesis that it is very easy to make a mistake 
+> #AM - 03/11 
+
+> The inability to divide is what makes life interesting 
+> We could take 1 or 2 or 3 or 257 
+> #NW - 03/11
+
+
+
 
 
