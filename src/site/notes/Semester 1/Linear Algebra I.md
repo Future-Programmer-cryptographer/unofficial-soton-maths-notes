@@ -407,10 +407,48 @@ And every point on the plane is reachable by some combination of $\lambda$ and $
 
 To find perpendicular/orthogonal vectors, we need to have something that lets us calculate that, and this is where the vector product comes in. The ’trick’ so to speak of calculating this is similar to finding determinants in matrices
 
-Why can you only do vector products in $\mathbb{R}^3$? 
-- Something to do with groups and symmetries of numbers 
-![Pasted image 20251015123808.png](/img/user/Pasted%20image%2020251015123808.png)
+Let 
 
+$$
+
+\mathbf{a} = 
+
+\begin{pmatrix}
+
+a_1 \\ a_2 \\ a_3
+
+\end{pmatrix}
+
+\quad \text{and} \quad
+
+\mathbf{b} =
+
+\begin{pmatrix}
+
+b_1 \\ b_2 \\ b_3
+
+\end{pmatrix}
+
+$$
+
+be two vectors in $\mathbb{R}^3$.
+
+The **vector product** $\mathbf{a} \times \mathbf{b}$ is the vector in $\mathbb{R}^3$ with coordinates
+
+$$
+
+\mathbf{a} \times \mathbf{b} =
+
+\begin{pmatrix}
+
+a_2b_3 - a_3b_2 \\
+
+a_3b_1 - a_1b_3 \\
+
+a_1b_2 - a_2b_1
+
+\end{pmatrix}.
+$$
 ### Vector product properties 
 
 - Vector products are NOT communicative and NOT associative 
@@ -442,7 +480,7 @@ There are 3 cases for an intersection between a line and a plane:
 
 The first two cases are pretty straightforward. And the final case can be checked by computing the normal vector to $\pi$ and seeing if it’s orthogonal to the direction of $L$. 
 
-Now, the intersection of 3 planes in $\mathbb{R}^3$ has 4 possibilities: #explainbetter
+Now, the intersection of 3 planes in $\mathbb{R}^3$ has 4 possibilities:
 
 - The intersection is a single point 
 - The intersection is a line (star)
