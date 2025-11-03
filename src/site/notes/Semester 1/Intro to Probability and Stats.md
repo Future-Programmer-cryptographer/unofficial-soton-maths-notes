@@ -396,7 +396,7 @@ After expanding the bracket
 $$   (X - E(X))^2 = X^2 - 2XE(X) + (E(X))^2$$
 Take the expectation of both sides: 
 $$ E[(X-E(X))^2]  = E[X^2 - 2XE(X) + (E(X))^2]$$
-Using the linearity of expectation, we can split and pull constants out to geT: 
+Using the linearity of expectation, we can split and pull constants out to get: 
 $$ = E(X^2) - 2E(X)E(X)  + (E(X))^2$$
 After simplifying we have: 
 $$ Var(X) = E(X^2) - (E(X))^2  $$
@@ -594,4 +594,40 @@ $$ E(X) = \frac{r}{p}$$
 
 $$ Var(X) = r\frac{1-p}{p^2}$$
 
+## Poisson Distribution 
 
+The Poisson distribution models the number of times an event happens in a fixed interval. It includes things like the number of emails you might get per hour, we can't predict exactly when then event happens, but over many intervals, the average rate stays the same. 
+
+So formally, It's the limit as $n \to \infty$ and $p \to 0$ of $Bin(n,p)$ so that $\lambda = np$ is fixed. And we can often use the Poisson as an approximation to binomial when 
+- $n$ is large 
+- $p$ is small and 
+- $np = \lambda$ is moderate
+### PMF 
+
+The PMF of this function can be derived by taking the limit of the binomial where we want to rearrange this and substitute for $p = \lambda/n$  
+$$ X \sim P(\lambda) $$
+$$ 
+P(X=x) = \frac{e^{-\lambda}\lambda^x}{x!} ,\quad x = 0,1,2,3
+$$Here, $\lambda$ is the average number of events per interval (mean rate), and $e^{-x}$ ensures that the probabilities all add up to 1 
+
+### Expectation 
+
+On average, we would expect $\lambda$ events to occur per interval, so that's our expectation
+
+$$E(X) = \lambda $$
+### Variance 
+
+If events occur randomly and independently, then the variability of counts around the means grows proportionally to the mean. So, the mean = variance in this case 
+
+$$ Var(X) = \lambda $$
+
+Therefore, the expectation and variance are the same for the Poisson distribution 
+
+
+## Exponential Distribution 
+
+### PMF 
+
+### Expectation 
+
+### Variance
