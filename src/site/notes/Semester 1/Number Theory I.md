@@ -276,7 +276,23 @@ How do we know that axioms are axioms?
 
 There is a list of **algebraic axioms** and **order axioms**: 
 
-![Pasted image 20251015104358.jpg](/img/user/Pasted%20image%2020251015104358.jpg)
+- [Operations (Op)] The integers are equipped with two _binary operations_ addition and multiplication. These operations are denoted by the symbols $+,⋅$respectively.
+- [Identity (Id)] Z contains two special elements, denoted $0$ and $1$, with $0≠1$ such that for any integer $m, m+0=0+m=m$ and $m⋅1=1⋅m=m$.
+- [Negation (Neg)] For every integer $m$, there exists an integer denoted $−m$ such that $m+(−m)=(−m)+m=0.$
+    We write $a−b$ as a shorthand for $a+(−b).$
+- [Commutative (Comm)] Addition and multiplication are commutative, i.e. $m+n=n+m and m⋅n=n⋅m \space \forall m,n∈Z$
+- [Associative (As)] Addition and multiplication are associative, i.e. $(m+n)+p=m+(n+p)$ and $m⋅(n⋅p)=(m⋅n)⋅p \space \forall m,n,p∈Z$
+- [Distributive (Dist)] Multiplication distributes over addition, i.e, $m⋅(n+p)=m⋅n+m⋅p \space \forall m,n,p∈Z.$
+- [Zero divisors (ZD)] If $m⋅n=0$ then $m=0$ or $n=0$.
+
+- [Order relation (Ord)] $\mathbb{Z}$ is equipped with a relation $≤$ called “less than or equal to”.
+- [Reflexive (Ref)] Every integer $m$ satisfies **$m≤m$**.
+- [Antisymmetric (ASy)] Given two integers **$m,n$**,** if **$m≤n$** and **$n≤m$** then $m=n$.
+- [Transitive (Tr)] If **$m,n,p$** are integers with **$m≤n$** and $n≤p$ then $m≤p$.
+- [Comparability (Comp)] Given any two integers $m,n$ either $m≤n $or $n≤m$.
+- [Shift (Sh)] If $m,n,p$ are integers with $m≤n$, then $m+p≤n+p$
+- [Scale (Sc) ] If $m,n,p$ are integers with $m≤n $and 0≤p then $m⋅p≤n⋅p$.
+- [Well ordering (WO)] The well ordering principle – any non-empty subset of non-negative integers has a unique least element.
 
 All of these axioms will hold true even if we work with the reals, naturals, and complex numbers, and that’s why we have the ordering axioms - which work for the set of integers. 
 
@@ -501,6 +517,16 @@ Notation - the greatest common divisor of $a$ and $b$ is given by: $\gcd(a, b)$
 
 ## Euclidean Algorithm 
 
+Essentially, the Euclidean Algorithm finds the gcd of two integers $a$ and $b$ 
+
+Consider the example below: $a = 252$ and $b = 105$ 
+
+We do repeated division: 
+$$ 252 = 2 \times 105 + 42  \text{ remainder 42}$$
+$$ 105 = 2 \times 42 + 21 \text{ remainder 21}$$
+$$ 42 = 2 \times 21 + 0 $$
+When the remainder becomes $0$, the last non-zero remainder is the greatest common divisor. Hence $\gcd(252, 105) = 21$ 
+
 Basically, we repeatedly apply the remainder theorem on numbers and do some shifting until the remainder is 0. The proof of the Euclidean will be covered later in the module 
  
 $$ a= q_0b + r_0 , \quad 0 \leq r_0 < b$$
@@ -514,5 +540,82 @@ $$ r_{n-1}= q_{n+1}r_{n} + 0 , \quad 0 \leq 0 < r_n$$
 
 where $r_n = \gcd(a,b)$
 
-The reason this works is because if $a > b$, then the $\gcd(a,b) = \gcd (a-b, b)$
+Each line $a = qb + r$ says the same common divisor that divide $a$ and $b$ will also divide $r$. And this is where the linear combination in the section will come in. 
+### Divisors and Linear Combination 
+
+**Cancellation Lemma** - if $m,b,p \in \mathbb{Z}$ s.t. $mp \implies np$ and $p \neq 0$, then $m=n$ 
+
+We can use this lemma and the linear combination to prove Eucledian's Algorithm 
+
+If $a,b$ are integers with $a = qb + r$ then $\gcd(a,b) = \gcd(b,r)$
+
+Now, if we can show that any common divisor of $(a,b)$ also divides $(b,r)$ and any common divisor of $(b,r)$ also divides $(a,b)$, this is means common divisors are the same, so their greatest common divisor must be the same, i.e. $\gcd(a,b) = \gcd(b,r)$
+
+Let the common divisor of $(a,b)$ and $(b,r)$ be $d$. And we want to show that $d|r$ and $d|a$. It's like showing that two subsets are equal, which means they are the same set. 
+
+So if $d|a$ and $d|b$, then $a = dk_1$ and $b = dk_2, \space k \in \mathbb{Z}$
+
+Now, using the remainder theorem we have: 
+$$ dk_{1} = q(dk_{2}) + r$$
+$$ \implies dk_{1} - qdk_{2} = r$$
+$$ \implies d(k_{1} - qk_{2}) = r$$
+Hence $d|r$ 
+
+Now to prove the converse - if $d|b \land d|r \implies b|a$
+
+$b = dk_3$ and $r = dk_4 \space k \in \mathbb{Z}$ 
+
+Using the definition again we have: 
+$$ a= q(dk_{3}) + dk_{4} = d(qk_{3} + k_{4})$$
+Hence, by definition, we have $d|a$ 
+
+And therefore, $\gcd(a,b) = \gcd(b,r)$
+### Proof of Euclid’s Algorithm 
+
+The Euclid algorithm is essentially the step above repeated
+$$ a = q_{1}b + r $$
+$$ b = q_{2}r_{1} + r_{2} $$
+$$ r_{1} = q_{3}r_{2} + r_{3} $$
+$$  \dots $$
+until the remainder becomes 0: 
+
+There's a nice proof by contradiction to show that this process does not go on forever. So assume this goes on forever, then the set containing all the remainders is: $S=\{  r_{1}, r_{2}\dots r_{n} \}$ will have no least element-- which contradicts the W.O axiom, so there must be a least element, which is $r_n = 0$ 
+ 
+By the rule, we've just proved that: 
+$$ \gcd(a,b) = \gcd(b,r_{1}) = \gcd(r_{1}, r_{2}) = \dots = gcd(r_{n-1}, r_{n}) $$
+So when we finally hit $r_k = 0$, the gcd is teh last non-zero remainder: 
+$$ \gcd(a,b) = r_{n-1}$$
+
+## Euclid’s Algorithm for Polynomials 
+
+The operation on polynomials satisfy all of the algebra axioms as the integers do, so they are an example of a **commutative** **ring**. But matrices are an example of non-commutative ring as they don’t saying the commutativity axiom 
+
+[[Tags/Definition\|Definition]] A **commutative ring** is a set $R$ equipped with two binary operations: $+, \cdot$ and satisfying the axioms Op, Id, Neg, Comm, As, Dist 
+
+## Bezout’s (Bucket) Identity 
+
+[[Tags/Definition\|Definition]] If $a$ and $b$ are integers, then $\exists u$ and $\exists v$ s.t. 
+$$ \gcd(a,b)= au+ bv $$
+And then $\gcd(a,b)$ is the least positive integers of the form of $au + bv \quad (u,v) \in \mathbb{Z}$
+
+Consider two buckets, one 4 litre and one 7 litre, now, can we measure 1 litre using those two? 
+Well, fill up the 4l twice and then pour it in the 7l, whatever’s left in the 4l is 1l, and that’s what Bezout’s Identity is telling us - we can solve the bucket problem when the gcd is what we’re trying to measure. 
+
+### Ideals 
+
+The proof of Bezout’s Identity involves a set called **ideals**
+
+[[Tags/Definition\|Definition]] Let $R$ be a ring, then the subset of $I$ in $R$ is an ideal if: 
+- $I$ is non-empty 
+- $\forall a,b, \in I, a+b \in I$
+- $\forall a \in I$ and $r \in R, ra \in I$
+
+Notice how this is similar to vector sub spaces in linear algebra. 
+
+For example the set $I = \set{0}$ is an ideal of $\mathbb{Z}$
+- The set of even numbers is an ideal of $\mathbb{Z}$ 
+- The set of odd numbers is not an ideal as it’s not closed under addition (closed means defined in the set)
+
+
+
 
