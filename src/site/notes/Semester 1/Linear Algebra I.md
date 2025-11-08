@@ -983,7 +983,6 @@ To reduce a matrix to RREF:
 - Now move diagonally (one column to the right and down) and repeat the process until all pivots have zeroes below 
 - And go back and make all entries above the pivot zero 
 
-
 ## Matrix inverses using row operations 
 
 [[Tags/Definition\|Definition]] A system of linear equation is **consistent** iff the augmented matrix, when put into this REF has no rows of the form $(0… 0 | b)$ with $b \neq 0$ 
@@ -1079,7 +1078,6 @@ $$ AA^{-1} =\begin{pmatrix}
 \end{pmatrix}
 = I_{2}
 $$
-
 ## Rank of a Matrix 
 
 [[Tags/Definition\|Definition]] Given a $m \times n$ matrix $A$, the **rank** of $A$ is the number of non-zero rows in **any** REF of $A$ 
@@ -1089,13 +1087,154 @@ The rank essentially measures how many independent rows or columns a matrix has.
 - Every pivot position is filled 
 - So Gaussian elimination can turn $A$ into $I_n$ so that no zero rows appear 
 - This means we can find $A^{-1}$ 
+
 Therefore, if $A$ is an $n \times n$ matrix then $A$ is invertible $\iff$ $rank(A) = n$ 
+This is also why if there is a zero row in an RREF form, the inverse of a matrix does not exist 
+
+### Properties of a Rank 
+
+Let $A$ be a $m \times n$ matrix and $B$ be any matrix: 
+- $B$ row equivalent to $A$ $\implies$ rank($B$) = rank($A$)
+- rank($\lambda A$) = rank($A$), $\lambda \neq 0$ 
+- rank($A$) $\leq$ $\min(m,n)$ 
+	- Based on the definition of rank, we can never have more than $m$ linearly dependent vectors in $\mathbb{R}^m$ Same with the rows. So as row rank = column rank, the inequality follows. 
+- rank($A + B$) $\leq$ rank($A$) + rank($B$) - provided $B$ is $m \times n$ 
+- Rank($A + B$) $\leq$ min(rank($A$), rank($B$)) 
+
+# Determinants 
+
+$M_n(\mathbb{R})$ - the set of all $n \times n$ matrices with real entries. We don't start by just saying what the determinant is, but what kind of function it must be. So the axiomatic definitions are given below. Note that these are slightly less formal than what's in the official lecture notes, but that's mostly down to making it easier and more intuitive to understand.  
+
+[[Tags/Definition\|Definition]] 
+A function $D: M_n(\mathbb{R}) \to \mathbb{R}$ is a determinant if the following 3 conditions hold: 
+
+#### 1. Linearity in each row  
+
+If we multiply a row by a scalar $\lambda$, then the determinant scales by $\lambda$ 
+And if we add the rows, determinants add. So the sum of the determinants is the determinant of the sums 
+
+$$ D (\dots , \lambda r_{i},\dots) = \lambda D(\dots, r_{i}\dots)$$
+$$ D(\dots , r_{i} + r_{i} +\dots) = D(\dots, r_{i}, \dots) + D(\dots r^`_{i}, \dots)$$
+#### 2. Alternating 
+
+If $A \in M_n(\mathbb{R})$ has two equal rows $\implies$ $D(A) = 0$ 
+
+So if two rows are equal, then the determinant is 0 
+Swapping two rows flips the sign of the determinant 
+
+#### 3. Normalisation 
+
+$$ D(I)= 1 , \quad I_{n} = n \times n \text{ identity matrix}$$
+
+Using the axioms above, we can further prove the row operations and their effects on matrices
+
+- Row interchange doesn't change the determinant 
+- Swapping rows (row replacement) causes the determinant to be me multiplication by $-1$ as it flips orientation 
+- Multiplying a row by a scalar multiplies the determinant by that scalar. 
+	- So if $A \rightarrow (R_i \to \lambda R_i) \rightarrow  B \implies D(A) = \frac{1}{\lambda}D(B)$ 
+
+So 
+$$ D(B) = \alpha D(A) $$
+where $\alpha$ is the type of row operation. 
+## Determinants of Upper Triangular Matrices 
+
+[[Tags/Definition\|Definition]] 
+
+An upper triangular matrix is a matrix where all entries below the diagonal are zero: 
+$$ A = \begin{pmatrix}
+a_{11} & a_{12} & a_{13} & \dots \\
+0 & a_{22} & a_{23} & \dots \\
+0 & 0 & a_{33}& \dots\\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & a_{nn}
+\end{pmatrix} $$
+So if $A$ is an upper triangular matrix, then the determinant of $A$ is the product of the diagonal entries of $A$:  
+$$ D(A) = a_{11}a_{22}  a_{33} \dots a_{nn}$$
+Intuitively, the matrix $A$ represents a transformation that: 
+- Scales the first coordinate by $a_{11}$ 
+- Scales second coord by $a_{22}$ 
+- Third by $a_{33}$ 
+- And it may shear the shape horizontally because of the entries above the diagonal. 
+
+Each diagonal entry $a_{ii}$ is essentially a scaling of one axis direction. So if we started with the identity matrix (which has $D=1$), and just scaled each axis by those number. The volume (which is basically what a determinant is) would be the product of all the diagonal entries. And shearing doesn't change the determinant as it's the same idea as adding a multiple of one row to another. 
+
+A more formal proof can be done by using row operations and transforming the above matrix into $I_n$, and all those transformations involve row replacement options only. 
+
+## Determinant of any square matrix 
+
+Once we have the facts above, we now have an algorithm to compute the determinant of any square matrix: 
+
+To compute $D(A)$: 
+- Perform Gaussian elimination to reduce $A$ to an upper triangular form i.e. the REF for a square matrix
+- Keep track of how each row operation affects $D$ 
+- Compute the determinant of the upper triangular matrix 
+
+Notation wise, determinant of $A$ = $|A| = \det A$ 
+
+### Proof for a $2 \times 2$ matrix 
+
+For 
+$$ A = \begin{pmatrix}
+a & b \\ 
+c & d 
+\end{pmatrix}$$
+$$\det(A) = ad - bc $$
+Geometrically speaking, in $\mathbb{R}^2$, the two column vectors of $A$ span a parallelogram. And the area of that  = $|ad-bc|$ 
+- The sign of $ad-bc$ tells us if the orientation is preserved or flipped. If the parallelogram collapses to a line (area = 0), then then two vectors are linearly dependent, i.e. the matrix is not invertible. 
+- That's why $A^{-1} \iff \det(A) \neq 0$ 
+- In the similar way, the rank tells us what the shape "collapses" to in higher dimensions. 
+
+Now, for the more formal proof, we can compute $\det(A)$ by performing row operations until we make $A$ upper triangular, and then take the product of the diagonal entries 
+
+We can do the row operations $R_2 \to R_2 - \frac{c}{a} R_1$ which gives us: 
+$$ B = \begin{pmatrix}
+a & b \\ 
+0 & d-\frac{c}{a}
+\end{pmatrix} $$
+From the property of determinants, the row replacement does not change the determinant, so $\det(B) = \det(A)$. Now as $B$ is upper triangular, we can calculate the determinant by: 
+$$ \det(B) = a\left( d - \frac{c}{a}b \right) = ad-bc$$
+Therefore, $\det(A) = ad-bc$ 
 
 
+**The determinant of a matrix with integer entries is always an integer** 
 
+### Existence and Uniqueness 
 
+$\forall n \in \mathbb{N}, \space \exists$ **unique** determinant $D : M_n (\mathbb{R}) \to \mathbb{R}$ satisfying the axiomatic definitions of determinants 
 
+This will be proved in Linear Algebra II by giving a different definition of determinant. So the lesson is to never trust anything. 
 
+## Determinants and Invertibility 
+
+$$ \text{ An $n \times n$ matrix is invertible $\iff$ $\det(A) \neq 0$}$$
+### Proof 
+
+Starting with the $\implies$ side: 
+
+If $A$ is invertible, then $\exists A^{-1}$ s.t. $AA^{-1} = I_n$ 
+
+Now we can take the determinant of both sides 
+$$ \det(AA^{-1}) = \det(I_{n}) \implies \det(A) \det(A^{-1}) = 1 \implies \det(A) = \frac{1}{\det(A^{-1})}$$
+This means that $\det(A) \neq 0$ as $1/0$ is not defined 
+
+Now for $\impliedby$ 
+For a bit of intuition, recall that the determinant is geometrically the scaling factor of volume when $A$ acts as a linear transformation. So if $\det(A) = 0$, then the volume collapses to a lower dimension, and that transformation is not reversible. 
+
+Now for the algebraic proof. We know that when we apply Gaussian elimination to turn $A$ into an upper triangular matrix ($U$): 
+$$ A = E_{k}\dots E_{2}E_{1}U$$
+Each $E_i$ is an elementary matrix which is invertible. So we have that: 
+$$ \det(A) = (\det(E_{k}).. \det(E_{1})) \det(U)$$
+Now, if $\det(A) \neq 0 \implies \det(U) \neq 0$ 
+But $\det(U)$ is the product of diagonal entries, so none of them can be zero. This means that all pivot positions in Gaussian elimination are non-zero, which means we can reduce $A$ all the way down to $I_n$. Hence $A$ is invertible 
+
+There is another proof by contrapositive, given in the lectures notes. 
+So if we can prove that $A$ is not invertible, then $\det(A) = 0$, that will be same as proving the original statement 
+
+So if $A$ is not invertible, it means rank $A < n$. This means that for any REF form $B$ of $A$, $B$ has a row a zeroes. But $A$ can be reduced to this REF form via a finite sequence of row operations, so $\det(B) = \beta \cdot \det(A)$ for some $\beta \neq 0$. 
+$$ \det(A) = \frac{1}{\beta} \det(B) = 0 \implies \text{ B has a zero row}$$
+And if a matrix has a zero row, the determinant will be $0$ as the it's the product of diagonals in a upper triangular matrix.  
+
+## Determinant using Cofactors 
 
 
 
