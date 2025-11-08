@@ -4,24 +4,18 @@
 
 # Link back to [[Semester 1/Home page\|Home page]]
 # [Link to typed notes: ](https://blackboard.soton.ac.uk/ultra/courses/_233978_1/outline/edit/document/_7502405_1?courseId=_233978_1&view=content&state=view)
-# General notes 
-- Test: 60% of the mark 
-- Coursework: 20% 
-	- Self-marked 
-- Class tests: 20% 
-	- Week 5 
-	- Week 10 
-- Tuesday office hrs: 11-12pm 
 
-# Functions 
+# 1. Functions 
 
-[[Tags/Definition\|Definition]].: $$ f: X \rightarrow Y \text{ between sets } X \text{{ and }} Y \text{ is a map that sends each element of X to a unique element in Y}$$
-Given a function $$ f: X \rightarrow Y $$
+[[Tags/Definition\|Definition]].: 
+$$ f: X \rightarrow Y \text{ between sets } X \text{{ and }} Y \text{ is a map that sends each element of X to a unique element in Y}$$
+Given a function 
+$$ f: X \rightarrow Y $$
 The **Domain** of $f$ is $X$ 
 The **Range** of $f$ is the subset $R$ of $Y$ containing of $Y$ containing all elements $f(x)$: 
 $$ R = \{  f(x) \mid x \in X \}$$
 
-## Notation on intervals 
+### Notation on intervals 
 For $a<b \in \mathbb{R}$, write $[a,b]$ for the **closed interval** from $a$ to $b$, and write $(a.b)$ for the **open interval** from $a$ to $b$  
 
 $$ [a,b] = \{  x \in \mathbb{R} | a \leq x \leq b \}$$
@@ -118,19 +112,16 @@ $f: \mathbb{R} \rightarrow \mathbb{R}, f(x) = \sin(x)$ is not a bijection
 
 But… $f: [\frac{-\pi}{2}, \frac{\pi}{2}] \rightarrow [-1,1], f(x) = \sin(x)$ is a bijection so an inverse does exist
 
-## Note on swapping $y$ and $x$ 
-
-#finishexplaination 
 ## Exponentials And logs 
 
-[[Tags/Definition\|Definition]] of exponential $$f: \mathbb{R} \rightarrow (0,\infty), f(x) = a^x$$
+[[Tags/Definition\|Definition]] of exponential 
+$$f: \mathbb{R} \rightarrow (0,\infty), f(x) = a^x$$
 
 Properties: 
 
 ![Pasted image 20251001112108.png](/img/user/Pasted%20image%2020251001112108.png)
 
-$a^x$ is also a bijection - what about proving it? 
-so it has an inverse function 
+$a^x$ is also a bijection so it has an inverse function 
 
 [[Tags/Definition\|Definition]] The **logarithm** with base a is the function: 
 $$ \log_a  : (0,\infty) \rightarrow \mathbb{R}$$
@@ -173,7 +164,7 @@ $$ f(-x) = -f(x) , \forall x \in f$$
 
 
 ---
-# Limits 
+# 2. Limits 
 
 ## Informal intuition 
 
@@ -376,7 +367,7 @@ $$\lim_{x \to -\infty} f(x) = L \iff \forall \epsilon > 0, \exists N > 0, \space
 For a limit to exist, $\lim_{x \to a} f(x) = L$ means that the value of $f(x)$ gets arbitrarily close to a finite number $L$, so if no such finite $L$ exists, then the limit does not exist. 
 So the statement $\lim_{x \to \infty} f(x) = \infty$ just means that $f(x)$ grows without a bound as $x$ grows without a bound. 
 
-# Continuity 
+# 3. Continuity 
 
 ## Continuous Functions
 
@@ -484,7 +475,7 @@ So if we have a continuous function on an interval , then we are guaranteed to h
 
 ---
 
-# Differentiation 
+# 4. Differentiation 
 
 At its core, differentiation is measures how fast something is changing, the rate of change. If $f(x)$ is a curve, then its derivative at a point $a$ is just the slope of the tangent line to the curve at that point. 
 
@@ -645,7 +636,7 @@ $$ (\sin x)^` = \lim_{h \to 0} \frac{\sin(x+h)-\sin x}{h}  = \cos (x)$$
 
 ## Exponentials and Logarithmic Functions 
 
-Just copy from the notes here for the first principles #finishexplaination 
+Just copy from the notes here for the first principles #finishexplaination
 
 $$ (a^x)^` = a^x \cdot f^`(0) $$
 Where $f^`(0)$ is a constant. There is a unique $a$ with $f^`(0) = 1$ This is when $a=e$ 
@@ -694,25 +685,193 @@ $$ y^` = \frac{2x}{3y^2} $$
 One of the things we can do with implicit is proof that derivative of rational powers 
 
 $$ (x^\frac{p}{q})^` = \frac{p}{q}(x^{\frac{p}{q}-1})^`$$
-#finishexplaination
+
+## Inverse Trig Functions 
+
+We need to restrict the functions so that they are a bijection and so we can find their inverse 
+
+$$ \sin x : [\frac{-\pi}{2}, \frac{\pi}{2}] \rightarrow [-1,1] $$
+$$ \sin^{-1} x : [-1,1] \rightarrow [\frac{-\pi}{2}, \frac{\pi}{2}]$$
+
+Then $(\sin ^{-1} x)^`$ is 
+
+Let $y = sin^{-1} x \implies \sin y = x$
+
+And then we can differentiate implicitly: 
+
+$$ \cos y \cdot y^` = 1$$
+$$ \implies y^` = \frac{1}{\cos y}$$
+We know by the trig identity that $\cos^2y + \sin^2y = 1 \implies \cos y = \sqrt{1 - \sin
+{ #2}
+ y}$
+
+Hence, after substituting, we get the inverse of the trig functions: 
+$$ (\sin^{-1}x)^` = \frac{1}{\sqrt{1-x^2}} $$
+$$ (\cos^{-1}x)^` = -\frac{1}{\sqrt{1-x^2}} $$
+$$ (\tan^{-1} x)^` = \frac{1}{1+x^2}$$
+For the inverse of $\tan x$, we uses the identity that $1 + \tan^2 x = \sec^2x$
+# 5. Curve Sketching
+
+Let $f$ be a differentiable function, then a point $c$ is called a **critical point** if $f^`(c) = 0$
+
+[[Tags/Definition\|Definition]] $f$ has a **local minimum** in an interval $I$ if $f(x)_0 \leq f(x) \space \forall x \in I$
+
+[[Tags/Definition\|Definition]] $f$ has a **local maximum** in an interval $I$ if $f(x)_1 \geq f(x) \space \forall x \in I$
+
+## Maximum and Minimums 
+### Proof of local minimum and maximum 
+So if $f$ is differentiable on $(a,b)$ and has a local max/local min on point $c$, then $f^`(c) = 0$ 
+
+We can prove the above by considering the limit definition at the point $c$ 
+
+Suppose that $c$ is a local max on $(a,b)$ 
+
+This means by definition, there exists some small interval around $c$ such that: 
+$$ f(x) \leq f(c) \space \forall x \text{ near a}$$
+Now if we pick an $h$ value that is positive and lands in the interval 
+
+Let $h > 0$ s.t. $c+h \in (a,b)$ so that the value is still defined 
+
+Now $c$ is a local maximum, so 
+
+$$f(c) \geq f(c+h) \implies f(c+h) - f(c) \leq 0 $$
+After dividing both sides by $h$ we have: 
+$$ \frac{f(c+h) - f(c)}{h} \leq 0$$
+And now we can take the limit 
+ $$\implies  \lim_{h \to 0^+} \frac{f(c+h) - f(c) }{h} \leq 0 $$
+As $f$ is differentiable, the limit from left equals limit from right, so this equals $f^`(c)$ 
+
+Now we let $h < 0$ s.t. $f(c+h) - f(c) \geq 0$
+$$\implies  \lim_{h \to 0^-} \frac{f(c+h) - f(c) }{h} \geq 0 $$
+Once again, as $f$ is differentiable, so the left and right hand limits match, so this also equals $f^`(c)$ 
+
+Now we have that $0 \leq f^`(c) \leq 0$ , hence $f^`(c) = 0$ 
+
+### Global minimum and maximum 
+
+[[Tags/Definition\|Definition]] A fn $f$ has an **absolute (global) maximum** at $x_0$ if $f(x_0) \geq f(x) \space \forall x \in F$ 
+[[Tags/Definition\|Definition]] A fn $f$ has an **absolute (global) minimum** at $x_1$ if $f(x_1) \leq f(x) \space \forall x \in F$ 
 
 
+There are also different kinds of local/global minimums and maximums 
 
 
+[[Tags/Definition\|Definition]] A point $c$ where $f$ is conts but not differentiable is called a **singular point**
 
+Extreme values (local max, local min) occur at: 
+- End points - derivative isn’t even defined at these points at times
+- Critical points 
+- Singular points 
 
+## Mean Value Theorem (MVT) 
 
+This will help us identify where the graph of $f$ increase or decreases 
 
+[[Tags/Definition\|Definition]] 
+Let $f$ be a **conts** fn on $[a,b]$ that is **differentiable** on $(a,b)$. Then there is a point $c \in (a,b)$ s.t. 
 
+$$ f^`(c) = \frac{f(b) - f(a)}{b-a} $$
 
+Think of it as the gradient of a secant line of joining two points on a graph. So what this is saying is that there is some point $c \in (a,b)$  such the gradient of a tangent line equals the secant line are the same 
+### Proof of the MVT 
 
+The formal proof involve's Rolle's Theorem. The idea here is that we want to "remove" the secant line so the endpoints are level. 
 
+Let $g(x) = f(x)$ - equation of secant line. 
 
+The secant line passing through $(a, f(a))$ and $(b, f(b))$ has the gradient: 
+$$m = \frac{f(b) - f(a)}{b-a} $$
+And now we can use the straight line equation to get: 
+$$ y - y_{1} =  m(x - x_{1})$$
+$$\implies y- f(a) = \frac{f(b) - f(a)}{b-a} (x-a)$$
+Rearranging for $y = L(x)$, we get: 
+$$ L(x) = f(a) + \frac{f(b) - f(a)}{b-a} (x-a)$$ So we define 
+$$ g(x) = f(x) - L(x)$$
+Now, we check $g$ at the endpoints 
+$$ g(a) = f(a) - L(a) = f(a) - f(a) = 0$$
+$$ g(b) = f(b) - L(b) = f(b) - \left[ f(a) + \frac{f(b) - f(a)}{b-a}(b-a) \right] = 0 $$
+So we have that $g(a) = g(b) = 0$ 
 
+Using Rolle's Theorem (which is a special case of the MVT), we have that if a fn is conts on $[a,b]$ and differentiable on $(a,b)$ and $g(a) = g(b)$, then $\exists c \in (a,b)$ s.t. $g^`(c) = 0$. 
 
+What we want is to apply that special case, to the general case, and we have done that by removing the secant line equation. 
 
+And as our function $g$ satisfies, so $g^`(c) = 0$ 
 
+Now, we if different $g(x)$, we have: 
+$$ g^`(x) = f^`(x) - \frac{f(b) - f(a)}{b-a}$$
+And setting $g^`(c) = 0$ gives us the MVT: 
+$$ f^`(c) = \frac{f(b) - f(a)}{b-a} $$
 
+Intuitively, the MVT links average change to instantaneous change. 
+This will be useful in deriving the Fundamental Theorem of Calculus later in the course
+
+## Intervals of Increasing and Decreasing 
+
+[[Tags/Definition\|Definition]] Let $f$ be a fn on an interval $I$, then ;
+
+- $f$ is **increasing** on $I$ if $\forall x_1,x_2 \in I  \quad x_1 < x_2 \implies f(x_1) < f(x_2)$ 
+- $f$ is **decreasing** on $I$ if $\forall x_1,x_2 \in I \quad x_1 < x_2 \implies f(x_1) > f(x_2)$ 
+
+Let $f$ be a fn on an open interval $I$, then: 
+
+$$ f^`(x) > 0 \space \forall x \in I \implies \text{ $f$ is increasing}$$
+$$ f^`(x) < 0 \space \forall x \in I \implies \text{ $f$ is decreasing}$$
+
+The proof above uses the MVT: 
+
+First, to use the MVT, we assume that $f$ is conts on $[a,b]$ and differentiable on the $(a,b)$. Then, we pick any two points in that interval: $x_1, x_2 \in [a,b], \quad x_1 < x_2$ 
+
+By the MVT, $\exists c \in (x_1, x_2)$ s.t. 
+$$f^`(c) =  \frac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}} $$
+Now we consider cases
+
+Case 1  - $f^`(x) > 0$ everywhere on $(a,b)$ 
+
+Then, $\forall c, f^`(c) > 0$ 
+So by the MVT: 
+$$\frac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}} = f^`(c) > 0$$
+But as $x_2 - x_1 > 0$, we must have that $f(x_2) - f(x_1) > 0 \implies f(x_{2}) > f(x_{1})$ on $(a,b)$. Therefore by definition, $f$ is strictly increasing 
+
+Case 2-  $f^`(x) < 0$ everywhere on $(a,b)$ 
+
+By the same logic, 
+
+$$\forall c, f^`(c) < 0 \implies\frac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}} < 0$$
+But as $x_2 - x_1 > 0$, we must have that $f(x_2) - f(x_1) < 0 \implies f(x_{2}) < f(x_{1})$ on $(a,b)$. Therefore by definition,  is strictly decreasing
+
+Naturally, if $f^`(x) = 0$ then 
+$$  \frac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}  = f^`(c) = 0 \implies f(x_{2}) - f(x_{1}) = 0 \implies f(x_{1}) = f(x_{2})$$
+So $f$ would be constant in that interval 
+
+## Concavity and Points of Inflection 
+
+[[Tags/Definition\|Definition]] 
+Let $f$ be a fn that has a second derivative on an open interval. Then 
+
+-  $f^`$ is increasing on $I$ $\implies$ $f$ is **concave up** on $R$ 
+- $f^`$ is decreasing on $I$ $\implies$ $f$ is **concave down** on $R$ 
+
+Graphically, the tangent lines are: 
+- Above the graph for a concave down 
+- Below the lines for a concave up 
+
+[[Tags/Definition\|Definition]] 
+A fn $f$ that has a second derivative has an **inflection point** at $x$ if the **concavity** changes at $x$ 
+
+So if $f$ is a fn whose second derivative exists on an open interval $I$, then 
+- $f^{``}(x) > 0$ on $I \iff$ $f$ is concave up 
+- $f^{``}(x) < 0$ on $I \iff$ $f$ is concave down
+- $f$ has an inflection point at $x \implies$ $f^{``}(x) = 0$ 
+
+## Second Derivative Test 
+
+We can the $f^{``}$ to determine the local max and min 
+
+So let $f$ be a twice differentiable function on some open interval $I$, and for some $c$ ,$f^{``}(c)$ exists, then: 
+$$ f^{``}(c) > 0 \implies \text{ $c$ is a local minimum} $$
+$$ f^{``}(c) < 0 \implies \text{ $c$ is a local maximum} $$
+$$ f^{``}(c) = 0 \implies \text{ more information needed} $$
 
 
 
