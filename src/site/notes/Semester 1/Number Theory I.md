@@ -583,7 +583,7 @@ There's a nice proof by contradiction to show that this process does not go on f
  
 By the rule, we've just proved that: 
 $$ \gcd(a,b) = \gcd(b,r_{1}) = \gcd(r_{1}, r_{2}) = \dots = gcd(r_{n-1}, r_{n}) $$
-So when we finally hit $r_k = 0$, the gcd is teh last non-zero remainder: 
+So when we finally hit $r_k = 0$, the gcd is the last non-zero remainder: 
 $$ \gcd(a,b) = r_{n-1}$$
 
 ## Euclid’s Algorithm for Polynomials 
@@ -605,17 +605,118 @@ Well, fill up the 4l twice and then pour it in the 7l, whatever’s left in the 
 
 The proof of Bezout’s Identity involves a set called **ideals**
 
-[[Tags/Definition\|Definition]] Let $R$ be a ring, then the subset of $I$ in $R$ is an ideal if: 
+[[Tags/Definition\|Definition]] Let $R$ be a ring, then the subset of $I$ in $R$ is an **ideal** if: 
 - $I$ is non-empty 
-- $\forall a,b, \in I, a+b \in I$
-- $\forall a \in I$ and $r \in R, ra \in I$
+- $\forall a,b, \in I, a+b \in I$ - closed under addition 
+- $\forall a \in I$ and $r \in \mathbb{Z}, ra \in I$ - closed under multiplication by any non-negative integer  
 
 Notice how this is similar to vector sub spaces in linear algebra. 
 
-For example the set $I = \set{0}$ is an ideal of $\mathbb{Z}$
+For example:
+- The set $I = \set{0}$ is an ideal of $\mathbb{Z}$
 - The set of even numbers is an ideal of $\mathbb{Z}$ 
-- The set of odd numbers is not an ideal as it’s not closed under addition (closed means defined in the set)
+- The set of odd numbers is not an ideal as it’s not closed under addition nor multiplication by all other integers 
+
+**Closed** means that we don’t have to move outside the set if we apply an operation, i.e. if set $S$ has an operation $*$, then $S$ is closed under $*$ if 
+$$ S_1, S_2 \implies S_1*S_2 \in S$$
+### Proof of Bezout’s Identity 
+
+**Lemma 3.14** Let $a, b \in \mathbb{Z}$, then the set: 
+$$ I = \set{au +bv : u,v \in \mathbb{Z}}$$
+Is an ideal in $\mathbb{Z}$ as it's is non-empty because we can have $a(1) + b(0) \in I$ and it's is closed under addition and multiplication 
+
+Now, let $I$ be a non-zero ideal in $\mathbb{Z}$, then $\exists d\in I$ s.t.: 
+**Lemma 3.15**
+$$  x \in I \iff d|x$$
+In other words, take any non-zero ideal $I \in \mathbb{Z}$, then $\exists d \in \mathbb{Z}$ s.t. 
+- Every element of $I$ is a multiple of $d$
+- Every multiple of $d$ is in $I$
+- Among all the elements of $I$, $d$ is the smallest 
+
+This means $I$ has the form: 
+$$ I = \set{nd: n \in \mathbb{Z}} $$
+
+What this basically means is that every ideal in $\mathbb{Z}$ is made of all the multiples of one single number. And that one number is the smallest positive element in that ideal. 
+Why do we care? Because Bezout's identity is about showing that the $\gcd$ of this idea is the smallest positive element in that ideal. In other words, for any ideal $I \in \mathbb{Z}$, when we input the ideal of all linear combinations $a,b$, the the output $d$ gives us exactly $\gcd(a,b)$ -- which is very cool!! 
+
+So we let $d$ be the least positive element of $I$ (W.O principle)
+
+Now we want to show for the iff that:
+1. $x \in I \implies d|x$ 
+2. $d|x \implies x \in I$ 
+
+2.Suppose $d|x$
+$\implies \exists q \in \mathbb{Z} \space s.t. \quad x = qd$ 
+$d \in I$ by definition 
+$q \in \mathbb{Z}$ 
+$I$ is an ideal 
+So $x =  q \cdot d \in I$ because by definition an ideal is closed under multiplication by any integer, all multiples of $d \in I$
+
+1. Let $x \in I$
+Then by the remainder theorem we have $x = qd + r \quad q,r \in \mathbb{Z} \quad 0 \leq r < |d|$
+We know that $d \in I \implies (-q)d \in I$  as by definition, multiplies of $d$ are in $I$ as ideal is closed under multiplication 
+
+Now, $r = x - qd = x + (-q)d$ 
+as $x \in I$ and $(-q)d \in I$ $\implies$ $x   + (-q)d \in I \implies r \in I$ 
+As $r < d$ by definition of the remainder theorem, and $d$ is the least a positive positive element of $I$, $r$ is not positive $\implies r \leq 0$, but as we have that $r > 0 \implies r = 0$ 
+
+Hence, we have shown that $x = qd + 0 = qd$, so every element of $I$ is in fact a multiple of $d$ 
+
+Now, all that remains is to show that $d$ is the $\gcd(a,b)$ 
+
+So let: 
+$$  I = \{  au + bv : u,v \in \mathbb{Z} \}$$
+This is an ideal by Lemma 3.14, and so by Lemma 3.15, $\exists d \in I$ s.t. $d|x \space \forall x \in I$ 
+
+Since $d \in I$, by definition, $\exists u,v$ s.t. $d = au + bv$ 
+
+Now, we want to show that $d$ divides both $a$ and $b$. 
+Note that both $a$ and $b$ are in $I$, so: 
+- $a = a \cdot 1 + b \cdot 0 \space \in I$ 
+- $b = a \cdot 0 + b \cdot 1 \space \in I$ 
+
+Therefore, $d$ is a common divisor of $(a,b)$ 
+
+Let $c$ be any common divisor of $(a,b)$ 
+- If $c|a$ and $c|b$, then $c$ divides any combination of $au + bv$ 
+- So $c$ divides element of $I$ and in particular, $c$ divides $d$ 
+
+So any common divisor of $c$ of $(a,b)$ satisfies: 
+$$ c|d \implies |c| \leq |d| $$
+This means that $d$ is at least as big as any other common divisor, but since $d$ is positive, we have: 
+$$ c \leq |c| \leq d $$
+Therefore, $d = \gcd(a,b)$ 
+$$ \square $$
+
+## Lamé’s Theorem 
+
+[[Tags/Definition\|Definition]]
+The number of steps in the Euclidean algorithm does not exceed 5 times the number of decimal digits in the smaller of the two numbers. 
+
+Eg: if we apply the Eucledian algorithm to integers with 100 digits, then we require no more than 500 steps in the algorithm. 
+
+The proof of this beautifully involves the Fibonacci and the golden ratio. 
+
+## Co-prime integers 
+
+[[Tags/Definition\|Definition]] Two integers $a$ and $b$ are **co-prime** if $\gcd(a,b) = 1$ 
+
+[[Tags/Definition\|Definition]] Integers $a_1, a_2,… , a_n$ are **mutually co-prime** if $\gcd(a_i, a_j) = 1, \quad i \neq j$ 
+
+Eg: integers $6,10,15$ are co-prime but not mutually co-prime 
+
+Two integers are co-prime $\iff$ $\exists x, y \space s.t. \space ax + by = 1$ 
+
+If $\gcd(a,b) = d$, then 
+$$ \gcd(ma,mb) = md \quad \forall m > 0 \quad \gcd(u,v) = 1$$
+Where $a = ud$ and $b = vd$ 
 
 
+Let $a$ and $b$ be co-prime, then: 
+
+$$  a|c \land b | c \implies ab|c$$
+$$ a|bc \implies a|c $$
+
+#finishexplaination - the proof of these uses Bezout’s Identity 
 
 
