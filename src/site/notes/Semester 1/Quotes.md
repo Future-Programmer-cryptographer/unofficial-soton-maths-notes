@@ -134,7 +134,7 @@
 
 > The trick here is to use Bezout’s Identity, I feel like that should be on a t-shirt - #NW - 06/11
 
-> If you’ve made up your mind that you want to study mathematics and not want to do fractions - #ST - 07/11 
+> If you’ve made up your mind that you want to study mathematics and not want to do fractions - #NP- 07/11 
 
 > If $i$ is 3 then it’s my favourite number, 1001 
 > The definition of prime is not what you think it is 
