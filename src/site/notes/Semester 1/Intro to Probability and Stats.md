@@ -191,7 +191,7 @@ Which simplifies to $P(A^`) P(B^`)$
 
 Random variables are denoted by uppercase letters, like $X, Y, Z$ 
 
-A random variable is just a mapping from the outcomes space to the reali line, so the combined probability of all values of a random variable is 1 
+A random variable is just a mapping from the outcomes space to the real line, so the combined probability of all values of a random variable is 1 
 
 ## Discrete Random Variable (DRV)
 [[Tags/Definition\|Definition]]
@@ -623,11 +623,82 @@ $$ Var(X) = \lambda $$
 
 Therefore, the expectation and variance are the same for the Poisson distribution 
 
+## Uniform Distribution 
 
-## Exponential Distribution 
+### PDF - as this is a continuous distribution  
 
-### PMF 
+$$ F(X) = P(X \leq x) = \frac{x-a}{b-a}, \quad a < x < b$$
 
 ### Expectation 
 
+$$E(X) = \frac{b-a}{2} $$
 ### Variance
+$$Var(X) = \frac{(b-a)^2}{12} $$
+
+## Exponential Distribution 
+
+This distribution is bit like a continuous version of the geometric distribution, and it connects really nicely with the Poisson process. The exponential models the waiting time until the next event in a Poisson process. So if: 
+- events occur randomly and independently in time 
+- At a constant average rate $\lambda$ (events per unit time)
+Then the waiting time $X$ between two successive events is: 
+$$ X \sim Exp(\theta)$$
+
+So the Poisson counts how many events occur in a fixed time interval, whereas the exponential measures how long between events 
+### PDF 
+
+$$  \text{ For } X \geq 0 \quad f(x) = \theta e^{- \theta x}$$
+The full proof involves the gamma function, which is given is the official lecture notes 
+### Expectation 
+
+$$ E(X) = \frac{1}{\theta}$$
+If events occur at $\theta$ per unit time, the average wait, intuitively, is $\frac{1}{\theta}$ time units 
+### Variance 
+$$ Var(X) = \frac{1}{\theta^2} $$
+This one isn't immediately obvious, but the spread of waiting time grows as $\theta$ grows 
+
+### CDF 
+
+The cdf for $x > 0$ is defined as: 
+$$ F(x) = P(X =x) = \int_{0}^x \theta^{-\theta u} du = 1 - e^{-\theta x}$$
+
+### Quantiles 
+
+As talked about earlier, quantiles tells us how far along the probability distribution we have to go to capture a certain proportion of data. So for a CRV $X$ with CDF $F(X)$, the $p$-th quantile is the value $q$ s.t.: 
+$$ P( X \leq q) = F(q)= p $$
+So we're solving for the $x$ value that corresponds to the cumulative probability $p$. And to find theat value, we need the inverse of the CDF, i.e. $q = F^{-1}(p)$
+
+For the exponential distribution, recall that the cdf is $F(x) = 1 - e^{- \theta x}$, so to solve for $q$, we have: 
+
+$$ F(q) = 1 - e^{-\theta q} = p $$
+$$ \implies (1-p) = e^{-\theta q} $$
+$$ \implies \ln(1-p)= -\theta q  $$
+$$ \implies q = -\frac{1}{\theta} \ln(1-p)$$
+And that's our quantile function 
+
+### Memorylessness (Again!)
+The exponential distribution is also memoryless, as it’s just a continuous version of the geometric.
+
+$$ P(X > s+t | X > S) = P(X > t)$$
+So the probability that we want to wait at least $t$ more time units, given that we've already waited $s$ time units without an event, is the same as if we just started waiting now. i.e. past waiting doesn't change future expectation 
+
+## Normal Distribution 
+
+$$  X \sim N(\mu, \sigma^2)$$
+### PDF 
+
+$$ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$
+#explainbetter - watch 3b1b video 
+
+To show that sum of all probabilities is $1$, we use the property of the Gamma function; 
+$$ \Gamma (\frac{1}{2}) = \sqrt \pi $$
+And the standard normal $Z = \frac{x-\mu}{\sigma}$. The full proof can be found in the notes 
+
+### Expectation 
+$$E(X) = \mu $$
+### Variance 
+$$ Var(X) = \sigma^2$$
+### Linear Transformation 
+
+$$ X \sim N(\mu, \sigma^2) \implies Y = aX + b = N(a\mu +b, a^2\sigma^2)$$
+We can also standardise any normal to get 
+$$  Z = \frac{X-\mu}{\sigma}, \quad Z \sim N(0,1^2)$$
