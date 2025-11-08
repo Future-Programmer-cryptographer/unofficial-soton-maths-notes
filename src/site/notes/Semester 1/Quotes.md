@@ -130,7 +130,14 @@
 > We could take 1 or 2 or 3 or 257 
 > #NW - 03/11
 
+> You’re adults now, you don’t just want to take things on trust. - #ST - 05/11
 
+> The trick here is to use Bezout’s Identity, I feel like that should be on a t-shirt - #NW - 06/11
 
+> If you’ve made up your mind that you want to study mathematics and not want to do fractions - #ST - 07/11 
+
+> If $i$ is 3 then it’s my favourite number, 1001 
+> The definition of prime is not what you think it is 
+> - #NW - 07/11
 
 
