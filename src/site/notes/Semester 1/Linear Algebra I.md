@@ -997,7 +997,7 @@ $$ \mathbf{x} = I_{n}\mathbf{x} = (A^{-1}A)\mathbf{x} = A^{-1}(A\mathbf{x}) = A^
 
 Here, the key idea is that row operations that turn $A$ into $I$ will also turn $I$ into $A^{-1}$.
 
-[[Tags/Definition\|Definition]] **Elementary matrix** - A matrix obtained from the identity matrix $I_n$ by doing one row operations. Doing row operations is the same as multiplying by elementary matrices 
+[[Tags/Definition\|Definition]] **Elementary matrix** - A matrix obtained from the identity matrix $I_n$ by doing **ONE** row operation. Doing row operations is the same as multiplying by elementary matrices 
 
 Each elementary matrix is invertible, and it’s inverse is an elementary matrix of the same type. Ie. if we multiply $E$ by any matrix $A$, we perform that same row operation on $A$. 
 
@@ -1142,11 +1142,11 @@ where $\alpha$ is the type of row operation.
 
 An upper triangular matrix is a matrix where all entries below the diagonal are zero: 
 $$ A = \begin{pmatrix}
-a_{11} & a_{12} & a_{13} & \dots \\
-0 & a_{22} & a_{23} & \dots \\
-0 & 0 & a_{33}& \dots\\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & a_{nn}
+a_{11} & a_{12} & a_{13} & a_{14} & \dots \\
+0 & a_{22} & a_{23} & a_{24} & \dots \\
+0 & 0 & a_{33}& a_{34} & \dots\\
+\vdots & \vdots & \vdots & \ddots  & \vdots\\
+0 & 0 & 0 & 0 &  a_{nn}
 \end{pmatrix} $$
 So if $A$ is an upper triangular matrix, then the determinant of $A$ is the product of the diagonal entries of $A$:  
 $$ D(A) = a_{11}a_{22}  a_{33} \dots a_{nn}$$
@@ -1236,11 +1236,70 @@ And if a matrix has a zero row, the determinant will be $0$ as the it's the prod
 
 ## Determinant using Cofactors 
 
+Now that we know how to calculate the determinant of a $2 \times2$ matrix, we want to a formula that still captures that same alternating and linear property. And the cofactor expansion can be thought of as a recursive way to do this, it breaks down a big determinant into small ones (minors)
+
+So if $A$ is an $n \times n$ matrix, then $\det(A)$ is defined in terms of $(n-1) \times (n-1)$ determinants. 
+
+For some definitions, consider an $n \times n$ matrix $A = (a_{ij})$
+Then: 
+- **minor** $M_{ij}$ is the determinant of the smaller matrix we get after deleting the $i$-th row and $j$-th column. 
+- **cofactor** $C_{ij}$ adds a sign to the minor: 
+ $$ C_{ij} = (-1)^{i+j}M_{ij}$$
+
+So to find the determinant, we pick a row/column, say row 1, then for each element $a_{1j}$ in that row: 
+- Delete its row and column from the matrix to get a smaller matrix called the minor 
+- Multiply that smaller determinant by $a_{1j}$ 
+- Multiply by a sign $(-1)^{1+j}$ that alternates $+ - + - +$ across the row 
+
+So formally, if 
+$$ A =  \begin{pmatrix}
+a_{11} & a_{12} & a_{13}  \\
+a_{21} & a_{22} & a_{23}  \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}
+$$
+Then
 
 
+$$ \det(A) = \sum_{i =1}^n a_{1j} c_{1j} + a_{2j} c_{2j} + … + a_{nj} c_{nj} $$
+Where 
+$$ C_{1j} = (-1)^{1+j} \det (M_{1j})$$
+And $M_{1j}$ is the minor obtained by deleting row $1$ and column $j$ 
 
+So the formula for any $n \times n$ matrix $A = (a_{ij})$, expand along the $i$-th row: 
+$$ \det(A) = \sum_{j=1}^{n}(-1)^{i+j}a_{ij} \det(M_{ij})$$
+The sign pattern comes from one of the determinant axiom which tells us that if we swap two rows, the determinant changes the sign. 
 
+As we're expanding the determinant along a row, we're sort of "isolating" one element $a_{ij}$ and its minor. Intuitively, we're bringing $a_{ij}$ up to position by moving rows/columns around, and to account for that movement, we multiply by $(-1)^{i+j}$ 
 
+This is quite efficient when we have a matrix with lots of zero entries 
+#example
+#explainbetter
 
+## Determinant of a Transpose 
 
+For any square matrix $A$, 
+$$ \det(A^T) = \det(A) $$
+What this is means transposing a matrix (i.e. flipping rows and columns) of a matrix does not change its determinant 
 
+Intuitively, if we think determinant as the volume scaling factor, then transposing it just changes our point of view, so instead of looking at how $A$ acts on row vectors, you look at how it acts on column vectors. Hence, the volume scaling remains the same. 
+
+The other way to think about is using the fact that the determinant is the product of the diagonals, and when we transpose a square matrix, the diagonals remain the same, hence the determinant is the same. 
+## Determinant of a Product 
+
+If $A,B$ are $n \times n$ matrices, then $\det(AB) = \det(A) \det(B)$
+
+Geometrically again, scaling a volume by a factor of $\det(A)$ and scaling it by $\det(B)$ is the same as scaling it by $\det(A)\det(B)$ 
+
+More formally speaking, we can think of every invertible matrix $A$ as a product of elementary matrices: 
+$$ A = E_{k} E_{k-1}\dots E_{1}$$
+And as each elementary matrix corresponds to a **single** row operation, and because we know how determinant changes under row operations: 
+$$ \det(E_{i}A) = \det(E_{i})\det A$$ and since every matrix can be built from the elementary matrices, we have that: 
+$$ \det(AB) = \det(A)\det(B)$$
+The proof in the notes is bit more detailed and uses the 3 cases of the elementary matrices, but the idea is the same. 
+
+## Powers of a matrix 
+
+$$\det(A^k) = (\det A)^k , \quad\forall k \in \mathbb{Z}$$
+$$ \det(A^{-1}) = \frac{1}{\det(A)}$$
+The proof of rather trivial, and can be proved by induction if wanted as an exercise to the reader 
