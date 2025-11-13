@@ -444,7 +444,7 @@ Useful for modular arithmetic which is useful for cryptography
 
 [[Tags/Definition\|Definition]] 
 If $a$ and $b$ are integers with $b \neq 0$, then there is a **unique** pair of integers $q$ (quotient) and $r$ (remainder) such that $$a = qb +r , \quad 0 \leq r < |b|$$
-It's $|b|$ because the absolute value makes it work whether $b$ is positive or nrgative 
+It's $|b|$ because the absolute value makes it work whether $b$ is positive or negative 
 Consider two cases below: 
 $$  10 = 3 \times 3 + 1$$
 $$  10 = 0 \times 3 + 10$$
@@ -710,13 +710,164 @@ Two integers are co-prime $\iff$ $\exists x, y \space s.t. \space ax + by = 1$
 If $\gcd(a,b) = d$, then 
 $$ \gcd(ma,mb) = md \quad \forall m > 0 \quad \gcd(u,v) = 1$$
 Where $a = ud$ and $b = vd$ 
-
+#finishexplaination
 
 Let $a$ and $b$ be co-prime, then: 
 
 $$  a|c \land b | c \implies ab|c$$
 $$ a|bc \implies a|c $$
+Note how this only works if the numbers are co-prime 
 
-#finishexplaination - the proof of these uses Bezout’s Identity 
+Proof of the two: #finishexplaination
+
+## Least Common Divisor 
+#finishexplaination 
+
+## Linear Diophantine Equations 
+
+Let $a,b,c \in \mathbb{Z}$ and $a,b \neq 0$, let $d = \gcd(a,b)$. Then the equation 
+$$ ax + by = c $$
+Has integer solutions $\iff d | c$ and if it does, then there are infinitely many solutions: 
+$$ x= x _0 + q_n, \quad y = y_0 - pn \quad (n \in \mathbb{Z}) $$
+Where $a = pd, b = qd$ and $(x_0, y_0)$ is any particular solutions. It’s a bit like doing differential equations. 
+
+The if an only if part is just Bezout’s identity, so now we just need to prove what the general solution looks like 
+
+So assume we have one particular solution, so let $(x_0, y_0)$ satisfy $ax_0 + by_0 =c$. And now we want to find out all the other pairs ($x,y$) that also make $ax + by = c$ 
+
+Let $n \in \mathbb{Z}$ s..t 
+$$  x = x_0 + qn , \quad y = y_0 - pn$$
+Where $a = pd$ and $b = qd$ 
+
+Now we put this in the $ax + by = c$ to get: 
+
+$$ a(x_0 + qn) + b(y_0 - pn) = ax_0 + by_0 +aqn - bpn = c + d(pq-qp)n = c $$
+So this works for any integer $n$ #explainbetter - where is teh c + d coming from? 
+
+Now we need to show that these two are the only solutions, so we suppose that ($x,y$) is any integer solutions
+
+We subtract the two equations to get: 
+$$a (x-x_0) + b(y - y_0) = 0  $$
+After substituting $a = pd$ and $b = qd$ we get: 
+$$pd(x- x_0)  + qd(y - y _0) = 0 $$
+After dividing through by $d$ (the cancellation lemma), we have: 
+$$p (x - x_0) = -q(y - y_0) $$
+What this tells us that the difference between any two solutions is related by $p$ and $q$. And since $p$ and $q$ are co-prime, because that’s what happens when we divide by the gcd, the only way this equality holds in integers is if: 
+$$ x - x_0 = qn , \quad y - y_0 = -pn , \quad n \in \mathbb{Z}$$
+Which is exactly the formula for the infinitely many solutions 
+# 4. Prime Numbers 
+
+[[Tags/Definition\|Definition]] An integer $p >1$ is **irreducible** if the only positive divisors of $p$ are $1$ and itself 
+
+[[Tags/Definition\|Definition]] An integer $p > 1$ is **prime** if $\forall a,b \in \mathbb{Z}$, whenever $p|ab$ either $p|a$ or $p|b$ 
+
+For example, to prove that $2$ is a prime number, we need to show that $2|ab \implies 2|a$ or $2|b$ 
+
+By the remainder theorem, $\exists q_i r_i \ s.t. \ a = 2q_1 + r_1, \ b = 2q_2 + r_2, 0 \leq r < 2$ 
+
+So we have: 
+$$ab = (2q_{1} + r_{1})(2q_{2} + r_{2}) = 2(2q_{1}q_{2} + q_{1}r_{2} + r_{1}q_{2}) + r_{1}r_{2} $$
+We also know that $ab$ is even, so $ab = 2k +0$ 
+As the remainder theorem only gives unique values: 
+$$ r_{1}r_{2} = 0 \implies r_{1} = 0 \text{ or } r_{2} = 0 \text{ by Z.D} \implies 2|a \implies 2|b$$
+Therefore, $2$ is a prime number 
+## Primes and Irreducible 
+
+Prime and irreducible really mean the same thing, at least for the integers. 
+
+Fermat was said to be confused about this difference too. If factorisation of irreducible numbers was unique, then Fermat’s last Theorem would’ve been a lot easier (why?) In other things however, this is not always true. For instance, consider the ring: 
+$$ R = \{ a+ b \sqrt{ 5 } , \quad a,b,\in \mathbb{Z}\}$$
+Now, I hope we can agree that 
+$$ 2| 4 = (\sqrt{ 5 }+1)(\sqrt{ 5 }-1)$$
+But $2$ does not divide $\sqrt{5} + 1$, so by definition of a prime, $2$ is not prime 
+
+####  prime $\implies$ irreducible: 
+
+Assume $p$ is prime and $p = ab, b > 0$ (premise)
+By definition, $p|a$ or $p|b$. 
+WLOG (without loss of generality), assume that $a = pk, k \in \mathbb{Z}$ Then: 
+$$ p = ab = pk(b) = p(kb)$$
+By the cancellation lemma, we have $1 = kb$ so $b \leq 1$. But as $b> 0 \implies b = 1 \implies a = p$. Therefore, $1,p$ are the only positive divisors of $p$, so $p$ is irreducible 
+
+#### Irreducible $\implies$ prime
+
+Note that this is not always true, as with our example in the ring, but in integers, this will work 
+So let $p$ be irreducible and suppose $p|ab$. Then we want to show that $p|a$ or $p|b$ 
+
+As $p$ is irreducible and since $\gcd(a,p)$ is a positive divisor of $p$, then $\gcd(a,p)$ must be $1$ or $p$ 
+
+If the $\gcd(a,p) = p$, then as $\gcd(a,p)$ also divides $a$, it follows that $p|a$ 
+
+On the other hand if the $\gcd(a,p) = 1$, then by definition $a$ and $p$ are co-prime and by Bezout's identity, we have that: 
+$$ 1 = px + ay $$
+Multiplying the entire equation by $b$ we have: 
+$$  b = pbx + aby $$
+By our assumption, as $p|ab \implies p|aby$ and $p|abx$. Therefore the RHS is divisible by $p$ and therefore $p|b$ 
+
+Lemma 4.4: If $p$ is prime and $p|a_1, … a_k \implies p |a_i$ for some $i$ - this can be proved by induction, which is in the notes 
+
+## The Fundamental Theorem of Arithmetic 
+
+Each integer $n > 1$ has prime-power factorisation: 
+$$ n = p_1^{e_1} … p_k^{e_k} $$
+Where $p_1, … , p_k$ are distinct primes and $e_1, … e_k$ are positive integers. The factorisation is **unique**, apart from permutation of the factors 
+
+Say I wrote a prime factorisation of $12$, how can I know that the prime factorisation is unique? That's exactly what the fundamental theorem of arithmetic allows us to do - every integer $n > 1$ is can be written as a product of primes, and this factorisation is unique up to reordering. 
+
+The proof of this has two parts: 
+- Existence - every integer has a prime-power factorisation 
+- Uniqueness - this factorisation is the only one 
+
+### Existence - using strong induction 
+
+Base case: $n = 2$. We proved earlier that $2$ is prime, so its factorisation is simply: $2 = 2^1$ 
+
+Induction hypothesis: assume every integer strictly between $1$ and $n$ already has a prime-power factorisation. 
+
+Inductive step: prove it for $n$. There are two cases here: 
+
+1 - $n$ is prime, which case $n = n^1$ and we're done 
+2 - $n$ is composite 
+
+In case 2, let $n = ab, \quad 1 < a,b < n$ 
+
+Now both $a,b$ have prime power decomposition by the induction hypothesis, so by substituting these into the equation $n=ab$, and then collecting powers of each prime $p_i$, we get a prime-power factorisation for $n$ 
+### Uniqueness 
+
+This will also be done by strong induction. 
+
+Base case: Suppose $n=2$ has factorisation $2 = p_{1}^{e_{1}}p_{2}^{e_{2}}\dots p_{k}^{e_{k}}$ 
+
+Then by definition each prime $p_i \geq 2$. If there is any prime $p_1 > 2$ contradicts $p_{1}^{e_{1}}p_{2}^{e_{2}}\dots p_{k}^{e_{k}} = 2$ 
+Hence the only factorisation of $2$ is $2^1$ 
+
+Induction step: assume that $n> 2$ and that for every integer strictly between $1$ and $n$ has a unique prime factorisation up to ordering 
+
+Now suppose we had two different factorisation: 
+$$ n = p_{1}^{e_{1}}p_{2}^{e_{2}}\dots p_{k}^{e_{k}} = q_{1}^{f_{1}}q_{2}^{f_{2}}\dots q_{l}^{f_{l}}$$
+Where all $p_i$ and $q_i$ are primes. Then our aim to show that these two sets of distinct primes are the same, up to reordering 
+
+From the first factorisation, we have that: $p_1|n$ 
+So in the second factorisation, by Lemma 4.4 earlier, we know that: 
+$$ p_{1} |q_{1}^{f_{1}}q_{2}^{f_{2}}\dots q_{l}^{f_{l}} $$
+Since $p_1$ is prime, it must divide one of the $q_j$, but each $q_j$ is prime too. So the only possibility is that: $p_1 = q_j$ 
+
+This essentially allows us to match up one prime from each factorisation. WLOG, we can order the primes so that: $p_1 = q_1$
+
+Now we have that 
+$$p_{1}^{e_{1}}p_{2}^{e_{2}}\dots p_{k}^{e_{k}} = q_{1}^{f_{1}}q_{2}^{f_{2}}\dots q_{l}^{f_{l}} $$
+We can cancel $p_1 = q_1$ from both sides to get: 
+$$p_{1}^{e_{1}-1}p_{2}^{e_{2}}\dots p_{k}^{e_{k}} =q_{1}^{f_{1}-1}q_{2}^{f_{2}}\dots q_{l}^{f_{l}} $$
+And this new number is strictly smaller than $n$. 
+
+If this new number is $1$, the $k = l = 1, e_1 = f_1, p_1 = q_1$, so the two factorisation were the same. 
+
+Otherwise, $p_{1}^{e_{1}-1}p_{2}^{e_{2}}\dots p_{k}^{e_{k}}$ is strictly between $1$ and $n$ so by the induction hypothesis, it has a unique prime factorisation up to reordering. So $k = l, e_1 - 1 = f_1 - 1$ and $p_{2}^{e_{2}}\dots p_{k}^{e_{k}} = q_{2}^{f_{2}}\dots q_{l}^{f_{l}}$ up to reordering. 
+
+Hence by induction, this holds $\forall n > 1$ 
+
+We can how take this theorem and show that if a positive integer $n$ is not a perfect square, then $\sqrt{n}$ is irrational, i.e. if $n$ is not a perfect square, then there are no non-zero integers s.t. $b^2n = a^2$ 
+This can be done by a proof by contrapositive, look at the notes for this. 
+
 
 
