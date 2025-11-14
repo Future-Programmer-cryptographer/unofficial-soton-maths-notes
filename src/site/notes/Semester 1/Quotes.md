@@ -68,8 +68,7 @@
 > At some point we need to know that 0 is not equal to 1 #NW - 15/10 
 
 > If I’m slow, Ashot will fire me… or the university will fire me or something 
-> “4+ 10 = 16”
-> #IL - 15/10
+> “4+ 10 = 16” #IL - 15/10
 
 > I’ve gotta do examples now don’t I… don’t be lazy who said that? 
 > #IL - 16/10 
