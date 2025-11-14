@@ -5,6 +5,17 @@
 
 # Quotes mid lectures of varying relevance
 # Link back to [[Semester 1/Home page\|Home page]]
+
+## Welcome to the `Unofficial Soton Maths Lectures` Quotebook page. 
+#### Suggestions/Improvements may be submitted on the `Maths Gremlins` Discord channel. 
+
+#### The tags correspond to lecturers as follows along with the date/month the quote was said: 
+- #IL - Prof. Ian Lear 
+- #NW - Dr Nick Wright
+- #ST - Prof. Stephen Theriault 
+- #HO - Dr Helen Ogden 
+- #AM - Prof. Ashot Minasyan 
+- #ArM - Prof. Armando Martino 
 # Semester 1 
 
 > So have I actually told you what linear algebra is...? I'm not sure I know really" 
