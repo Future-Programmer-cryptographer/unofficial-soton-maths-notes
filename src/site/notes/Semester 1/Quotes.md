@@ -98,12 +98,12 @@
 
 > If it’s equal to 0 use your favourite one, -0 = 0 isn’t it #NW - 23/10
 
-> 4 equations and 4 unknowns - #ST - 24/10 
+>4 equations and 4 unknowns - #ST - 24/10 
 
  >In the morning first you put your socks on and you put your shoes on. In the evening you have to do in the opposite order. Don’t try and take your socks off without taking your shoes off  #IL 23/10
 
 > The solution to all technical problems, switching off and switching on again 
-> “What’s the best way to revised for Number Theory”? 
+> “What’s the best way to revise for Number Theory”? 
 > Not to build a set of real numbers… 
 > #NW - 24/10 
 
@@ -144,4 +144,13 @@
 > I will keep cleaning the board, despite the feedback 
 > - #AM - 10/11 
 
-> 2 is a prime number, and it only took us 6 and a bit weeks to get there - #NW - 
+> 2 is a prime number, and it only took us 6 and a bit weeks to get there - #NW - 10/11 mber, and it only took us 6 and a bit weeks to get there - #NW - 10/11
+
+> “Nicholas Wright..” 
+> You need to set your alarm earlier 
+> Integer-land makes us happy 
+> - #NW - 12/11 
+
+> Last time we were looking at prime numbers, and now it’s time to clean the air filter - #NW - 13/11
+
+> I’m gonna do this in a different colour to show what a fabulous educator I am - #IL - 14/11
