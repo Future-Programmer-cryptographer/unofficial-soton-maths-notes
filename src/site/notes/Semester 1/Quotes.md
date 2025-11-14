@@ -144,7 +144,7 @@
 > I will keep cleaning the board, despite the feedback 
 > - #AM - 10/11 
 
-> 2 is a prime number, and it only took us 6 and a bit weeks to get there - #NW - 10/11 mber, and it only took us 6 and a bit weeks to get there - #NW - 10/11
+> 2 is a prime number, and it only took us 6 and a bit weeks to get there - #NW - 10/11 
 
 > “Nicholas Wright..” 
 > You need to set your alarm earlier 
