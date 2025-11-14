@@ -27,19 +27,17 @@ $$ (a,b] = \{  x \in \mathbb{R} | a < x \leq b \}$$
 
 ## Special functions 
 
-![Pasted image 20250930100503.png](/img/user/Pasted%20image%2020250930100503.png)
-
 [[Tags/Definition\|Definition]]
 
-- Injection - basically a one-to-one function 
+- **Injection - basically a one-to-one function** 
 	- Horizontal line test 
-- Surjection - if the range matches the “Target set” 
-- Bijection - if a function is **both** injecetive and surjective 
+- **Surjection** - if the range matches the “Target set” 
+- **Bijection** - if a function is **both** injecetive and surjective 
 	- **Inverse** functions can only exist when there is a bijection 
 	- Functions need to be one to one - so injective 
 	- 
-- Proper subset ($\subset$) - Every element of $A$ is also in $B$ but not equal to $B$
-- Subset ($\subseteq$) - Set $A$ is a subset of $B$ if every element of $A$ is also in $B$
+- **Proper subset ($\subset$)** - Every element of $A$ is also in $B$ but not equal to $B$
+- **Subset ($\subseteq$**) - Set $A$ is a subset of $B$ if every element of $A$ is also in $B$
 
 ## Proving bijection and finding inverses of functions 
 
@@ -449,7 +447,7 @@ First step is to define a set, so let
 $$ S = \{  x \in [a,b] \space g(x) \leq 0 \}$$
 This means $S$ collects all points where $f(x) \leq K$ 
 
-Some goofy algebra proof #finishexplaination
+Some goofy algebra proof 
 
  
 ### Extreme Value Theorem 
@@ -636,7 +634,7 @@ $$ (\sin x)^` = \lim_{h \to 0} \frac{\sin(x+h)-\sin x}{h}  = \cos (x)$$
 
 ## Exponentials and Logarithmic Functions 
 
-Just copy from the notes here for the first principles #finishexplaination
+Just copy from the notes here for the first principles 
 
 $$ (a^x)^` = a^x \cdot f^`(0) $$
 Where $f^`(0)$ is a constant. There is a unique $a$ with $f^`(0) = 1$ This is when $a=e$ 
@@ -775,7 +773,7 @@ $$ f^`(c) = \frac{f(b) - f(a)}{b-a} $$
 Think of it as the gradient of a secant line of joining two points on a graph. So what this is saying is that there is some point $c \in (a,b)$  such the gradient of a tangent line equals the secant line are the same 
 ### Proof of the MVT 
 
-The formal proof involve's Rolle's Theorem. The idea here is that we want to "remove" the secant line so the endpoints are level. 
+The formal proof involve Rolle's Theorem. The idea here is that we want to "remove" the secant line so the endpoints are level. 
 
 Let $g(x) = f(x)$ - equation of secant line. 
 
@@ -857,7 +855,7 @@ Graphically, the tangent lines are:
 - Below the lines for a concave up 
 
 [[Tags/Definition\|Definition]] 
-A fn $f$ that has a second derivative has an **inflection point** at $x$ if the **concavity** changes at $x$ 
+A fn $f$ that has a second derivative has an **inflection point** at $x$ if the **concavity** changes at $x$ and $f^{``}(x) = 0$. 
 
 So if $f$ is a fn whose second derivative exists on an open interval $I$, then 
 - $f^{``}(x) > 0$ on $I \iff$ $f$ is concave up 
@@ -872,15 +870,109 @@ So let $f$ be a twice differentiable function on some open interval $I$, and for
 $$ f^{``}(c) > 0 \implies \text{ $c$ is a local minimum} $$
 $$ f^{``}(c) < 0 \implies \text{ $c$ is a local maximum} $$
 $$ f^{``}(c) = 0 \implies \text{ more information needed} $$
+## Horizontal and Vertical Asymptotes 
 
+[[Tags/Definition\|Definition]] A graph has a **vertical asymptote** at $x=a$ if: 
+$$ \lim_{x\to a^+} f(x) = \pm \infty \quad \text{ or } \lim_{x \to a^-}f(x) = \pm \infty $$
+[[Tags/Definition\|Definition]] A graph has a **horizontal asymptote** if
+$$ \lim_{x \to \infty} f(x) = L \quad\text{ or } \lim_{x \to \infty^-}f(x) = L $$
+Where $L$ is some finite number 
 
+The best way to practice this topic- do curve sketching 
 
+# 6. Integration 
 
+## Anti-Derivatives 
+ 
+[[Tags/Definition\|Definition]] Let $f$ be a function, then a function $g$ is the **antiderivative** of $f$ if $g$ is differentiable and $g^` = f$
 
+Now suppose that $g^`(x) = f(x)$. Then $h(x) =g(x) + c \implies h^`(x) = f(x)$  where $c$ is a constant. The proof of this is fairly trivial. But what this means is that antiderivatives are not unique, as for any antiderivative, we can always add a constant to get another anti-derivative 
 
+Geometrically speaking, antiderivative has no meaning, but it will be used in finding integrals. 
 
+## Definite Integral 
 
+Let $f$ be a continuous, and suppose we want to find the area $A$ between the curve and the $x$ axis that lies over $[a,b]$ 
 
+One way to approach this problem is to consider approximating the area of rectangles that we can fit below the curve with total area $L$, and a sequence of rectangles above the curve with a total area $U$. Then we have the area bounded as $L \leq A \leq U$. As the curve isn't made up on neat rectangles, we can approximate the area by taking a limit as those rectangles get thinner and thinner. 
+
+First, we divide our interval, $[a,b]$ into segments: 
+$$ [a,x_{1}], [x_{1}, x_{2}], \dots , [x_{n-2}, x_{n-1}], [x_{n-1}, x_{b}], \quad a < x_{1} < x_{2} < \dots < x_{n-1} < b$$
+We can let $l_i$ be the length of segment $[x_{i-1}, x_i]$. This division is called a partition, and we label it as $P$. 
+
+Consider restricting $f$ to $[x_{i-1}, x_i]$. So on that closed interval $f$ is continuous so it has a maximum and minimum value by the EVT. Let $M_i$ be that max value, and $m_i$ the min value. 
+
+Now we form rectangles in our restricted interval $[x_{i-1}, x_i]$. The lower rectangle has area $l_im_i$ and the upper rectangle has area $l_iM_i$ 
+
+When we sum the rectangles, the areas of the upper and lower is given as follows: 
+$$ L(f,P) = l_{1}m_{1} + \dots + l_{n}m_{n}$$
+$$ U(f,P) = l_{1}M_{1} + \dots + l_{n}M_{n} $$
+Therefore, we know that our area $A$ is bounded by 
+$$ L(f,P) \leq A \leq U(f,P) $$
+Now, if we keep increasing $n$, i.e. make the rectangles thinner, then the lower and upper estimates get closer together, because $f$ can't change much over the tiny intervals. It's a bit like the squeeze theorem. 
+
+[[Tags/Definition\|Definition]] Let $f$ be a continuous function on the interval $[a,b]$, then the **definite integral of $f$ from $a$ to $b$** is the unique number $I$ s.t. $L(f,P) \leq I \leq U(,P)$ for all partitions of $[a,b]$. This is written as: 
+$$ I = \int_{a}^b f(x) dx$$
+### Properties of definite integrals 
+
+There are some nice properties of integrals because of the arithmetic of limits, and how everything boils down to limits 
+$$ \int_{a}^b (cf(x) + dg(x)) \,  dx = c\int_{a}^{b}f(x) \, dx +d \int_{a}^{b} g(x) \, dx $$
+$$ \int_{a}
+{ #a}
+ f(x) \ dx = 0$$
+$$ \int_{a}^{t} f(x) \ dx + \int_{t}^{b}f(x) \ dx = \int_{a}^{b} f(x) \ dx  $$
+$$ \int_{b}^{a} f(x) \ dx = - \int_{a}^{b} f(x) \ dx  $$
+$$ f(x) \leq g(x)  \quad \forall x \in [a,b] \implies \int_{a}^{b} f(x) \ dx \leq \int_{a}^b g(x) \ dx $$
+
+## Fundamental Theorem of Calculus 
+
+There is a reason this is called the Fundamental Theorem of Calculus. Not only it shows us the relationship between integration and differentiation, but it also guarantees that any integrable function has an antiderivative, it guarantees that any continuous function has an antiderivative 
+### Part I
+
+If $f$ is a continuous function over an interval $[a,b]$, and the function $F(x)$ is defined by: 
+$$ F(X) = \int_{a}^x f(t) \ dt$$
+Then $F^`(X) = f(x)$ over $[a,b]$ 
+
+So $F(X)$ is the area under $f$ from $a$ to $x$, it's the area accumulation function. 
+
+To show this holds, we apply the definition of the derivative to our function to get:: 
+
+$$F^`(x)  =\lim_{ h \to 0 } \frac{F(x+h) - F(x)}{h} $$
+$$  = \lim_{ h \to 0 } \frac{1}{h} \left[ \int_{a}^{x+h} f(t) \ dt - \int_{a}^{x} f(t) \ dt \right] $$
+After splitting the integral we have: 
+$$ = \lim_{ h \to 0 } \frac{1}{h} \left[ \int_{a}^{x} f(t) \ dt + \int_{x}^{x+h} f(t) \ dt -\int_{a}^{x} f(t) \ dt \right]$$
+$$ = \lim_{ h \to 0} \frac{1}{h} \int_{x}^{x+h} f(t) \ dt   $$
+Now we either estimate this using a lower and upper bound (which is how it's given in the notes), or we can use the Mean value theorem. 
+
+Notice that $\frac{1}{h} \int_{x}^{x+h} f(t) \ dt$ is just the average value of the function $f(x)$ over the interval $[x, x+h]$. So by the MVT, $\exists c \in [x,x+h] s.t.$: 
+$$  \frac{1}{h} \int_{x}^{x+h} f(t) \ dt  = f(c)$$
+And now we can take limits, since $c$ is between $x$ and $h$, and $c \to x$ and as $h \to 0$ and $f$ is continuous 
+$$ \lim_{ h \to 0 } f(c) = \lim_{ c \to x }  = f(x)$$
+So combining all of this together we have: 
+$$ F^`(x) =  \frac{1}{h} \int_{x}^{x+h} f(t) \ dt = \lim_{ h \to 0 }f(c) = f(x) $$
+$$\square$$
+
+### Part II 
+
+If $f$ is continuous over the interval $[a,b]$, and $F(X)$ is any antiderivative of $f(x)$, then 
+$$ \int _{a}^b  f(x) \ dx = F(b) - F(a)$$
+What this means is that if we can find an antiderivative for the integrand, then we can evaluate the definite integral by evaluating the antiderivative at the **endpoints** of the interval 
+
+The proof can be done two ways again: using Riemann sums and using the definition of an antiderivative, both make use of the MVT. This one is similar to the one given in notes, but I attempted to explain it more detail: 
+
+Suppose $F$ is an antiderivative of $f$, with $f$ being continuous of $[a,b]$. Now let: 
+$$ F(x) =  \int_{a}^{x} f(t) \ dt, \quad G(x) = \int_{a}^{x} f(t) \ dt$$
+By Part I, we know that $G$ is also an antiderivative of $f$ 
+So we have that $F(x) = G(x)$. 
+
+Now, if two functions have the same derivative, then their difference has derivative $0$: $F^` - G^` = 0$ 
+
+So by the MVT, this implies that $F - G$ is a constant function, i.e .$\exists c \in [a,b]$ s.t. $G(x) = F(x) + c$. When we let $x=a$ and compute $G(a)$ we have: 
+$$ F(a) + c = G(a) = \int _{a}^a f(t) \ dt = 0 \implies c = -F(A)$$
+So we have that $G(x) = F(x) - F(a)$.
+
+And then we evaluate at $x=b$ we have $G(b)$ and using the definition of $G(x)$ above we have: 
+$$ \int_{a}^b f(x) \ dx = G(b) = F(b) - f(a) \quad \square $$
 
 
 
