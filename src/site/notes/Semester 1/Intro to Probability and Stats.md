@@ -687,7 +687,9 @@ $$  X \sim N(\mu, \sigma^2)$$
 ### PDF 
 
 $$ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$
-#explainbetter - watch 3b1b video 
+The CDF is just 
+$$  \phi (z) = P(Z \leq z) = \int_{-\infty}^{z} \frac{1}{\sqrt{2 \pi}}e^{\frac{-u^2}{2}} du$$
+3b1b has some good videos on this 
 
 To show that sum of all probabilities is $1$, we use the property of the Gamma function; 
 $$ \Gamma (\frac{1}{2}) = \sqrt \pi $$
@@ -702,3 +704,111 @@ $$ Var(X) = \sigma^2$$
 $$ X \sim N(\mu, \sigma^2) \implies Y = aX + b = N(a\mu +b, a^2\sigma^2)$$
 We can also standardise any normal to get 
 $$  Z = \frac{X-\mu}{\sigma}, \quad Z \sim N(0,1^2)$$
+### Probabilities using tables 
+
+Given the standard normal distribution with $Z$, we can use one universal table for all the normal distribution as the standard normal is just a shift and stretch of every normal curve 
+
+So if we want probability for $P(a \leq X \leq b)$, we can use the standard normal to get: 
+$$ P(a \leq X \leq b)  = P\left( \frac{a-\mu}{\sigma}  \leq Z \leq \frac{b-\mu}{\sigma}\right)$$
+And then we ca use the normal CDF $\phi(z) = P(Z \leq z)$ to get the probability 
+
+## Log-Normal Distributions 
+
+If $X \sim N(\mu, \sigma^2)$, then the random variable $Y = \exp(X)$ is the log-normal random variable
+
+### Expectation 
+
+### Variance 
+#finishexplaination
+
+## Joint Distributions
+
+Up to now, we've mostly dealt with one random variable at a time, eg: $X$ = height of a person. But in the real world, we often want to study two random variables together, eg: 
+$X$ = height 
+$Y$ = weight 
+And we want to know how these two relate, and that's essentially what joint distributions are about 
+
+So when we have two random variables, $X$ and $Y$, instead of having probabilites of single values of $X$, we have probabilities of pairs of values ($x,y$)
+
+### Discrete Case 
+
+IF $X$ and $Y$ are discrete (like dice rolls, counts), then the joint PMF is: 
+$$ f(x,y) = P(X=x \text{ and } Y = y)$$
+This would like a table of probabilities, one for each combination of $x$ and $y$, and all probabilities must be 
+- non negative 
+- sum to $1$ across all $x,y$ 
+
+### Continuous case 
+
+If $X$ and $Y$ are continuous, then the joint PDF is $f(x,y)$ s.t. 
+$$ \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \ dx \ dy  = 1   $$
+The method above uses **bivariate integration**, which is just the same as finding the volume under a curve if we think about integration as finding the are under a curve. 
+
+## Marginal Distributions 
+
+Each random variable has its own individual distribution, even when considered together. And these are called **marginal distributions**. This is because we get them by summing or integrating the joint distributions along the margins. 
+
+### Discrete 
+
+$$f(x) = \sum_{y}f(x,y) $$
+$$ f(y) = \sum_{x} f(x,y)$$
+This basically means to get the probability of $X$, add up all the probabilities for each possible $y$
+
+### Continuous 
+
+$$f(x) = \int f(x,y) \ dy  ,\quad f(y) = \int  f(x,y)  \ dx $$
+### Expectation of $g(X,Y)$ 
+
+Now consider we want to find the average (expected) value of something that depends on both $X$ and $Y$, so we have a generalised formula for expectation 
+$$  E[g(X,Y)] = \begin{cases}
+\sum _{x} \sum_{y} g(x,y) f(x,y), \quad \text{ discrete} \\
+\int \int g(x,y) f(x,y) \ dx \ dy , \quad \text{ continuous}
+\end{cases}$$
+This is the same as the single-variable version, but now in two dimension
+
+## Covariance 
+
+Covariance tells us how two random variables move together 
+
+$$ Cov(X,Y) = E[(X - E(X))(Y - E(Y))] = E(XY) - E(X) E(Y) \equiv E(XY) - \mu_x \mu_y$$
+The intuition behind this is essentially: 
+- If $X$ and $Y$ increase together - then covariance is positive 
+- If one goes when the other goes down, it's negative 
+- If they move independently, then covariance is around $0$ 
+
+## Correlation - normalised covariance 
+
+Correlation then, is just the scaled version of covariance so its unit free and lies between $-1$ and $1$ and it’s given by: 
+
+$$ Cor(X,Y) = \frac{Cov(X,Y)}{\sqrt{ Var(X)Var(Y) }} $$
+- If the correlation is $+1$, then there is a positive linear relationship 
+- If it's $-1$, then it's a negative linear relationship 
+- If its $0$, then there is no linear relationship 
+
+I can’t be bothered enough to do a proof for this, so yeah. 
+
+So correlation just shows how strong and in which direction $X$ and $Y$ move
+
+In function terms two random variable are independent if knowing one tells us nothing about the other: 
+$$ f(x,y) = f(x) \times f(y) \space \forall x,y $$
+So if $X$ and $Y$ are independent $\implies$ they have $0$ correlation, but the converse is not true 
+
+
+## Sums of Random Variables 
+
+### Independent Binomial Random Variables 
+
+If $X \sim B(m,p)$ and $Y \sim B(n,p)$, then 
+$$ X + Y \sim B(n+m, p) $$
+The proof is in notes, but otherwise this makes intuitive sense. 
+
+IF $Y = X_1 + X_2 + … X_n$ with $E(X_i) = \mu_i$ and $Var(X_i) = \sigma^2_i$ 
+
+Then: 
+$$ E(Y) = \mu_1 + \mu_2 + … + \mu_n $$
+$$ Var(Y) = \sigma^2_1 + \sigma^2_2 + … + \sigma^2_n $$
+This is actually a pretty neat way to derive the expectation and variance for the Binomial and the negative binomial distribution: 
+$$ E(Y) = E \left( \sum_{i=1}^n  X_{i}\right) = p + p + \dots + p = np $$
+$$ Var(Y) = Var(X_{1}) + \dots + Var(X_{n}) = p(1-p) + \dots + p(1-p) = np(1-p)$$
+
+## Central Limit Theorem 
