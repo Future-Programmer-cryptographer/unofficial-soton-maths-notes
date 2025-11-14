@@ -301,7 +301,6 @@ For $m, n \in \mathbb{Z}$, exactly one of the properties below hold:
 - $m = n$ 
 - $m > n$ 
 We can prove the other inequalities from the properties above 
-#finishexplaination - talk about how to get the other inequalities 
 
 
 ### Proof that $0< 1$ (proof by contradiction)
@@ -710,27 +709,28 @@ Two integers are co-prime $\iff$ $\exists x, y \space s.t. \space ax + by = 1$
 If $\gcd(a,b) = d$, then 
 $$ \gcd(ma,mb) = md \quad \forall m > 0 \quad \gcd(u,v) = 1$$
 Where $a = ud$ and $b = vd$ 
-#finishexplaination
 
 Let $a$ and $b$ be co-prime, then: 
 
 $$  a|c \land b | c \implies ab|c$$
 $$ a|bc \implies a|c $$
-Note how this only works if the numbers are co-prime 
+Note how this only works if the numbers are co-prime. The proof of both of them are in in notes. 
 
-Proof of the two: #finishexplaination
+## Least Common Multiple 
 
-## Least Common Divisor 
-#finishexplaination 
+Pretty much self-explanatory, the lowest common multiple of two numbers is just the product of those numbers divided by the greatest common divisors of two numbers 
+If $a,b \in \mathbb{Z}$ and if $d = \gcd(a,b)$ and $l =lcm(a,b)$ . Then: 
+$$ dl = ab \equiv l = \frac{ab}{\gcd(a,b)} $$
 
 ## Linear Diophantine Equations 
 
 Let $a,b,c \in \mathbb{Z}$ and $a,b \neq 0$, let $d = \gcd(a,b)$. Then the equation 
 $$ ax + by = c $$
-Has integer solutions $\iff d | c$ and if it does, then there are infinitely many solutions: 
+Has integer solutions $\iff \gcd(a,b) | c$ and if it does, then there are infinitely many solutions: 
 $$ x= x _0 + q_n, \quad y = y_0 - pn \quad (n \in \mathbb{Z}) $$
 Where $a = pd, b = qd$ and $(x_0, y_0)$ is any particular solutions. It’s a bit like doing differential equations. 
 
+### Proof 
 The if an only if part is just Bezout’s identity, so now we just need to prove what the general solution looks like 
 
 So assume we have one particular solution, so let $(x_0, y_0)$ satisfy $ax_0 + by_0 =c$. And now we want to find out all the other pairs ($x,y$) that also make $ax + by = c$ 
@@ -740,9 +740,8 @@ $$  x = x_0 + qn , \quad y = y_0 - pn$$
 Where $a = pd$ and $b = qd$ 
 
 Now we put this in the $ax + by = c$ to get: 
-
 $$ a(x_0 + qn) + b(y_0 - pn) = ax_0 + by_0 +aqn - bpn = c + d(pq-qp)n = c $$
-So this works for any integer $n$ #explainbetter - where is teh c + d coming from? 
+So this works for any integer $n$ #explainbetter 
 
 Now we need to show that these two are the only solutions, so we suppose that ($x,y$) is any integer solutions
 
@@ -868,6 +867,39 @@ Hence by induction, this holds $\forall n > 1$
 
 We can how take this theorem and show that if a positive integer $n$ is not a perfect square, then $\sqrt{n}$ is irrational, i.e. if $n$ is not a perfect square, then there are no non-zero integers s.t. $b^2n = a^2$ 
 This can be done by a proof by contrapositive, look at the notes for this. 
+
+## Distribution of Primes 
+
+### Euclid’s Proof of Infinitely Many Primes 
+
+Our strategy here is fairly simple: 
+- Assume that we have a finite number of primes 
+- Use them to build a new prime number that cannot be divisible by any of them 
+- So we've missed at least one prime 
+- Therefore, there must be infinitely many 
+
+Say all the primes are: 
+$$ p_{1}, p_{2}, \dots p_{k}$$
+Now we define a new number: 
+$$ N = p_{1}p_{2}\dots p_{k} + 1 $$
+Now we look at the product of the primes in $N$. We can notice that every prime $p_i$ divides that product, but $N$ is exactly $1$ more than the product of all the primes. 
+
+So none of the primes $p_1 ... p_k$ divide $N$ 
+
+By the fundamental theorem of arithmetic that we proved earlier, every integer has a unique prime factorisation, so $N$ must have at least one prime divisor, say $q$ 
+
+But since none of the primes in our list can divide $N$, this new prime $q$ cannot be one of the primes in $p_1, ... p_k$, therefore $q$ is another prime, which contradicts the assumption that we had all the primes 
+
+### Estimating Distributions 
+
+I won't go into a lot of detail for this section, mostly because it's explained in the notes, but there are few decent, and not so decent, ways of estimating primes which can be proved by strong induction.
+
+A very estimation is given by: 
+$$ \text{ The } n \text{th prime } p_{n} \text{ satisfies } p_{n} \leq 2^{2^{n-1}} \ \ \forall n \geq 1 $$
+
+The **Prime Number Theorem** however, is more of the interesting side of things, which uses this function: 
+$$ \text{ li } x = \int_{2}^x \frac{dt}{\ln t}$$
+It tells us how the proportion of primes goes, something else which might be of interest is to look up **Skewe's number**
 
 
 
