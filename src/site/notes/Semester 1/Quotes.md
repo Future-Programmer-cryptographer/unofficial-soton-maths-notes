@@ -20,10 +20,10 @@
 
 > If the spider had a phone - #NW - 03/10 
 
-> I’ve done further maths so I understand this but people who haven’t done further maths may struggle with $e^{i\theta}$ - random person in IL’s lecture - 06/10
+> I’ve done further maths so I understand this but people who haven’t done further maths may struggle with $e^{i\theta}$ - random person in IL’s lecture 
 > Circumcircle 
 > Don’t tell anybody I told you about $\mathbb{R}^0$
-> #IL 
+> #IL  - 06/10
 
 > Mathematicians are lazy people, they will think really hard and work really hard to be lazy 
 > In mathematics, two wrongs really do make a right 
