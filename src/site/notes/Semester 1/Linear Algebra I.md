@@ -6,7 +6,7 @@
 # Link back to [[Semester 1/Home page\|Home page]]
 # [Link to typed notes: ](https://blackboard.soton.ac.uk/ultra/courses/_233978_1/outline/edit/document/_7502405_1?courseId=_233978_1&view=content&state=view)
 
-# 1. Complex Numbers 
+# 0. Complex Numbers 
 $$ \mathbb{C} = \{  a+bi \mid a,b \in \mathbb{R}  \} $$
 $$ \mathrm{Re}(a+bi) = a$$
 $$\mathrm{Im}(a+bi) = b$$
@@ -185,7 +185,7 @@ Hence, if $z$ is a root, so is $\bar{z}$
 
 ---
 
-# 2. Real $n$ space $\mathbb{R}^n$
+# 1. Real $n$ space $\mathbb{R}^n$
 
 [[Tags/Definition\|Definition]] The real n-space $\mathbb{R}^n$ is the collection of n-tuple of real numbers 
 
@@ -520,7 +520,7 @@ $$ ||\vec{PN}|| = || \vec{PA} - \frac{(\vec{PA} \cdot A)}{\vec{a} \cdot \vec{a}}
 
 ---
 
-# 3. Matrix Algebra 
+# 2. Matrix Algebra 
 
 ## Definitions 
 
@@ -812,7 +812,7 @@ $$ A^2 = A \cdot A , \quad A^3 = A \cdot A \cdot A  $$
 - If $A$ and $B$ commute, ($AB = BA$) then $(AB)^n = A^n B^n$ 
 - $A^{-n} = (A^{-1})^n$ 
 
-# 4. Systems of Linear Equations
+# 3. Systems of Linear Equations
 
 A system of $m$ equations in $n$ unknown can be written as: 
 And in matrix form:
@@ -997,7 +997,7 @@ $$ \mathbf{x} = I_{n}\mathbf{x} = (A^{-1}A)\mathbf{x} = A^{-1}(A\mathbf{x}) = A^
 
 Here, the key idea is that row operations that turn $A$ into $I$ will also turn $I$ into $A^{-1}$.
 
-[[Tags/Definition\|Definition]] **Elementary matrix** - A matrix obtained from the identity matrix $I_n$ by doing **ONE** row operation. Doing row operations is the same as multiplying by elementary matrices 
+[[Tags/Definition\|Definition]] **Elementary matrix** - A matrix obtained from the identity matrix $I_n$ by doing **ONE** row operation. Doing row operations is the same as multiplying by elementary matrices. One of the problem sheets goes through this proof 
 
 Each elementary matrix is invertible, and it’s inverse is an elementary matrix of the same type. Ie. if we multiply $E$ by any matrix $A$, we perform that same row operation on $A$. 
 
@@ -1101,7 +1101,7 @@ Let $A$ be a $m \times n$ matrix and $B$ be any matrix:
 - rank($A + B$) $\leq$ rank($A$) + rank($B$) - provided $B$ is $m \times n$ 
 - Rank($A + B$) $\leq$ min(rank($A$), rank($B$)) 
 
-# Determinants 
+# 4.Determinants 
 
 $M_n(\mathbb{R})$ - the set of all $n \times n$ matrices with real entries. We don't start by just saying what the determinant is, but what kind of function it must be. So the axiomatic definitions are given below. Note that these are slightly less formal than what's in the official lecture notes, but that's mostly down to making it easier and more intuitive to understand.  
 
@@ -1273,8 +1273,6 @@ The sign pattern comes from one of the determinant axiom which tells us that if 
 As we're expanding the determinant along a row, we're sort of "isolating" one element $a_{ij}$ and its minor. Intuitively, we're bringing $a_{ij}$ up to position by moving rows/columns around, and to account for that movement, we multiply by $(-1)^{i+j}$ 
 
 This is quite efficient when we have a matrix with lots of zero entries 
-#example
-#explainbetter
 
 ## Determinant of a Transpose 
 
@@ -1302,4 +1300,100 @@ The proof in the notes is bit more detailed and uses the 3 cases of the elementa
 
 $$\det(A^k) = (\det A)^k , \quad\forall k \in \mathbb{Z}$$
 $$ \det(A^{-1}) = \frac{1}{\det(A)}$$
-The proof of rather trivial, and can be proved by induction if wanted as an exercise to the reader 
+The proof is rather trivial, and can be proved by induction if wanted as an exercise to the reader 
+
+## Inverting a Matrix using Cofactors 
+
+This section is skipped as it will not be examined 
+
+# 5.Linear Transformations 
+
+This is where the proper linear algebra starts. A linear transformation is just taking a function from one vector space to another, following a couple of specific rules, namely additivity and scaling. 
+
+[[Tags/Definition\|Definition]] Let $m, n \in \mathbb{N}$, and let $T : \mathbb{R}^n \to \mathbb{R}^n$ be a function. Then $T$ is a **linear transformation** if $\forall \vec{u}, \vec{v} \in \mathbb{R}^n$ and $\forall \lambda \in \mathbb{R}$ we have: 
+
+$$ T(\vec{u} + \vec{v}) = T({\vec{u}}) + T(\vec{v}) $$
+$$ T(\lambda \vec{u}) = \lambda T(\vec{u}) = \lambda T(\vec{u})$$
+
+Intuitively, a linear transform never bends, curves, or shifts space, it can only scale, rotate, shear, reflect, etc. So essentially, if the origin doesn't stay fixed, then the transformation is not linear. 
+
+The most important thing is probably this: every linear transformation is a matrix multiplication. 
+So if $A$ is an $m \times n$ matrix, then 
+$$ T : \mathbb{R}^m \to \mathbb{R}^m \text{ defined by } T(\mathbf{x}) = A\mathbf{x} \ \forall x \in \mathbb{R}^n$$
+So every linear transform, is a multiplication by some matrix $A$. So if we know what the transformation does to the basis vectors, we know what it does to every vector in the space. The proof of this is trivial, and is explained in the notes. 
+
+Now that we know that $T : \mathbb{R}^n \to \mathbb{R}^m,$ is a linear transform, then standard basis vectors of $\mathbb{R}^n$ can help us determine the whole transformation. 
+
+Consider the standard basis vectors in $\mathbb{R}^n$ : 
+$$e_{i} = (0, \dots 0, 1 , 0, \dots 0) $$
+Where the $i$-th entry is the vector entry $1$ 
+
+And we know that any vectors $x$ can be written in terms of the basis vectors: 
+$$ \mathbf{x} = x_{1}e_{1} + x_{2} e_{2} + \dots + x_{n} e_{n}$$
+So $T$ is linear, then 
+$$ T(x) = x_{1}T({e_{1}}) + x_{2} T(e_{1}) + \dots + x_{n}T(e_{n}) = (T(e_{1}) \dots T(e_{n})) \mathbf{x} = A\mathbf{x}$$
+Hence just showing the basis vectors, is enough to define the entire transformation. It's like taking the unit square and seeing how it changes under a matrix. 
+
+## Linear Transformation in $\mathbb{R}^2$
+
+Every linear transformation in $\mathbb{R}^2$ is completely determined by: $T(e_1), T(e_2)$, where 
+$$ e_{1} = \begin{pmatrix}
+1 \\ 
+0 
+\end{pmatrix} ,\quad  e_{2} = \begin{pmatrix}
+0 \\ 
+1
+\end{pmatrix}$$
+So to understand a transformation, we need to think about what it does to $e_1, e_2$
+
+### Rotation about the origin 
+
+Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be the rotation by $\theta \in [0, 2\pi)$ anti-clockwise about the origin: 
+
+Now think about what happens to $e_1 = (1,0)$, when rotating, it lands at ($\cos\theta, \sin \theta)$ 
+And when $e_2 = (0,1)$ is rotated, it lands at $(\cos(\theta + \pi/2), \sin (\theta + \pi/2))$, which simplified is $(-\sin \theta, \cos \theta)$.
+Therefore the matrix of rotation is given by: 
+$$ A=  \begin{pmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta 
+\end{pmatrix} $$
+We can check that rotation preserves the area, so the determinant of this matrix is in $\cos^2 \theta + \sin
+{ #2}
+ \theta = 1$fact 
+
+And therefore the matrix of linear transformation is given by: 
+$$ T ( \begin{pmatrix}
+x \\ 
+y
+\end{pmatrix}) = A \begin{pmatrix}
+x \\ 
+y
+\end{pmatrix} = \begin{pmatrix}
+\cos \theta x & -\sin \theta y \\
+\sin \theta x & \cos \theta y
+\end{pmatrix}, \ \forall \begin{pmatrix}
+x \\ 
+y 
+\end{pmatrix} \in \mathbb{R}^2$$
+
+### Reflection in a line through origin 
+
+Note that a reflection keeps points on the line fixes, and flips points perpendicular to the line. There is a diagram in the notes which makes it easy to see why its $2 \theta$, but another way to think about it to consider the basis vectors and how they're changing. 
+
+A reflection through the angle $\theta$ is the same at a rotation by $-\theta$ to align the axis, then reflect across the $x$ axis, and rotate it back by $\theta$ 
+
+The matrix is therefore given by: 
+$$T  = \begin{pmatrix}
+\cos(2 \theta) & \sin(2 \theta)\\
+\sin (2 \theta) & -\cos(2 \theta)
+\end{pmatrix} $$
+The determinant of this matrix, when calculated, is $-1$ 
+### Stretch/shrink 
+A scaling just has the effect of multiplying axes. So the matrix here is self-explanatory: 
+$$T = \begin{pmatrix}
+\lambda & 0 \\ 
+0 & \mu 
+\end{pmatrix} $$
+$T$ stretches/shrinks the plane by $\lambda$ in the direction of the $x$ axis and by $\mu$ in the $y$ axis 
+
+### Shear 
