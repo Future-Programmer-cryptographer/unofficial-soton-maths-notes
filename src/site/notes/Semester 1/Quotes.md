@@ -104,7 +104,7 @@
 > Writing letters down isn’t commutative is it… 
 > Next is the killer I think, associativity 
 > I feel like you’re not really doing anything when you do this
->  #IL - 22/10 
+> #IL - 22/10 
 
 > If it’s equal to 0 use your favourite one, -0 = 0 isn’t it #NW - 23/10
 
@@ -148,18 +148,18 @@
 
 > If $i$ is 3 then it’s my favourite number, 1001 
 > The definition of prime is not what you think it is 
-> - #NW - 07/11
+> #NW - 07/11
 
 > We can skip the proof because I don’t really like it very much 
 > I will keep cleaning the board, despite the feedback 
-> - #AM - 10/11 
+> #AM - 10/11 
 
 > 2 is a prime number, and it only took us 6 and a bit weeks to get there - #NW - 10/11 
 
 > “Nicholas Wright..” 
 > You need to set your alarm earlier 
 > Integer-land makes us happy 
-> - #NW - 12/11 
+> #NW - 12/11 
 
 > Last time we were looking at prime numbers, and now it’s time to clean the air filter - #NW - 13/11
 
