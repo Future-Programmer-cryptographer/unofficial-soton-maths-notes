@@ -12,7 +12,8 @@
 [[Tags/Definition\|Definition]] A **statement** (or proposition) is an expression that can be assigned the value of true or false 
 
 Anything that’s a question is not a statement. 
-In the example below, it’s a statement cuz the variable is “used up”. We really need to specify what’s happening to the variable for it to be a statement.  $$ \sum_{i=1}^{4} i=10 $$
+In the example below, it’s a statement as the variable is “used up”. We really need to specify what’s happening to the variable for it to be a statement.  
+$$ \sum_{i=1}^{4} i=10 $$
 
 [[Tags/Definition\|Definition]] A **predicate** is a ‘statement’ whose truth is dependent on one or more variables 
 - For a predicate, the variable is not “used up” 
@@ -257,14 +258,14 @@ So this means that $v^2$ is even (by defn of even) and $v$ is even
 
 So now $\exists l \in \mathbb{Z} \space s.t. v = 2l$
 
-And after we substitute back into the definitions of $a$ and $b$, we get; 
-
+And after we substitute back into the definitions of $a$ and $b$, we get:
 $$ a = d(2k)$$$$ b = d(2l)$$ We started by assuming that $d$ was the g.c.d of $a$ and $b$, but here, $2d$ is the g.c.d 
 As $d < 2d$ , $d$ is not the g.c.d of $a$ and $b$, hence, we have reached a contradiction 
 
 If our statement $P$ was “$d$ is the g.c.d of $a$ and $b$, then $\neg P$ was $d$ is not the greatest g.c.d of $a$ and $b$. Therefore, we have $P \wedge \neg P$, which is a contradiction 
 
-Hence, our premise is false, so $$ \forall a,b \in \mathbb{Z}, \space a^2 \neq b^2$$
+Hence, our premise is false, so 
+$$ \forall a,b \in \mathbb{Z}, \space a^2 \neq b^2$$
 
 
 ---
@@ -727,11 +728,13 @@ $$ dl = ab \equiv l = \frac{ab}{\gcd(a,b)} $$
 Let $a,b,c \in \mathbb{Z}$ and $a,b \neq 0$, let $d = \gcd(a,b)$. Then the equation 
 $$ ax + by = c $$
 Has integer solutions $\iff \gcd(a,b) | c$ and if it does, then there are infinitely many solutions: 
-$$ x= x _0 + q_n, \quad y = y_0 - pn \quad (n \in \mathbb{Z}) $$
+$$ x= x _0 + qn, \quad y = y_0 - pn \quad (n \in \mathbb{Z}) $$
 Where $a = pd, b = qd$ and $(x_0, y_0)$ is any particular solutions. It’s a bit like doing differential equations. 
 
 ### Proof 
-The if an only if part is just Bezout’s identity, so now we just need to prove what the general solution looks like 
+The if an only if part is just Bezout’s identity. Any common divisor of $a$ and $b$ divides every intger linear combination of $a$ and $b$ 
+
+So now we just need to prove what the general solution looks like 
 
 So assume we have one particular solution, so let $(x_0, y_0)$ satisfy $ax_0 + by_0 =c$. And now we want to find out all the other pairs ($x,y$) that also make $ax + by = c$ 
 
@@ -741,7 +744,7 @@ Where $a = pd$ and $b = qd$
 
 Now we put this in the $ax + by = c$ to get: 
 $$ a(x_0 + qn) + b(y_0 - pn) = ax_0 + by_0 +aqn - bpn = c + d(pq-qp)n = c $$
-So this works for any integer $n$ #explainbetter 
+So this works for any integer $n$ 
 
 Now we need to show that these two are the only solutions, so we suppose that ($x,y$) is any integer solutions
 
@@ -878,7 +881,7 @@ Our strategy here is fairly simple:
 - So we've missed at least one prime 
 - Therefore, there must be infinitely many 
 
-Say all the primes are: 
+Assume we have all the primes are: 
 $$ p_{1}, p_{2}, \dots p_{k}$$
 Now we define a new number: 
 $$ N = p_{1}p_{2}\dots p_{k} + 1 $$
@@ -894,12 +897,129 @@ But since none of the primes in our list can divide $N$, this new prime $q$ cann
 
 I won't go into a lot of detail for this section, mostly because it's explained in the notes, but there are few decent, and not so decent, ways of estimating primes which can be proved by strong induction.
 
-A very estimation is given by: 
+A very weak estimation is given by: 
 $$ \text{ The } n \text{th prime } p_{n} \text{ satisfies } p_{n} \leq 2^{2^{n-1}} \ \ \forall n \geq 1 $$
 
 The **Prime Number Theorem** however, is more of the interesting side of things, which uses this function: 
 $$ \text{ li } x = \int_{2}^x \frac{dt}{\ln t}$$
 It tells us how the proportion of primes goes, something else which might be of interest is to look up **Skewe's number**
 
+# 5. Congruences 
 
+Fun fact: a perfect square must leave a remainder $0$ or $1$ when divided by $4$ 
 
+[[Tags/Definition\|Definition]] Let $n$ be a positive integer, and let $a$ and $b$ any integers, we say that $a$ is **congruent** to $b\mod n$ written as: 
+$$  a \equiv b \mod n$$
+If $a$ and $b$ leave the same remainder when divided by $n$, then the remainder if the **residue** of $a$ (or $b$) module $n$ And the number $n$ is the **modulus** 
+
+There is more than one way to think about congruence, the following are equivalent: 
+
+What the above essentially means is that is a divide $a$ or $b$ by $n$, then both of those remainders are the same. So $a = q_1 n + r$ and $b = q_2 n + r$ and when we rearrange, we get: $a = b + (q_1 - q_2)n$ 
+$$  a \equiv b \mod n \iff \exists k \in \mathbb{Z} \ s.t. \ a = b + kn $$
+Proving the next statement is just a rearrange to get: $(a-b) = kn$ which is the same as: 
+$$ a \equiv b \mod n \iff  n | (a-b) $$
+so $a \equiv b \mod 2$ means both $a$ and $b$ have the same parity, either they’re both even or both odd 
+
+The properties of reflexive, symmetric and transitivity can also be seen for congruence: 
+$$a \equiv a \ \forall a \in \mathbb{Z} $$
+$$a \equiv b \implies b \equiv a $$
+$$ a \equiv b \land b \equiv c \implies a \equiv c  $$
+## Modular Arithmetic 
+
+We can also think of modular arithmetic as the arithmetic in the quotient ring $\mathbb{Z} / (n)$. It's like all the numbers that differ by a multiple of $n$ where $n$ is the ideal $(n) = \set{ nk: k \in \mathbb{Z}}$
+
+Another intuition is to think of digits in base $n$, so working on $\mod 7$ is like throwing away full multiples of $7$ and only taking the last digit. 
+
+### Arithmetic of Congruences 
+
+For any $n \geq 1$, if $a \equiv b \mod n \ \land u \equiv v \mod n$: 
+$$ a + b  \equiv u + v \mod n $$
+$$ ab \equiv uv \mod n $$
+Now, if $a \equiv b \mod n$ and $i \in \mathbb{N}_0$, then 
+$$ a^i \equiv b^i \mod n $$
+However, it’s important to note that if $a,b \in \mathbb{Z}$ and $i \equiv j \mod n$, then:
+$$ a^i \not \equiv a^j \mod n $$
+A simple example is that, $2^1 \not \equiv 2^{10} \mod 9$ even though $1 \equiv 10 \mod 9$
+
+#### Cancelling factors in congruences 
+
+Suppose $ax \equiv ay \mod n$ 
+
+Now, we want to cancel out $a$, but can we do that? By using another equivalent definition we get that: 
+$$ ax \equiv ay \mod n \iff n |a(x-y)$$
+Now, cancellation is allowed $\iff \gcd(a,n) = 1$, i.e. $a,n$ are co-prime. This is because then the only way for $n$ to divide $a(x-y)$ is for it to divide $(x-y) \implies x \equiv y \mod n$
+
+Once again, notice the pattern, happens to links back to primes and composites and irreducibility 
+
+### Multiplicative Inverses 
+
+[[Tags/Definition\|Definition]] 
+
+A **multiplicative inverse** modulo $n$ for a number $a \in \mathbb{Z}$ is a number $x \in \mathbb{Z}$ s.t. $ax \equiv 1\mod n$ 
+
+And this inverse exists $\iff$ $\gcd(a,n) = 1$ 
+
+We can notice that this comes directly from Bezout's Identity, as if $\gcd(a,n) = 1$, then $\exists x,y \in \mathbb{Z}$ s.t. $ax + ny = 1$
+
+And now if we take this $\mod n$ we have $ax \equiv 1 \mod n$. So $x$ is the inverse of $a$ modulo $n$ 
+### Divisibility 
+
+If one number divides another, then we can say that: 
+$$n |m \iff m \equiv 0 \mod n$$
+So if $n$ divides $m$, then $m$ leaves remainder $0$ when divided by $n$ 
+
+For example, consider want to prove that $6 | a(a+1)(2a+1)$ 
+We can use the fact above to rewrite this as: 
+ $$a(a+1)(2a+1) \equiv 0 \mod 6$$
+ Now, instead of trying to expand the expression, we can see that integer is congruent to one of $0,1,2,3,4,5 \mod 6$, i.e. $a \equiv 0, 1,2,3,4,5 \mod 6$. It's like the remainder theorem. So by checking those $6$ cases proves the statement for all integers 
+
+Another example is suppose we want to show that: 
+$$a^2 \equiv a \mod 2$$
+Now we don't need to test this for all the integers, all we need to do is test this for $a = 0,1$ and we're done. Because when we divide by $2$, we only have $2$ possible remainders. 
+
+So to prove something for all integers, we can only check for possible remainders, because modulo $n$ every integer behaves like its remainder. 
+
+**Theorem 5.17** 
+If $p$ and $q$ are co-prime, then $a,b \in \mathbb{Z}$, 
+$$a \equiv b \mod (p1) \iff a \equiv b \mod(p) \land a \equiv b \mod (q) $$
+What this basically means is that to check divisibility by $pq$, it's enough to check divisibility by $p$ and $q$ when $p$ and $q$ are co-prime. And so with our previous example, we can say that: 
+$$ 6 |a(a+1)(2a+1) \iff 2 | a(a+1)(2a+1) \land 3 | a(a+1)(2a+1) $$
+This works as $2,3$ are co-prime 
+
+## Residues 
+
+[[Tags/Definition\|Definition]]
+
+#finishexplaination
+
+Consider cases for odd and even #finishexplaination 
+
+absolute vs non-positive residues #finishexplainationi
+
+## Polynomials over $\mathbb{Z}_n$ 
+
+Lemma 5.23 
+#finishexplaination
+
+### Showing that a polynomial has no integer roots 
+#finishexplaination 
+
+## Congruence Classes 
+[[Tags/Definition\|Definition]]
+
+#finishexplainationi
+
+Using the property of equalities, we define an **equivalence relation** if: 
+- Reflexrive 
+- Symmertric 
+- Transititve 
+#finishexplaination
+### Equivalence class 
+#finishexplainationi
+
+Lemma 5.29 
+
+**Partition** 
+#finishexplaination 
+
+#### Set of Congruence classes 
