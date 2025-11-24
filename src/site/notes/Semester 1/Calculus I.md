@@ -966,13 +966,477 @@ By Part I, we know that $G$ is also an antiderivative of $f$
 So we have that $F(x) = G(x)$. 
 
 Now, if two functions have the same derivative, then their difference has derivative $0$: $F^` - G^` = 0$ 
-
 So by the MVT, this implies that $F - G$ is a constant function, i.e .$\exists c \in [a,b]$ s.t. $G(x) = F(x) + c$. When we let $x=a$ and compute $G(a)$ we have: 
 $$ F(a) + c = G(a) = \int _{a}^a f(t) \ dt = 0 \implies c = -F(A)$$
 So we have that $G(x) = F(x) - F(a)$.
 
 And then we evaluate at $x=b$ we have $G(b)$ and using the definition of $G(x)$ above we have: 
 $$ \int_{a}^b f(x) \ dx = G(b) = F(b) - f(a) \quad \square $$
+## Area Problem 
+
+Suppose $f(x) \geq g(x)$ on $[a,b]$ and we want to find the area between $f$ and $g$ 
+
+So the area is given as: 
+$$ \int_a^b f(x) - g(x) \ dx $$
+If it’s not immediately obvious which curve is above, then we can evaluate the function at a point in the interval $(a,b)$  
+
+# 7. Methods of Integration 
+
+## Substitution 
+
+This is like the integration version of chain rule 
+
+So by the chain rule we have that: 
+$$ \frac{d}{dx} f(g(x)) = f^`(g(x))g^`(x)$$
+And when we integrate we have: 
+$$ \int f^`(g(x))g^`(x) = f(g(x)) + c$$
+Now if we let $u = g(x)$ then $\frac{du}{dx} = g^`(x) \implies du = g^`(x)\ dx$ 
+
+After substituting in we have: 
+$$ \int f^`(g(x))g^`(x) = \int f^`(u) + c = f(u) + c = f(g(x)) + c$$
+It's important to not that the derivative is not a fraction, and the proper proof for why the fraction thing works is covered in Differentials 
+ 
+### Interesting Trig odd and even properties  
+
+Below are the half angle formulas for sine and cosine which will be useful in integrating even powers of trig functions 
+$$ \cos^2x = \frac{1}{2}(1+\cos 2x)$$
+$$ \sin^2 x = \frac{1}{2}(1- \cos 2x)$$
+
+To generalise: 
+
+$$ \int \sin^m x \cos^n x \ dx $$
+If either one of $m$ or $n$ is odd, then we can do this integral by substituting. This is because we will need at least one odd power to cancel out when we're substituting. 
+
+If both $m$ and $n$ are even, then we must use the half angle properties 
+
+## Trig Substitutions 
+
+$$\int \sqrt{a^2 - x^2} \implies x = a \sin \theta $$
+$$\int \sqrt{a^2 + x^2} \implies x = a \tan \theta $$
+$$\int \sqrt{x^2 - a^2} \implies x = a \sec \theta $$
+
+## Integration by Parts 
+$$ \int u  \ dv = uv - \int v \ du $$
+## Partial Fractions 
+
+Good for integrals in the for: 
+$$ \int \frac{P(x)}{Q(x)} \ dx $$
+The reason we can factor $Q(x)$ is because of the Fundamental Theorem of Algebra, which will be covered in Complex Analysis in Year 3 
+
+There are basically 3 main case cases of denominators 
+
+### Case 1: Distinct linear factors 
+
+If $Q(x) = (x-a) (x-b)(x-c)\dots$
+
+Then $$ \frac{P(x)}{Q(x)} = \frac{A}{x-a} + \frac{B}{x-b} + \frac{C}{x-c}$$
+To find $A,B,C$, multiply both sides by the denominator and equate coefficients or substitute roots 
+
+### Case 2: Repeated Linear Factors 
+
+If $Q(x) = (x-a)^n$ 
+Then all we need is all powers up to $n$: 
+$$ \frac{P(x)}{(x-a)^n} = \frac{A_{1}}{x-a} + \frac{A_{2}}{(x-a)^2} + \dots + \frac{A_{n}}{(x-a)^n}$$
+### Case 3: Irreducible Quadratic factors 
+If the denominator has a quadratic that doesn't factor, then we can can't split it into linear factor like $\frac{A}{x-a}$, so the next thing is to have $\frac{Ax+b}{ax^2 + bx + c}$
+
+This works because $Ax+b$ is the most general linear numerator 
+
+So if $Q(x) = ax^2  + bx+ c$ 
+
+Then $$ \frac{P(x)}{ax^2 + bx+ c} = \frac{Ax +b}{ax^2 + bx+c} $$
+# 8. Indeterminate Forms and Improper Integrals 
+
+## L'Hôpital Rule 
+
+This is useful when a limit essentially gives us: 
+- $\frac{0}{0}$
+- $\frac{\infty}{\infty}$
+
+Because in these cases, the functions go to zero, or infinity at the same time, and we want to know which one goes to zero or infinity faster, so we can compares their rates of change (i.e. derivatives) to find that. There are two versions of this: 
+
+Let $f,g$ be differentiable and $g^`(x) \neq 0$, 
+### Version 1 
+
+Suppose $\lim_{x \to a} f(x) = 0$ and $\lim_{x \to a} g(x) = 0$, then 
+
+$$ \lim_{ x \to a } \frac{f^`(x)}{g^`(x)}= L \implies \lim_{ x \to a } \frac{f(x)}{g(x)} = L$$
+### Version 2 
+
+Suppose $\lim_{x \to a} f(x) = \pm \infty$ and $\lim_{x \to a} g(x) = \pm \infty$, then 
+$$ \lim_{ x \to a } \frac{f^`(x)}{g^`(x)}= L \implies \lim_{ x \to a } \frac{f(x)}{g(x)} = L$$
+
+
+And note that $a$ here can be $\pm \infty$ 
+$e^x$ grows faster than any polynomial, $\ln x$ grows slower than any polynomial, 
+
+#### Fun example
+
+$$ \lim_{x \to 0^+} x^x $$
+We we can do some manipulation to get $\ln(x^x) = x \ln x$ and then: 
+$$ \lim_{ x \to 0^+ } x \ln x = \lim_{ x \to 0^+ }  \frac{\ln x}{\frac{1}{x}}= \lim_{ x \to 0^+ } \frac{\frac{1}{x}}{-\frac{1}{x^2}} = \lim_{ x \to 0^+ } -x = 0    $$
+So to get back to the limit of $x^x$, we need to exponentiate this so we have: 
+$$ \lim_{ x \to 0^+ } x^x = e^0 = 1 $$
+Pretty cool right! 
+
+### Cauchy’s Mean Value Theorem 
+
+Before proving L’Hôpital, we need to prove the generalised version of the MVT. 
+
+The idea behind this is that if two functions satisfy the conditions of MVT, then some point $c$ exists for where the ratio of their derivatives equals the ratio of their total changes. 
+
+So if $f,g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, and $g^`(x) \neq 0$ then 
+$$  \exists c \in (a.b) \ s.t. \ \frac{f^`(c)}{g^`(c)} = \frac{f(b)- f(a)}{g(b) - g(a)}$$
+
+Similar to the proof of Rolle's Theorem and the MVT, we want to generate a function whose endpoints match, apply Rolle's Theorem, and then rearrange to get the expression 
+
+The full proof is in the lecture notes, and very similar to MVT, so I won't write it again here, but the proof of L’Hôpital using CMVT is given! 
+### Proof of L’Hôpital 
+
+The strategy here is to essentially apply CMVT to $f$ and $g$ on $[a,x]$ 
+This gives us $\frac{f(x)}{g(x)} = \frac{f(c)}{g(c)}$
+And then since $\exists c \in (a,x)$ when $x \to a$ then $c \to a$ 
+and then conclude 
+
+#finishexplaination
+
+
+## Improper Integrals 
+
+
+
+# 9.Taylor Series 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
