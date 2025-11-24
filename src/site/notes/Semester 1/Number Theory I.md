@@ -288,11 +288,11 @@ There is a list of **algebraic axioms** and **order axioms**:
 
 - [Order relation (Ord)] $\mathbb{Z}$ is equipped with a relation $≤$ called “less than or equal to”.
 - [Reflexive (Ref)] Every integer $m$ satisfies **$m≤m$**.
-- [Antisymmetric (ASy)] Given two integers **$m,n$**,** if **$m≤n$** and **$n≤m$** then $m=n$.
+- [Antisymmetric (ASy)] Given two integers **$m,n$**, if **$m≤n$** and **$n≤m$** then $m=n$.
 - [Transitive (Tr)] If **$m,n,p$** are integers with **$m≤n$** and $n≤p$ then $m≤p$.
-- [Comparability (Comp)] Given any two integers $m,n$ either $m≤n $or $n≤m$.
+- [Comparability (Comp)] Given any two integers $m,n$, $m≤n$ or $n≤m$.
 - [Shift (Sh)] If $m,n,p$ are integers with $m≤n$, then $m+p≤n+p$
-- [Scale (Sc) ] If $m,n,p$ are integers with $m≤n $and 0≤p then $m⋅p≤n⋅p$.
+- [Scale (Sc) ] If $m,n,p$ are integers with $m≤n$ and $0≤p$ then $m⋅p≤n⋅p$.
 - [Well ordering (WO)] The well ordering principle – any non-empty subset of non-negative integers has a unique least element.
 
 All of these axioms will hold true even if we work with the reals, naturals, and complex numbers, and that’s why we have the ordering axioms - which work for the set of integers. 
@@ -385,7 +385,6 @@ What we want to prove that is $P(1)$ is true, then $\forall n \geq 1, P(n) \impl
 And we'll prove it by contradiction. So we assume the conclusion is false, i.e. $\exists k \in \mathbb{N}_{1} \space s.t. P(n) \equiv F$
 
 So if there exists at lease one number $k$ where $P(k)$ is false, we can collect all of them into a set: 
-
 $$ S = \{  k \in \mathbb{Z} : k \geq 1 : P(k) \equiv F \} $$
 This set $S$ is non-empty, because we're assuming that there's at least one false case 
 
@@ -988,38 +987,91 @@ This works as $2,3$ are co-prime
 
 ## Residues 
 
-[[Tags/Definition\|Definition]]
+A **complete set of resides** modulo $n$ is a set of $n$ integers containing a unique element from each congruence class $\mod n$. 
 
-#finishexplaination
+What this means is that every integer $m$ is congruent to exactly one residue: 
+$$ m \equiv r \mod (n) \text{ for a unique } r \in \set{0,1,... n-1}$$
 
-Consider cases for odd and even #finishexplaination 
+By the remainder theorem, we have that every integer $a$ can be written in the form of: 
+$$  a = qn  + r \quad 0 \leq r < n$$
+So $r$ in this cases it the residue of $a \mod n$. It's the remainder theorem rephrased. 
 
-absolute vs non-positive residues #finishexplainationi
+And then, two numbers are congruent $\mod n$ if they give the same residue 
+
+The **least non-negative residues** of any number then is just the remainder when we divide by $n$ 
+
+And then **least absolute residues** just allows us to work with both positive and negative residues. Sometimes, the usual residues are to big. Consider $\mod 100$, the residue of a number might be $99$, but it would be nice to work with $-1$ because $99 \equiv -1 \mod 100$. So instead of choosing a remainder between $0, n-1$, we just choose the one closest to $0$ 
+
+So when $n$ is odd: 
+$$  r= 0, \pm 1, \pm 2 \dots\pm  \frac{n+1}{2}$$
+And when $n$ is even: 
+$$  r= 0, \pm 1, \pm 2 \dots \pm \frac{n}{2}-1, +  \frac{n}{2}$$
 
 ## Polynomials over $\mathbb{Z}_n$ 
 
-Lemma 5.23 
-#finishexplaination
+If $f(x)$ is a polynomial with integer coefficients, and $n \geq 1$, then if 
+
+$$a \equiv b \mod (n) \implies f(a) \equiv f(b) \mod (n)$$
+The proof of this is fairly trivial, as using the previous lemma we can show that all powers can be written using powers which work with the congruence rules of addition and multiplication. So $Z_n$ is just a ring 
 
 ### Showing that a polynomial has no integer roots 
-#finishexplaination 
 
+First, to show that a polynomial has a root, say $f(x) = a_n x^n + ... + a_1 x + 0$, we have to show that $\exists r \in \mathbb{Z}$ s.t. $f(r) = 0$. Therefore, to show a polynomial has no integer roots, we're essentially trying to show that $f(r) \neq 0 \ \forall r \in \mathbb{Z}$ 
+
+However, we cannot test infinitely many integers, so instead we pick a modulus $n$ and show that for every possible residual class $\mod n, f(r) \not \equiv 0 \mod n$. This works well because every integer is congruent to exactly one residual class. 
+
+The reason is this works is because if a polynomial has an integer root, then it must have a root $\mod n$, so a proof by contrapositive means that if an integer has no root $\mod n$, then it cannot have integer root. 
+
+Consider the example: show that $f(x) = x^2 +x + 1$ has no integer roots 
+
+We can do a proof by contrapositive to show that if $f(x)$ has no root $\mod n$, then $f(x)$ has no integer root. We need to find an $n$ s.t. for all resides $r$, $f(r) \not \equiv 0 \mod n$ 
+
+Now, choosing a value for $n$ is trial-and-error. 
+- If a polynomial has even/odd patterns - $\mod 2$ 
+- Sums like $x^2 +x$ - $\mod 2,3$ 
+- Squares or cubes - $\mod 4$ 
+- Constant term is small - try a divisor of it 
+
+So for the example, we can try $\mod 2$, which has only two resides: $0,1$ 
+
+$$ r =0: f(0) = 0 + 0 + 1 = 1 \equiv 1  \mod 2 $$
+$$r = 1: f(1) = 1 + 1 + 1 = 3 \equiv 1 \mod 2$$
+So for both residuals, we don't have a $0 \mod 2$, and therefore by proof by contrapositive, $f(x)$ has no integer solutions. 
 ## Congruence Classes 
-[[Tags/Definition\|Definition]]
 
-#finishexplainationi
+Using the property of equalities, we define an **equivalence relation** $\sim$ if: 
+- $a \sim a$ (reflexive)
+- $a \sim b \implies b \sim a$ (symmetric)
+- $a \sim b \land b \sim c \implies a \sim c$ (transitive)
 
-Using the property of equalities, we define an **equivalence relation** if: 
-- Reflexrive 
-- Symmertric 
-- Transititve 
-#finishexplaination
 ### Equivalence class 
-#finishexplainationi
 
-Lemma 5.29 
+Let's start with a simple question: how many different types of integers are there $\mod 4$? 
+Every integer is either something that leaves remainder $0, 1, 2,3$ when divided by $4$, so there are only $4$ kinds of integers $\mod 4$. 
 
-**Partition** 
-#finishexplaination 
+So an equivalence class is just the set of all integers that are equivalent under some rule 
+ 
+So the **equivalence class** of $x_0$ is just the set of all integers that give the same remainder as $x_0$ when divided by $n$ 
+$$[x_{0}] =\set{x \in X : x \equiv x_{0} \mod n} $$
+The class are disjoint, i.e. each integer belongs to exactly one class and this is what makes a partition 
 
-#### Set of Congruence classes 
+### Partitions 
+A partition is just a collection of subsets that satisfy: 
+- The set is disjoint 
+- The union is the whole set 
+
+Congruence classes form a partition has every integer is congruent to exactly one remainder 
+No two integers can have two different remainders $\mod n$ 
+
+So the congruence classes form a partition in $\mathbb{Z}$, and each equivalence class is one pieces in that partition: 
+$$[a] = \set{b \in \mathbb{Z} | b \equiv a \mod n} = \{ a + kn : k \in \mathbb{Z} \}\set{ ... , a - 2n, a - n , a , a+ n, a + 2n, ... }$$
+This is also a set of sets of numbers 
+
+### $Z_n$ is a ring 
+
+
+## Linear Congruences
+
+Solving linear congruence - Theorem 5.33 #finishexplaination
+
+Clasess of solutions = gcd of the stuff 
