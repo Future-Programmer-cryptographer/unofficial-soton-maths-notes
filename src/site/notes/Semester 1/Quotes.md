@@ -7,9 +7,9 @@
 # Link back to [[Semester 1/Home page\|Home page]]
 
 ## Welcome to the `Unofficial Soton Maths Lectures` Quotebook page. 
-#### Suggestions/Improvements may be submitted on the `Maths Gremlins` Discord channel. 
+#### Suggestions/Improvements may be submitted on the `Maths Gremlins` Discord `Quotes` channel. 
 
-#### The tags correspond to lecturers as follows along with the date/month the quote was said: 
+##### The tags correspond to lecturers as follows along with the date/month the quote was said: 
 - #IL - Prof. Ian Lear 
 - #NW - Dr Nick Wright
 - #ST - Prof. Stephen Theriault 
@@ -22,16 +22,14 @@
 > A complex number is a... can't really call it a number, it's a thing of the form $a+bi$
 > #IL 29/09 
 
-> “What is the meaning of life?” well the answer to that question is of course 42
-> According to the ISO - zero is a natural number 
-> “In the same way that the barber is not a man, this collection is not a set” -  #NW - 01/10
+> What is the meaning of life? well the answer to that question is of course 42
+> In the same way that the barber is not a man, this collection is not a set -  #NW - 01/10
 
 >To P or not to P - that is the question 
 > If you stare at them long enough, maybe they’ll be obvious -  #NW - 02/10 
 
 > If the spider had a phone - #NW - 03/10 
 
-> I’ve done further maths so I understand this but people who haven’t done further maths may struggle with $e^{i\theta}$ - random person in IL’s lecture 
 > Circumcircle 
 > Don’t tell anybody I told you about $\mathbb{R}^0$
 > #IL  - 06/10
@@ -68,7 +66,7 @@
 > At some point we need to know that 0 is not equal to 1 #NW - 15/10 
 
 > If I’m slow, Ashot will fire me… or the university will fire me or something 
-> “4+ 10 = 16” #IL - 15/10
+> #IL - 15/10
 
 > I’ve gotta do examples now don’t I… don’t be lazy who said that? 
 > #IL - 16/10 
@@ -91,7 +89,6 @@
 
 > And now we imagine a world where zero is not less than one…
 > In a world where 1 is less than zero, zero is the same thing as -1 
-> A half in not an integer, I’m gonna say how do you half is not an integer 
 > #NW - 20/10 
 
 > In this room we don’t care about integers, so calculus can go away 
@@ -100,13 +97,10 @@
 
 > The crowd is getting excited - #ST - 22/10 
 
-> Maybe I should photograph of you guys so I have a better idea of numbers
+> Maybe I should photograph you guys so I have a better idea of numbers
 > Writing letters down isn’t commutative is it… 
-> Next is the killer I think, associativity 
 > I feel like you’re not really doing anything when you do this
 > #IL - 22/10 
-
-> If it’s equal to 0 use your favourite one, -0 = 0 isn’t it #NW - 23/10
 
 >4 equations and 4 unknowns - #ST - 24/10 
 
@@ -116,10 +110,6 @@
 > “What’s the best way to revise for Number Theory”? 
 > Not to build a set of real numbers… 
 > #NW - 24/10 
-
-> Suppose I am trapped on a desert island and don’t have a calculator 
-> If I do it in two ways those two ways are the same… long winded way of saying that there’s only one way to do things 
-> #ArM - 27/10
 
 > It wasn’t just all about triangles and Pythagoras - #ArM - 29/10 
 
@@ -144,7 +134,7 @@
 
 > The trick here is to use Bezout’s Identity, I feel like that should be on a t-shirt - #NW - 06/11
 
-> If you’ve made up your mind that you want to study mathematics and not want to do fractions - #NP - 07/11NP- 07/11 
+> If you’ve made up your mind that you want to study mathematics and not want to do fractions #NP - 07/11NP- 07/11 
 
 > If $i$ is 3 then it’s my favourite number, 1001 
 > The definition of prime is not what you think it is 
@@ -161,6 +151,19 @@
 > Integer-land makes us happy 
 > #NW - 12/11 
 
-> Last time we were looking at prime numbers, and now it’s time to clean the air filter - #NW - 13/11
+> Last time we were looking at prime numbers, and now it’s time to clean the air filter - 
+> #NW - 13/11
 
 > I’m gonna do this in a different colour to show what a fabulous educator I am - #IL - 14/11
+
+> When something looks obvious, it’s short for I can’t be bothered to think why it’s true 
+> I’ll come back to the the proof of Fermat’s Last Theorem 
+>  #NW - 17/11 
+
+> Suppose I have a cube… Suppose I can draw a cube - #NW - 20/11 
+
+> You must feel in your bones whether it’s linear or not
+> Once you’ve set up food and water, then you want to set up linear algebra from scratch… they didn’t do that in Lost (movie), or maybe they did, but didn’t show on camera  
+>  - #IL - 21/11 
+
+
