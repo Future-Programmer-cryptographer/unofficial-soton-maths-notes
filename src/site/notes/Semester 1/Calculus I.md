@@ -1090,35 +1090,157 @@ $$  \exists c \in (a.b) \ s.t. \ \frac{f^`(c)}{g^`(c)} = \frac{f(b)- f(a)}{g(b) 
 
 Similar to the proof of Rolle's Theorem and the MVT, we want to generate a function whose endpoints match, apply Rolle's Theorem, and then rearrange to get the expression 
 
-The full proof is in the lecture notes, and very similar to MVT, so I won't write it again here, but the proof of L’Hôpital using CMVT is given! 
+The full proof is in the lecture notes, and very similar to MVT, so I won't write it again here
 ### Proof of L’Hôpital 
 
 The strategy here is to essentially apply CMVT to $f$ and $g$ on $[a,x]$ 
 This gives us $\frac{f(x)}{g(x)} = \frac{f(c)}{g(c)}$
 And then since $\exists c \in (a,x)$ when $x \to a$ then $c \to a$ 
-and then conclude 
-
-#finishexplaination
-
+We can then take limits one the right hand side and conclude 
 
 ## Improper Integrals 
 
+An integral becomes improper if either the interval is infinite or there is a vertical asymptote. 
 
+Eg:
+
+$$ \int_{1}^\infty \frac{1}{x^2} \ dx, \quad \int_{0}^1 \frac{1}{\sqrt{x }} \ dx  $$
+In these cases, the Riemann definition using sums of rectangles doesn't work, so we need to work using limits. 
+
+### Integrals converging/diverging  
+
+Consider this example of a function: 
+$$ \int _{a}^\infty f(x) \ dx$$
+If a limit exists of this integral: 
+$$ \lim_{ b \to \infty } \int_{a}^b f(x) \ dx = L $$
+Then, the integral **converges** to $L$. If the limit does not exist, then the integral **diverges**
+
+We can use the limit definition to show that $\int_a^{\infty} \frac{1}{x} \ dx$ diverges 
+$$  \int_{1}^b \frac{1}{x} \ dx = \ln x |_{1}^b = \ln(b) - \ln(1) = \ln b$$
+$$ \lim_{ b \to \infty }  \int_{1}^b \frac{1}{x} \ dx = \lim_{ b \to \infty } \ln b = \infty $$
+So since the limit does not exist, the integral diverges 
+
+Similarly, we can use limits again to show that  $\int_a^{\infty} \frac{1}{x^2} \ dx$ converges 
+$$ \int_{1}^b \frac{1}{x^2} \ dx = -\frac{1}{x} | _{b}^1 = - \left(  \frac{1}{b} - 1 \right) = 1 - \frac{1}{b} $$
+$$ \lim_{ b \to \infty } \int_{1}^b \frac{1}{x^2}  \ dx = \lim_{ b \to \infty } 1 - \frac{1}{b} = 1   $$
+So as the limit exists, the integral converges to $1$ 
+
+### P-test 
+
+$$ \int_{1}^\infty \frac{1}{x^p} \ dx \text{ converges } \iff p > 1$$
+We can test cases to see why this works. Consider: 
+$$ \int_{1}^b x^{-p} \ dx $$
+Case 1: $p \neq 1$
+
+$$ \int x^{-p} = \frac{x^{-p+1}}{-p+1} $$
+So 
+$$ \int_{1}^b x^{-p} \ dx = \frac{b^{1-p} - 1}{1-p}$$
+And now we can look at the limit as $b \to \infty$. 
+$$ p > 1 \implies 1 - p < 0 \implies b^{1-p} \to 0 $$
+$$ p < 1 \implies 1 - p > 0 \implies b^{1-p} \to \infty $$
+So the limit exists and converges if $p  > 1$ 
+
+Now, the case for when $p=1$ 
+$$ \int_{1}^b \frac{1}{x} \ dx = \ln b$$
+And from the example we know this integral diverges as $b \to \infty \implies \ln R \to \infty$. So $p=1$ diverges too. 
+
+Hence, the only case when the integral converges is when $p > 1$ 
+$$\square$$
+
+Another case to consider: 
+$$ \int_{0}^1 \frac{1}{x^p} \ dx \text{ converges } \iff p < 1  $$
+The proof of this is left as an exercise to the reader
+### Other forms 
+
+Another form of an improper integrals is: 
+$$  \int_{- \infty}^{\infty} f(x) \ dx $$
+In the case above, we can split the integral to get: 
+$$ \int_{- \infty}^a f(x) \ dx + \int_{a}^\infty f(x) \ dx $$
+And then treat each of them as separate improper integrals. Here's a fun problem, solution to which is give in the notes. Show that: 
+$$ \int_{- \infty}^{\infty} \frac{1}{1+x^2} \ dx = \pi$$
+### Comparison Test 
+
+When thinking of integrals as areas under curve, if we have 
+$$ 0 \leq f(x) \leq g(x) $$
+Then the area under $f$ is always under the area of $g$. So if $g$'s area is finite, then $f$'s area must be finite too as $f$ fits under $g$ 
+
+And if $f$'s area is infinite, then $g$'s area must also be infinite. 
+
+So suppose $0 \leq f(x) \leq g(x)$ for all large $x$, then 
+$$ \int_{a}^{\infty} g(x) \ dx \text{ converges } \implies \int_{a}^{\infty} f(x) \ dx \text{ also converges}$$
+$$ \int_{a}^{\infty} f(x) \ dx \text{ diverges } \implies \int_{a}^{\infty} g(x) \ dx \text{ diverges }$$
+Note that the inequality direction matters, i.e. if $f(x) \leq g(x)$ then the convergence of $g \implies$ convergence of $f$, however, the converse tells us nothing. 
+
+Consider the example: 
+$$ \int_{1}^\infty \frac{1}{\sqrt{ 1 + x + x^2 }} \ dx $$
+Now at first glance, $1 + x + x^2 \sim x^2$, so it might be tempting to consider the comparison with $\frac{1}{x^2}$ 
+
+But it gives us the inequality in the wrong direction, and so comparing bigger function to a convergent function tells us nothing 
 
 # 9.Taylor Series 
 
+The idea behind this is we can approximate a complicated looking function using a polynomial by matching all its derivatives at a point. So we image zooming in on a smooth curve at some point $x=a$ and then if we zoom in enough, the curve looks like a straight line (the tangent) 
+
+3b1b has a good video explaining the intuition behind this. But in terms of approximating, the best polynomial approximation is the one matching all derivatives. So if our polynomial is 
+$$P(x) = c_{0} + c_{1}(x-a) + c_{2}(x-a)^2 + \dots $$
+And we want this to behave exactly like $f$ around the point $a$, then it must have the same value, slope, and curvature. 
+
+So if we matched the derivatives of all orders, then the polynomial behaves exactly like the function at that point 
+
+Therefore, the general formula for **Taylor** series of $f$ around $x=a$ is: 
+$$ f(x) = \sum _{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$$
+When $a=0$, we get the **Maclaurin** series, which is just a special case of the Taylor series and is what given in the notes: 
+$$ f(x) = \sum _{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}(x)^n$$
+Computing the Taylor series for a function is just a matter of computing derivatives at $x=0$ and then putting that into the formula 
+
+Some common Maclaurin series are as follows:
+
+$$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}  =  1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots $$
+$$ \sin x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!}  =  x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots $$
+$$\cos x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!}  =  1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots$$
+$$ \ln(1+x)=\sum_{n=1}^{\infty} (-1)^{n-1}\frac{x^n}{n}  =x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots$$
 
 
+## Cauchy’s Remainder Theorem 
+#finishexplaination 
 
+Max possible errors - wtf is going on..? 
+Proof? 
 
+# 10. Differential Equations 
+#finishexplaination 
 
+Homogeneous and non-homogeneous defn #finishexplaination
 
+1st order vs 2nd order 
+## Separation of Variables 
 
+Why this works 
+Method 
+#finishexplaination 
 
+## Integration factor 
 
+Why this works 
+When to use it 
+Proof? 
+#finishexplaination 
 
+## 2nd order constants coefficient ODEs 
 
+Steps to solve it - why they work? 
 
+Ok.. we can verify them, but how do we know this works? Like sure I can verify this works.. but how can I derive it myself? 
+
+Polynomials.. auxiliary equations.. eigenvalues… there’re all connected aren’t they.. - everything is linear algebra? 
+
+Why does the auxiliary equation thing work? Charactersitic equation - related to characteristic polynomial? 
+
+Where is e coming from when finding complementary functions? 
+
+https://math.stackexchange.com/questions/764171/proof-that-ex-is-the-eigenvector-of-the-derivative-operator
+
+#finishexplaination 
 
 
 
