@@ -162,8 +162,29 @@
 
 > Suppose I have a cube… Suppose I can draw a cube - #NW - 20/11 
 
+> You’re having just as good as a week as I am.. if I make more mistakes, don’t just let me go, that’s cruel - #ST - 21/11 
+
 > You must feel in your bones whether it’s linear or not
 > Once you’ve set up food and water, then you want to set up linear algebra from scratch… they didn’t do that in Lost (movie), or maybe they did, but didn’t show on camera  
 >  - #IL - 21/11 
+
+> It’s hard to find solutions because there aren’t any - #NW - 26/11
+
+> 6 is 3 times 2, deep fact - #NW - 27/11 
+
+ >ok... so vibes suggest it may converge... does anyone have anything more concrete than vibes? - #ST - 29/11 
+
+> You know just like a student, you need  to pay the tuition, and maybe attend the lecture, but paying tuition is the requirement I guess #NP - 28/11 
+
+> Let’s find some eigenvalues now that’s I’ve motivated you - #AM - 01/12 
+
+> Wilson's Theorem... actually it was proved by Lagrange.. so you know, what's in the name and all that, but that's probably enough Shakespeare #NW - 03/12 
+
+>Sorry to all the people who can’t see me… oh it’s  not about seeing me, it’s about seeing the board…
+>I shouldn’t be distracting myself (reenacting life of Brian)
+>If only I hadn’t been so dopey and slow at the start…To be or not to be..I’m gonna get stoned for that 
+> #IL - 05/12
+
+
 
 
