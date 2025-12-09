@@ -958,9 +958,10 @@ A **multiplicative inverse** modulo $n$ for a number $a \in \mathbb{Z}$ is a num
 
 And this inverse exists $\iff$ $\gcd(a,n) = 1$ 
 
-We can notice that this comes directly from Bezout's Identity, as if $\gcd(a,n) = 1$, then $\exists x,y \in \mathbb{Z}$ s.t. $ax + ny = 1$
+We can notice that this comes directly from Bezout's Identity, as if $\gcd(a,n) = 1$, then $\exists x,y \in \mathbb{Z}$ s.t. $ax + ny = 1$. So solving a multiplicative inverse is the same as finding solution to linear Diophantine equation, which we have proved before. 
 
-And now if we take this $\mod n$ we have $ax \equiv 1 \mod n$. So $x$ is the inverse of $a$ modulo $n$ 
+And similar to linear Diophantine equations, if it has one solution, then it has infinitely many solutions, form a congruence class (more on this in the later section)
+
 ### Divisibility 
 
 If one number divides another, then we can say that: 
@@ -1069,9 +1070,177 @@ This is also a set of sets of numbers
 
 ### $Z_n$ is a ring 
 
+Things being **well-defined** is just about addition and multiplication giving the same equivalence class when working with congruences. And once both of those operations are well-defined, then $Z_n$ by definition is a ring. 
 
 ## Linear Congruences
 
-Solving linear congruence - Theorem 5.33 #finishexplaination
+The process for solving linear congruences is very much the same as for solving linear diophantine equations: 
 
-Clasess of solutions = gcd of the stuff 
+If $d = \gcd(a,n)$ then the linear congruence 
+$$ ax \equiv b \mod  n \text{ has a solution } \iff d | b$$
+And if $d$ does divide $b$ and if $x_0$ is any solution, then the general solution is given by: 
+$$ x= x_{0} + \frac{n}{d}t $$
+And like mentioned before, the solutions form exactly $d$ congruence classes $\mod n$ with representatives: 
+$$  x = x_{0}, x_{0} + \frac{n}{d}t , x+ \frac{2n}{d}t , \dots  x_{0} + (d-1) \frac{n}{d}t $$
+### Congruence class of solutions 
+
+Consider the congruence $x \equiv 3 \mod 7$. What this means is that $x$ leaves a remainder $3$ when divided by $7$, so the solutions to all such values of $x$ is the set of all numbers which we call a congruence class: 
+$$ [3]_{7} = \{  3, 10, 17, 24\dots -4, -11, -18\dots \}$$
+And this set is another way of all the numbers in the form of: $x = 3 + 7k$
+
+## Simplifying congruences 
+
+Now, say we want to simplify a congruence like $ax \equiv b \mod n$ 
+
+Recall that division $\mod n$ is not always allowed, so we need to be careful when simplifying or cancelling factors. Look up Lemma 5.40 for a more concise explanation. 
+
+There are essentially to cases we need think about when dealing with simplification 
+#### Case 1: general case 
+
+Suppose $m$ divides $a,b$ and $n$, then 
+$$ a = a^`m, \quad b = b^`m, \quad n = n^`m$$
+And 
+$$ax \equiv b \mod n \iff a^`x \equiv b^` \mod n^`$$
+So if everything has a common factor of $m$, then we can cancel that factor from the congruence exactly as we do in normal arithmetic 
+
+#### Case 2: coprime case 
+
+If $a,n$ are coprime, and $m$ divides $a,b$, then 
+$$ax \equiv b \mod n \iff a^`x \equiv b^` \mod n$$
+So if $a,n$ share no common factors, we can divide by any common factor of $a$ and $b$ without changing the modulus. 
+
+It's important to keep the two cases above in mind when solving congruences in the next section 
+
+### Algorithm to solve congruences 
+
+Suppose we have the congruence: $10x \equiv 6 \mod 14$ 
+
+What this is asking is essentially, which integer $x$ produces a number that has a remainder $6$ when multiplied by $10$ and then divided by $14$. i.e. we want to find all values of $x$ s.t. $14|10x-6$ which is equivalent to solving:
+$$10x - 6 = 14k $$
+
+It's important to point out that congruences themselves are not equations, they describe a pattern of remainders. So when we're solving a congruence, we're not looking for a single number, but rather finding a whole equivalence class. 
+
+#### Step 1: check whether a solutions exists 
+
+A congruence $ax \equiv b \mod n$ has a solution $\iff \gcd(a,n) | d$ 
+
+The $\gcd(10,6) | 14$ so a solution exists 
+
+#### Step 2: Simplify the congruence 
+
+Since the $\gcd$ is $2$, we can divide everything by $2$ using Case 1 
+$$10x \equiv 6 \mod 14 \implies 5x \equiv 3 \mod 7$$
+This essentially makes the numbers smaller and ensures that the new coefficients and modulus are coprime 
+
+Then we check the $\gcd(5,7) = 1$ which means $5$ and $7$ and now we can solve the congruence by finding a multiplicative inverse 
+
+We can see that $5 \cdot 3 = 15 \equiv 1 \mod 7$, so $5^{-1} \equiv 3 \mod 7$ 
+
+So we can multiply both sides by $3$ to get: 
+$$ 3 \cdot (5x) \equiv 3 \cdot 3 \mod 7   $$
+The LHS becomes: $(3 \cdot 5)x \equiv 1 \cdot x$ and the RHS is: $3 \cdot 3 = 9 \equiv 2 \mod 7$ 
+
+Therefore: 
+$$ 5x \equiv 3 \mod 7 \implies x \equiv 2 \mod 7$$
+So $x_0$ is a particular solution, so the general solution has the form: $x = 2 + 7t$ 
+## Simultaneous Linear Congruences 
+
+If we think of congruence like clock arithmetic, then simultaneous congruence is just finding a value for $x$ that satisfies more than one 'clock condition' simultaneously 
+### Chinese Remainder Theorem (CRT) 
+
+Imagine we want to solve the congruence: 
+$x \equiv 4 \mod 5$ 
+$x \equiv 2 \mod 3$ 
+
+Intuitively, we want to think of numbers have coordinates modulo primes. So take $\mod 3$ and $\mod 5$ for example. A number $x$ can be described by: 
+- Its $\mod 3$ coordinate 
+- Its $\mod 5$ coordinate 
+
+So with the original problem we're looking for a number $x$ s.t. when we divide it by $5$, we get remainder $4$ and when we divide it by $3$, we get a remainder of $2$ 
+
+So we can check the numbers $0-14$ and see that the solution is $x = 14$ 
+As if $x = 14$, then 
+- $14 \equiv 2 \mod 3$ 
+- $14 \equiv 4 \mod 5$ 
+
+So what the CRT tells us is that every pair of these coordinates corresponds to exactly one number $\mod 15$. The lecture notes explain this intuition fairly well with the grid 
+
+We can also think of uniqueness as a bijection, since $\mod 3$ gives up $3$ options and $\mod 5$ gives us $5$ options. So a total of $15$ possible pairs and each pair corresponding to one $x \mod 15$ 
+
+Formally, the CRT gives us a complete solution to such problems:
+[[Tags/Definition\|Definition]] 
+$$ \text{ Let } n_{1}, n_{2}\dots n_{k} \in \mathbb{Z^+} \text{ with } \gcd(n_{i}, n_{j}) = 1, \quad i \neq j, \text{ Let } a_{1}, a_{2}\dots a_{k} \in \mathbb{Z}. \text{ Then }$$
+ $$x \equiv a_{1} \mod (n_1), \quad x \equiv a_2 \mod (n_2) , ... , x \equiv a_k \mod (n_k) $$
+ $$ \text{ form a single congruence class } \mod n, \quad n = n_{1}, n_{2}\dots n_{k}$$
+
+# 6. Lagrange's Theorem and Fermat's Little Theorem 
+
+Before we introduce Lagrange's Theorem it's important to know that it works only for congruence class of $Z_p$ where $p$ is prime. This means $Z_p$ is a field, where: 
+- Every non-zero element has a multiplicative inverse 
+
+If $p$ was not prime, then polynomials would have more than $d$ roots, eg: $x^2 - 1$ has $4$ congruence class roots $\mod 8$ 
+
+## Lagrange's Theorem 
+
+[[Tags/Definition\|Definition]] 
+If $p$ is prime and $f(x) = a_d x
+{ #d}
+ + ... + a_1x + a_0$ is a polynomial with integer coefficients and at least one coefficient is not $0 \mod p$, then then congruence $f(x) \equiv 0 \mod p$ has at most $d$ solutions in $Z_p$ 
+
+The proof is given in notes and it pretty good, so I won't bother rewriting it here, but I will convey the general idea. 
+
+Say $u$ was a root, then $f(u) \equiv 0$ and $(x-u)$ would divide $f(x) \mod p$
+
+This is just the modular version of the factor theorem: 
+$$ f(u) = 0 \iff (x-u) \text{ is a factor of } f(x)$$
+So every single root takes out one factor, and if we had more than $d$ roots, then we'd get more than $d$ factors of the form $(x-u_i)$ which is not possible for a degree $d$ polynomial 
+
+## Fermat's Little Theorem 
+
+$$ a^{p-1} \equiv 1 \mod p , \quad a \not \equiv 0 \mod p   $$
+There are a few ways of proving this, without any knowledge of group theory, we think of multiplying all non-zero residues $\mod p$ 
+$$1 \cdot 2 \dots p-1$$
+Then: 
+$$ (p-1)! \equiv (p-1)! \ a^{p-1} \mod p \implies (p-1)! (1-a^{p-1}) \equiv 0 \mod p $$
+And since $p$ and $(p-1)!$ are coprime, we have that $a^{p-1} \mod p \equiv 1$ 
+
+This helps us finding roots of polynomials congruent to polynomials mod primes 
+
+## Wilson's Theorem 
+[[Tags/Definition\|Definition]]
+$$ \text{ An integer } n > 1 \text{ is prime} \iff (n-1)! \equiv -1 \mod n$$
+This is an application of Fermat's Little Theorem, and it was first actually proved by Lagrange 
+#finishexplaination - talk more about the proof of it? 
+
+Square roots of -1 - what this means #finishexplainationi
+
+## Square roots $\mod pq$
+
+#finishexplaination 
+
+Odd primes 
+ 3 mod 4 - why, congruent to classes of square roots #finishexplainationi
+How does FLIT link to it? 
+
+MICHAEL PENN VIDEOSSS 
+
+
+# 7. Euler's Function 
+
+**watch Michael Penn videos**
+
+## Euler’s Totient Function 
+#finishexplaination
+
+## Euler’s Theorem 
+#finishexplaination
+
+Defn 7.1 
+
+Fermat’s Little Theorem is just a special case of Euler’s 
+
+## Euler’s Product Formula 
+
+How to compute $\phi(n)$ 
+
+#finishexplaination
