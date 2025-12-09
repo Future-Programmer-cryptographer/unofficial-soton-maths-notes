@@ -1101,7 +1101,7 @@ Let $A$ be a $m \times n$ matrix and $B$ be any matrix:
 - rank($A + B$) $\leq$ rank($A$) + rank($B$) - provided $B$ is $m \times n$ 
 - Rank($A + B$) $\leq$ min(rank($A$), rank($B$)) 
 
-# 4.Determinants 
+# 4. Determinants 
 
 $M_n(\mathbb{R})$ - the set of all $n \times n$ matrices with real entries. We don't start by just saying what the determinant is, but what kind of function it must be. So the axiomatic definitions are given below. Note that these are slightly less formal than what's in the official lecture notes, but that's mostly down to making it easier and more intuitive to understand.  
 
@@ -1274,6 +1274,8 @@ As we're expanding the determinant along a row, we're sort of "isolating" one el
 
 This is quite efficient when we have a matrix with lots of zero entries 
 
+#explainfuture
+
 ## Determinant of a Transpose 
 
 For any square matrix $A$, 
@@ -1306,14 +1308,14 @@ The proof is rather trivial, and can be proved by induction if wanted as an exer
 
 This section is skipped as it will not be examined 
 
-# 5.Linear Transformations 
+# 5. Linear Transformations 
 
 This is where the proper linear algebra starts. A linear transformation is just taking a function from one vector space to another, following a couple of specific rules, namely additivity and scaling. 
 
-[[Tags/Definition\|Definition]] Let $m, n \in \mathbb{N}$, and let $T : \mathbb{R}^n \to \mathbb{R}^n$ be a function. Then $T$ is a **linear transformation** if $\forall \vec{u}, \vec{v} \in \mathbb{R}^n$ and $\forall \lambda \in \mathbb{R}$ we have: 
+[[Tags/Definition\|Definition]] Let $m, n \in \mathbb{N}$, and let $T : \mathbb{R}^n \to \mathbb{R}^n$ be a function. Then $T$ is a **linear transformation** if $\forall \vec{u}, \vec{v} \in \mathbb{R}^n$ and $\forall \lambda \in \mathbb{R}$ if we satisfy two properties: additivity and homogeneity: 
 
 $$ T(\vec{u} + \vec{v}) = T({\vec{u}}) + T(\vec{v}) $$
-$$ T(\lambda \vec{u}) = \lambda T(\vec{u}) = \lambda T(\vec{u})$$
+$$ T(\lambda \vec{u}) = \lambda T(\vec{u}) $$
 
 Intuitively, a linear transform never bends, curves, or shifts space, it can only scale, rotate, shear, reflect, etc. So essentially, if the origin doesn't stay fixed, then the transformation is not linear. 
 
@@ -1397,3 +1399,308 @@ $$T = \begin{pmatrix}
 $T$ stretches/shrinks the plane by $\lambda$ in the direction of the $x$ axis and by $\mu$ in the $y$ axis 
 
 ### Shear 
+
+$$ \begin{pmatrix}
+1 & \lambda \\ 
+0 & 1 
+\end{pmatrix} \quad \begin{pmatrix}
+1 & 0 \\ 
+\mu & 1 
+\end{pmatrix} $$
+It keeps one of the axis fixed, and moves all the other points in that direction parallel to the axis. 
+
+## Composition of Linear Transformation 
+
+Composition of transformations is the same as what it's like in functions: 
+$$ (S \circ T) (x) = S(T(x)) $$
+So we apply $T$ first, then $S$. It's just like functions, because transformation is a function. 
+
+Matrix multiplication is the same as composing linear transformations. So if $T(x) = Ax$ and $S(x) = Bx$, then 
+$$(S \circ T) (x) = S(T(x)) = B(Ax) = (BA)x $$
+So the matrix of the composite transformation $S \circ T = BA$. And that's why matrix multiplication is defined the way it is! 
+
+The composition of a linear transformation is a linear transformation. It can be proved using the definition of composition and the transformation definitions above 
+
+### Finding linear transforms 
+
+## Inverses of Linear Transformations 
+
+[[Tags/Definition\|Definition]] A linear transformation $T: \mathbb{R}^n \to \mathbb{R}^n$ is invertible if there exists a linear transformation $S$ s.t.:
+$$ S \circ T = T \circ S = \text{ Id} $$
+Like any inverse, an inverse transformation just undoes the original transformation. 
+### Proof of the inverse of linear transforms 
+
+Think back to calculus, an inverse exists $\iff$ $T$ is a bijection. 
+
+So suppose $T$ is a bijection, and now we want to show that it has an inverse linear transformation. 
+
+So let $S = T^{-1}$ 
+
+And now we need to show that $S$ is linear so that satisfies the definition of a linear transformation, ie. we need to show that: 
+$$ S(u+v) = S(u) +S(v) $$
+$$ S(\lambda u)  = \lambda S(u)$$
+So let $a = S(u)$ and $b = S(v)$, which lets us write $T(a) = u$ and $T(b) = v$, and now we use this substitution. 
+
+Consider $T(a +b)$, and because $T$ is linear, we can use the linearity of $T$ to get: 
+$$ T(a+b) = T(a) + T(b) = u + v  $$
+$$ T(S(u+v)) = u + v $$
+As $S$ is the inverse of $T$, we have: 
+$$ T(S(u+v)) = T(a+b)$$
+As $T$ is a bijection, we know that it's also an injection, so we have that: $T(x) = T(y) \implies x = y$ . And by that logic: 
+$$ S(u+v) = a + b = S(u) + S(v)$$
+Now... for the scalar multiplication, consider $T(\lambda a)$ 
+As $T$ is linear: 
+$$ T(\lambda a) = \lambda T(a)$$
+$$ T(S(\lambda u)) = \lambda u  = T(\lambda a)$$
+Using the injectivity of $T$ we have: 
+$$ S(\lambda u) = \lambda a = \lambda(S(u))$$
+### Invertibility 
+
+Let $T: \mathbb{R}^n \to \mathbb{R}^n$, then $T$ Is invertible $\iff A$ is invertible, AND $T$ invertible, then matrix of $T^{-1} = A^{-1}$
+
+As this is an $\iff$ proof, we need to show both sides 
+
+So $\implies$ $T$ is invertible, then $\exists S$ s.t. 
+
+$$ S \circ T = \text{ Id}, \quad T \circ S = \text{ Id}$$
+So let $B$ be the matrix of $S$, and $A$ be the matrix of $T$ 
+
+By composition of matrices, $(S \circ T) = BA$ and the identity matrix is $I_n$ 
+
+So since, $(S \circ T) = \text{ Id}$: 
+$$BA = I_{n} $$
+And since $T \circ S = \text{ Id}$: 
+$$ AB = I_{n}$$
+Therefore we have that: 
+$$ AB = BA = I_{n}$$
+And by definition $A$ is invertible, and its inverse is $B$ 
+
+Now for the $\impliedby$ 
+
+We assume that $A$ is invertible, and now we need to show that $T$ is invertible 
+
+Let $S(x) = A^{-1}x$, and now we compute the composition $S \circ T$: 
+$$ (S \circ T))(x) = S(T(x)) = S(Ax) = A^{-1}(Ax) = (A^{-1}A)x = I_{n}x = x$$
+So we know that $S \circ T = \text{ Id}$ 
+
+Now to compute the other composition to check for invertibility: 
+$$ (T \circ S)(x) = T(S(x)) = T(A^{-1}x) = A(A^{-1}x) = (AA^{-1})x = I_{n}x = x$$
+So $T \circ S = \text{ Id}$ 
+
+And since both compositions have given us the identity, $S$ is the inverse of $T$ and since $S$ is linear and given by $A^{1}$, we know that $T^{-1} = A^{-1}$ 
+
+# 6. Subspaces of $\mathbb{R}^n$
+
+## Vector subspaces
+
+Intuitively speaking, a **vector subspace**  of $\mathbb{R^n}$ is just a subset of $\mathbb{R}^n$ sitting inside it that behaves like a vector space on its own. It's a region where all vectors behave consistently under the transformation rules of the space. So it must include the origin. 
+
+It has three properties: 
+- It must contain the origin (i.e. be non-empty)
+- It's closed under vector addition 
+- Closed under vector multiplication
+
+So anytime we're given a vector, we just need to check for the properties above to see if it's a subspace of $\mathbb{R}^n$ or not 
+
+## Null Spaces 
+
+[[Tags/Definition\|Definition]] 
+
+Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be a linear transformation. Then the **null space (kernel)** of $T$ is the subspace $\mathbb{R}^n$ defined by: 
+$$ N(T) = \{  \vec{x} \in \mathbb{R}^n \ | \ T(\vec{x}) = \vec{0} \in \mathbb{R}^m \} $$
+I.e. it's basically the set of all vectors that get mapped to the zero vector for some $m \times n$ matrix $A$: 
+$$ N(A) = \{ \vec{x} \in \mathbb{R}^n \ | A(\vec{x}) = \vec{0} \in \mathbb{R}^m \}$$
+
+The null space is a subspace of $\mathbb{R}^n$, and to show that, we just need to show that it satisfies the three properties: 
+- $0 \in \ker(A)$ 
+- closed under addition 
+- Closed under multiplication 
+
+And by linearity of $T$ and definition of a linear transformation, we can show that the null space/kernel is always a subspace 
+
+### Invertibility and Null spaces 
+
+$$ A \text{ is invertible} \iff \ker(A) = {\vec{0}}$$
+
+If the only solution to $A(x) = 0$ is $x = 0 \implies$ $A$ is invertible. Another way to think about is that if there any non-zero vector $x \neq 0$ with $Ax = 0$, then 
+
+## Linear Span 
+
+Linear span is just the set of all linear combinations of vectors, and this is always a subspace because linear combination rules automatically satisfy the subspace axioms 
+
+$$ \text{ span} \{ \vec{v_{1}}\dots \vec{v_{k}} \} = \{ c_{1} \vec{v_{1}} + \dots + c_{k} \vec{v_{k}} \in \mathbb{R}\ \}$$
+
+
+## Range and Column Space 
+
+The **column space** is of a matrix $A$ is just the set of all linear combinations $\vec{v_{1}}\dots \vec{v_{k}}$ in the sub space, so: 
+$$ \text{ col}(A) = \text{ span}(\vec{v_{1}}\dots \vec{v_{k}}) $$
+
+And the **range** is the subset of $\mathbb{R}^m$ of a transformation $T: \mathbb{R}^n \to \mathbb{R}^m$: 
+$$ R(T) = \{  T(\vec{x}) \ | \ \vec{x} \in \mathbb{R}^n \}$$
+And the range is also a subspace, which can be tested using the properties of subspace again 
+
+## Linear Independence 
+
+[[Tags/Definition\|Definition]] 
+
+Vectors are **linear independent** if: 
+$$c_{1} \vec{v_{1}} + \dots + c_{k} \vec{v_{k}} = \vec{0} \in \mathbb{R} \implies c_{1} = c_{2} = \dots = c_{k} = 0 $$
+What this means is that no vector can be written as a combination of others. So if a columns in the matrix are linearly dependent: 
+- The transformation keeps all directions and matrices are transformations 
+- There is no collapse of space 
+- $\det \neq 0$ 
+- So matrix is invertible 
+
+**Trivial solution** just means that the solution is $0$, so non-trivial solution means there is at least one non-zero solution. If vectors are linearly independent trivial solution exists. It's like if the only way to get $0$ is to make the coefficients $0$, then all the vectors span in different directions. 
+
+So with linear independence, if we can combine the vectors with non-zero coefficients to make them $0$, then one of them must be a combination of the other. 
+
+So for a square matrix, all of the conditions below are equivalent: 
+- $\ker(A) = \set{\vec{0}}$ 
+- Columns independent 
+- $rank(A) = n$ 
+- column space = $\mathbb{R}^n$ 
+- $\det(A) \neq 0$ 
+- $A$ being invertible 
+
+### Test for linear independence 
+
+To see if vectors are linearly dependent or not, put the matrix in REF and look out for non-zero rows 
+
+### Bases
+
+A basis is just a minimal set of vectors that can generate (span) the whole space with no redundancy. So they give you all possible directions in your space, and the smallest possible set of directions. A bit like a choosing the axes of the space. 
+
+So in $\mathbb{R}^2$, the standard basis would be $e_1 = (1,0)$ and $e_2 = (0,1)$. And that means any vector $(x,y)$ can be made by a combination of these two basis vectors
+
+[[Tags/Definition\|Definition]]
+A collection of vectors ${v_1, .. v_k}$ form a **basis** of vector space $V$ if: 
+- They span $V$ 
+- They are linearly independent 
+
+Basis are like the coordinate system for a vector space. The other important thing about basis is hat they are unique. Every vector $x$ has a unique representation 
+
+# 7. Eigenvectors, Eigenvalues and their applications 
+
+A bit of a diversion, as in my notes I will try and focus on the intuitive idea and then the definition. 
+
+So consider a linear transformation $T$. Most vectors are rotated, stretched, squished, etc. So when we apply a matrix, most vectors change direction. But some vectors lie on their own span and don't change directions. I.e. they may stretch, shrink, flip, but they don't turn. And those no turning directions are what we call eigenvectors. And the amount they stretch/shrink by is the eigenvalue. 
+
+[[Tags/Definition\|Definition]] 
+A number $\lambda \in \mathbb{R}$ is said to be an **eigenvalue** of $A$ if there is a non-zero vector $\vec{v} \in \mathbb{R}$ s..t 
+$$  A \vec{v} = \lambda \vec{v}$$
+$A$ is the matrix representation the transformation, and $\vec{v}$ is the eigenvector, and $\lambda$ is **eigenvalue** 
+
+So eigenvectors are the directions a transformation preserves, and eigenvalues are the scaling factors for those directions. 
+
+## Determinant criteria 
+
+Notice how the left hand side of the equation is vector multiplication, but the right side is scalar. So to turn the RHS into a vector multiplication, we can write $\lambda = \lambda I_n$ where $I_n$ is the identity matrix. 
+
+So we have: 
+$$ A \vec{v} = \lambda I  \vec{v}$$
+And we can rearrange and factor out $\vec{v}$ to get: 
+$$ ( A - \lambda I)\vec{v} = \vec{0}$$
+When solving the equation above, all we're doing is looking for a non-zero vector that gets sent to zero by the linear transformation $A - \lambda I$ 
+
+The reason for this is because the kernal of $A$ is just the set of directions that get sent to $0$, i.e. the direction in which the transformation collapses into a lower dimension. It's answering the question: "For what values of $\lambda$ does the equation have a non-zero solution". 
+
+And this happens when the determinant is $0$: 
+$$ \lambda \in \mathbb{R} \text{ is an eigenvalue of } A \iff \det(A - \lambda I_{n}) = 0$$
+So an eigenvalue exists when the sifted matrix $A - \lambda I$ loses invertibility 
+## Characteristic polynomial 
+
+$$ p_{A}(\lambda) = 0 (\iff \det(A - \lambda I_{n}) = 0) \text{ is the characteristics equation of }A$$
+There’s a reason it’s called a characteristic polynomial, because it satisfies the characteristics of the matrix equation. 
+
+This basically helps us solve for values of $\lambda$ for which the transformation collapses, which is all an eigenvalue is. And the roots of this polynomial are exactly the values of $\lambda$ where $(A - \lambda I)$ is not invertible. So $p_a(\lambda) = 0 \iff \lambda$ is an eigenvalue 
+
+### Upper triangular matrices 
+
+Say we have an upper triangular matrix: 
+$$A = \begin{pmatrix}
+a_{1} & * & * \\
+0 & a_{2}& * \\
+0 & 0 & a_{3} 
+\end{pmatrix} $$
+And now consider the matrix $A - \lambda I$ 
+$$ A - \lambda I = \begin{pmatrix}
+a_{1} - \lambda & * & * \\
+0 & a_{2} - \lambda & * \\
+0 & 0 & a_{3} - \lambda
+\end{pmatrix}$$
+This is still an upper triangular matrix! And the determinant of this matrix is the product of its diagonal entries. 
+
+$$ \det(A - \lambda I ) = (a_{1} - \lambda)(a_{2} - \lambda)\dots (a_{n} - \lambda)$$
+And if we set this equal to $0$, the roots will be just: $\lambda = a_1, a_2... a_n$ 
+
+Therefore, the diagonal entries of an upper triangular matrix are the eigenvalues of that matrix! 
+
+## Applications in Google’s Page Ranking system 
+
+Read the MathsRant blog page! 
+
+## Symmetric Matrices 
+
+A matrix $A$ is symmetric because $A = A^T$ 
+
+ Let $A$ be an $n \times n$ **symmetric** matrix with real entries. Then $A$ has $n$ linear independent eigenvectors, and all eigenvalues of $A$ are real. This is a result of Spectral Theorem, but the proof was omitted. 
+
+So as $I_n$ is a symmetric matrix, all the eigenvectors are just the basis vectors 
+
+What’s an eigenbasis? #finishexplaination
+
+Why do we find linearly independent vectors for eigenvalues? #finishexplaination 
+
+how does row operations change the eigenvalues? Can’t we just use row ops to turn EVeryoen into any upper triangular? #finishexplaination
+
+What does multiplicity mean? #finishexplaination - larges power of $\lambda$? 
+
+How to interpret/determine set of solutions? #finishexplaination - link to multiplicity 
+### Eigenvalues being orthogonal for symmetric matrices?  - Thm 7.27 
+#finishexplaination
+Matrix product as scalar product 
+
+Summarise link between symmetric matrices and link between linear indecency #finishexplaination
+
+## Diagonalisation of a Matrix 
+
+#finishexplaination
+
+Thm 7.30 
+
+Can any matrix be diagonalised? 
+What’s the use of it? 
+Why are powers of a diagonal matrix powers of the diagonal? 
+
+Finding solutions - guessing solutions which are orthogonal? How does this work? #finishexplaination 
+
+
+# 8. Orthogonal sets and quadratic forms 
+
+[[Tags/Definition\|Definition]] of orthogonal set and orthonormal #finishexplaination 
+
+[[Tags/Definition\|Definition]]
+Orthogonal matrix 
+
+Explain prop 8.4-8.5 #finishexplaination
+
+
+## Gram-Schmidt orthogonalisation process 
+
+#finishexplaination
+
+Explain what an orthogonal basis is 
+
+WHAT DOES IT MEAN IF VECTORS FORM A BASIS IN R^N? 
+
+Explain Thm 8.11 #finishexplaination
+
+Every subspace of $\mathbb{R}^n$ has an orthogonal basis - #finishexplaination
+
+## Diagonalising Orthogonal Symmetric Matrices 
+
+#finishexplaination 
+
+## Conic Sections 
