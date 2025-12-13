@@ -79,7 +79,7 @@
 > Vectorland parallelogram picture 
 > Let’s not cheat, let’s do it slowly, let’s cheat, it’s not cheating really is it 
 > The more I talk, the less clear it becomes 
->  - #IL - 17/10
+> #IL - 17/10
 
 > Do I know all of what I’m doing, or a bit of what I’m doing… I ask myself that question every day - #NW - 17/10 
 
@@ -166,7 +166,7 @@
 
 > You must feel in your bones whether it’s linear or not
 > Once you’ve set up food and water, then you want to set up linear algebra from scratch… they didn’t do that in Lost (movie), or maybe they did, but didn’t show on camera  
->  - #IL - 21/11 
+> #IL - 21/11 
 
 > It’s hard to find solutions because there aren’t any - #NW - 26/11
 
@@ -178,13 +178,19 @@
 
 > Let’s find some eigenvalues now that’s I’ve motivated you - #AM - 01/12 
 
-> Wilson's Theorem... actually it was proved by Lagrange.. so you know, what's in the name and all that, but that's probably enough Shakespeare #NW - 03/12 
+> Wilson's Theorem... actually it was proved by Lagrange.. so you know, what's in the name and all that, but that's probably enough Shakespeare 
+> #NW - 03/12 
 
 >Sorry to all the people who can’t see me… oh it’s  not about seeing me, it’s about seeing the board…
 >I shouldn’t be distracting myself (reenacting life of Brian)
 >If only I hadn’t been so dopey and slow at the start…To be or not to be..I’m gonna get stoned for that 
-> #IL - 05/12
+ #IL - 05/12
 
+>Has the chocolate made it’s all the way round? Cuz you’re gonna need it for this - #ST - 10/12 
 
-
+> Congratulations everybody on attending the last day of term.. exams boo 
+> I’ll just keep my eigenvectors to myself 
+> Do you want me to do it more slowly (followed by slurred speech)? 
+> I gave you extra time, but the very next day you went back home 
+ #IL - 12/12 
 
