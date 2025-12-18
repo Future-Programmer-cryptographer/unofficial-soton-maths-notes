@@ -181,7 +181,7 @@
 > Wilson's Theorem... actually it was proved by Lagrange.. so you know, what's in the name and all that, but that's probably enough Shakespeare 
 > #NW - 03/12 
 
->Sorry to all the people who can’t see me… oh it’s  not about seeing me, it’s about seeing the board…
+>Sorry to all the people who can’t see me… oh it’s not about seeing me, it’s about seeing the board…
 >I shouldn’t be distracting myself (reenacting life of Brian)
 >If only I hadn’t been so dopey and slow at the start…To be or not to be..I’m gonna get stoned for that 
  #IL - 05/12
@@ -191,6 +191,6 @@
 > Congratulations everybody on attending the last day of term.. exams boo 
 > I’ll just keep my eigenvectors to myself 
 > Do you want me to do it more slowly (followed by slurred speech)? 
-> I gave you extra time, but the very next day you went back home 
+> Last question, I gave you extra time, but the very next day you went back home. This problem sheet to save you from exam tears, I will give you an extra two minutes 
  #IL - 12/12 
 
