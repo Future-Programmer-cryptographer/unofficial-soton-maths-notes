@@ -117,7 +117,11 @@ $$f: \mathbb{R} \rightarrow (0,\infty), f(x) = a^x$$
 
 Properties: 
 
-![Pasted image 20251001112108.png](/img/user/Pasted%20image%2020251001112108.png)
+$$ a^0 = 1 $$
+$$ a^{-x} = \frac{1}{a^x}$$
+$$a^x a^y = a^{x+y} \ \ \forall x,y \in \mathbb{R} $$
+$$(a^x)^y = a^{xy} \  \ \forall x,y \in \mathbb{R} $$
+$$(ab)^x = a^{x}b^x \  \ \forall a,b \in (0, \infty) $$
 
 $a^x$ is also a bijection so it has an inverse function 
 
@@ -130,7 +134,11 @@ $$ a^{log_ax} = x  $$
 
 
 Properties: 
-![Pasted image 20251001112026.png](/img/user/Pasted%20image%2020251001112026.png)
+$$ \log_{a} (1) = 0$$
+$$ \log_{a}({\frac{1}{x}})  =  - \log_{a} (x)$$
+$$ \log_{a} (xy) =  \log_{a}x + \log_{a} y $$
+$$ \log_{a} (x^y) =  y \log_{a}(x) $$
+$$ \log_{a} (x) =  \frac{\log_{b}(x)}{\log_{b}(a)} $$
 
 ### Proof for property 4- power property
 
@@ -435,7 +443,7 @@ And now we want to pick two points
 $$ f(0) = 2 > 0 $$ $$ f(\pi /2) = 1 -(\pi/2)^2 < 0 $$
 So by the IVT, there is a $c \in (0, \pi/2) s.t. f(c) = 0$
 
-#### Proof of the IVT (not something we’ll be tested on) #explainbetter 
+#### Proof of the IVT (not something we’ll be tested on) 
 
 The IVT essentially says that if $f: [a,b] \in \mathbb{R}$ is conts, and $K$ is such that $f(a) < K <f(b)$, then there exists at least one $c \in (a,b)$ such that $f(c) = K$ 
 
@@ -448,8 +456,6 @@ $$ S = \{  x \in [a,b] \space g(x) \leq 0 \}$$
 This means $S$ collects all points where $f(x) \leq K$ 
 
 Some goofy algebra proof 
-
- 
 ### Extreme Value Theorem 
 
 #### Maximum and Minimum 
@@ -1202,47 +1208,194 @@ $$ \ln(1+x)=\sum_{n=1}^{\infty} (-1)^{n-1}\frac{x^n}{n}  =x - \frac{x^2}{2} + \f
 
 
 ## Cauchy’s Remainder Theorem 
-#finishexplaination 
 
-Max possible errors - wtf is going on..? 
-Proof? 
+When we build a Taylor polynomial $P_n(x)$, we know the value of $f$, its slope and curvature, etc. up to the $n$th derivative at a point. So the polynomial is perfect at the expansion point. But the moment we move away, the question then turns into an error approximation one, which is where the remainder theorem comes in 
+
+Geometrically, the first way the function can differ from our polynomial is through the $(n+1)$th derivative so up until the expansion point, the error function has $n+1$ zeroes. And the simplest function with $(n+1)$ zeroes at $0$ is: $x^{n+1}$. 
+
+Therefore we know that the error function must look like: $\text{something }\times \ x^{n+1}$ 
+And that 'something' is the $(n+1)$ derivative at some point in between by the MVT logic 
+
+It's important to know that we're not saying that the error happens at some random point, but rather that the average behaviour of the $n+1$ derivative controlst he error. 
+
+So the remainder theorem is given by: 
+
+$$ R_{n+1}(x) = \frac{f^{n+1}(c)}{(n+1)!}x^{n+1} $$
+
+### Bounding the error 
+
+Bounding just means we don't know the exact value, but we know it cannot be bigger than some value, say $M$ 
+
+So in our case, we don't know what this value of $c$ is, but we know know how big the derivative can get via properties of the functions. So we instead bound the error: 
+$$ |  R_{n+1}(x)| \leq \frac{M}{(n+1)!}|x|^{n+1}, \quad M = \max |f^{n+1}(x)| $$
+So this essentially gives us a max possible error, which basically means that no matter what, the error cannot be worse than this 
+
+
 
 # 10. Differential Equations 
-#finishexplaination 
 
-Homogeneous and non-homogeneous defn #finishexplaination
+A differential equation is just a rule that tells us how a function changes, rather than what it is. So instead of $y = x^2$, we have: $\frac{dy}{dx} = 2x$ 
 
-1st order vs 2nd order 
-## Separation of Variables 
+So am ODE describes a family of curves, and when we solve one, we are reconstructing the curve(s) which is consistent with the given rate of change 
 
-Why this works 
-Method 
-#finishexplaination 
+The order is the highest derivative present 
+
+[[Tags/Definition\|Definition]]
+
+A **general solution** of an ODE is the most general function $y = f(x)$ that satisfies the ODE And if we want to specify the set of solutions, we can do it with **initial** or **boundary** conditions 
+
+An **initial value problem (IVP)** is an ODE together with an initial condition. A **boundary value problem (BVP)** is an ODE with boundary conditions 
+
+## First order ODEs
+
+An first order ODE has the general form: 
+$$\frac{dy}{dx} = f(x,y) $$
+It's important to not that there isn't a single method to solving all DEs, the method depends on the structure of the function  
+
+A **linear** first order DE has the form: 
+$$ \frac{dy}{dx} + p(x) y = q(x)$$
+
+A DE is **homogeneous** if: 
+$$ \frac{dy}{dx} + p(x) y = 0 $$
+There are no external forces acting, so this is always separable 
+
+A DE is **non-homogeneous** if:
+
+$$ \frac{dy}{dx} + p(x) y = q(x)$$
+Notice that the RHS term is not $0$, so this will requires us to use integration factor method 
+
+### Separation of Variables 
+
+A first order DE is separable if it can be arranged into: 
+$$ g(y) \frac{dy}{dx} = h(x) $$
+the idea here is that we can 'separate' all the $y$ and the $x$ dependencies 
+
+The derivative represents the change in $y$ per change in $x$, so if the DE splits cleanly into a function of $y$ times a function of $x$, then we can accumulate changes on each side independently to get: 
+$$ g(y) dy = h(x) dx$$
+Note: derivatives are NOT fractions, this is just using the chain rule backwards 
+
+The method of separation of variables is fairly simple, we rearrange to isolate the $x$ and $y$ terms: 
+$$ g(y) dy = h(x) dx$$
+And then integrate both sides 
+$$ \int g(y) \ dy = \int h(x) \ dx + c $$
 
 ## Integration factor 
 
-Why this works 
-When to use it 
-Proof? 
-#finishexplaination 
+The problem we want to solve here is: 
+$$ \frac{dy}{dx} + p(x) y = q(x)$$
+The LHS is almost the derivative of a product, but not exactly, so we'll want to turn it into $\frac{d}{dx} \text{something}$ because derivatives or produces are easy to integrate. The notation used below is slightly different to used in notes, but the idea is the smae. 
+
+The product rule says:
+
+$$\frac{d}{dx}(\mu y) = \mu \frac{dy}{dx} + \mu' y$$
+
+We want this to match:
+
+$$\frac{dy}{dx} + p(x)y$$
+  
+So we choose $\mu(x)$ such that:
+
+$$\mu'(x) = \mu(x)p(x)$$
+
+This is a tiny DE whose solution is:
+
+$$\mu(x) = e^{\int p(x)\,dx}$$
+
+And the function $\mu(x)$ is called the integrating factor.
+
+So given: 
+
+$$\frac{dy}{dx} + p(x)y = q(x)$$
+The steps to solving this: 
+ 
+Compute:  
+$$\mu(x) = e^{\int p(x)\,dx}$$
+Multiply the entire equation by $\mu(x)$
+The LHS  becomes:  
+$$\frac{d}{dx}(\mu y)$$
+Integrate:  
+$$\mu y = \int \mu q(x)\,dx + C$$
+Solve for $y$
 
 ## 2nd order constants coefficient ODEs 
 
-Steps to solve it - why they work? 
+A second-order differential equation involves the second derivative:
 
-Ok.. we can verify them, but how do we know this works? Like sure I can verify this works.. but how can I derive it myself? 
+$$y'' = \frac{d^2y}{dx^2}$$
+For $a y'' + b y' + c y = 0,$ we look for solutions of the form:
+$$y = e^{rx}$$
+The exponential function appear here because:
+- derivatives of $e^{rx}$ are multiples of itself
+- this turns the DE into an algebraic equation
 
-Polynomials.. auxiliary equations.. eigenvalues… there’re all connected aren’t they.. - everything is linear algebra? 
+### Characteristic equation: 
 
-Why does the auxiliary equation thing work? Charactersitic equation - related to characteristic polynomial? 
+When we substitute $y = e^{rx}:$
+
+$$y' = r e^{rx}, \quad y'' = r^2 e^{rx}$$
+We get: 
+
+$$a r^2 e^{rx} + b r e^{rx} + c e^{rx} = 0$$
+
+Factor out $e^{rx} \neq 0$:
+$$a r^2 + b r + c = 0$$
+
+This quadratic is called the characteristic equation. So solving the DE reduces to solving a quadratic equation.
+
+Now we can have 3 cases for the equation: 
+
+#### Case 1: Two distinct real roots: 
+
+$$ y = Ae^{r_{1}x} + Be^{r_{2}x} $$
+#### Case 2: Repeated real root 
+$$ y = (A+Bx)e^{rx} $$
+The extra $x$ is because $e^{rx}$ alone is not sufficient to generate two independent solutions, so multiplying by $x$ creates that linear independence 
+
+#### Case 3: Complex roots: 
+$r = \alpha \pm \beta i$
+$$  y = e^{\alpha } (A \cos \beta x + B \sin \beta x)$$
+
+### Non-homogeneous equations: 
+
+For $a y'' + b y' + c y = f(x)$
+We write: $y = y_h + y_p$
+
+where: 
+- $y_h$: homogeneous solution
+- $y_p$: one particular solution
+
+The homogeneous part gives the natural behaviour and the particular part accounts for forcing.
+
+The reason we can split this might seem quite familiar. As linear operators satisfy:
+$$L(y_1 + y_2) = L(y_1) + L(y_2)$$
+We can see that: 
+- homogeneous solutions form a vector space
+- adding one forced solution shifts the whole space
+
+This is the same linearity idea we’ve seen in linear algebra.
+
+So the steps are as follows: 
+
+Find the general solution of the associated homogeneous ODE which is called the **complementary function (CF)**
+Find any solution to the full non-homogeneous ODE which is called the **particular integral (PI)**
+Then the general solution is $y = CF + PI$ 
+
+### Trial Functions for Particular Integrals 
+
+- Linear function $\rightarrow \ \ ax + b$ 
+- Quadratic function $\rightarrow \ \ ax^2 + bx + c$ 
+- Trig function involving $\cos px$ and/or $\sin px \rightarrow \ \ a \cos px + b \sin px$
+- Exponential involving $e^px \rightarrow \ \ ae^{px}$ 
+- Sum of functions $\rightarrow$ sum of matching functions 
+
+Note that if a trial function has the same form as part of the complementary function, multiply the trial function by $x$ to form a new trial function 
+
+
+### Optional Asides: 
 
 Where is e coming from when finding complementary functions? 
 
 https://math.stackexchange.com/questions/764171/proof-that-ex-is-the-eigenvector-of-the-derivative-operator
-
-#finishexplaination 
-
-
 
 
 
