@@ -220,12 +220,16 @@ Suppose $\epsilon > 0$ has been provided
 We then define $\delta = \epsilon/2$
 Since $\epsilon > 0$, we have $\delta > 0$ 
 
-By starting with the assumption, we have $$0 < | x -2 | < \delta$$
+By starting with the assumption, we have
+$$0 < | x -2 | < \delta$$
 Then after substutiting in for $\delta$
 $$ 0 < | x -2 | < \frac{\epsilon}{2}$$
-Then multiply both sides by 2: $$2|x-2| < \epsilon$$
-But we know that $$2|x-2| = |f(x) - L|$$
-So we have shown that:$$ |f(x) - L | < \epsilon $$
+Then multiply both sides by 2: 
+$$2|x-2| < \epsilon$$
+But we know that 
+$$2|x-2| = |f(x) - L|$$
+So we have shown that:
+$$ |f(x) - L | < \epsilon $$
 
 ## Properties of Limits 
 
