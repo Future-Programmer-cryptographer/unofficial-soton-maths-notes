@@ -1643,64 +1643,223 @@ Read the MathsRant blog page!
 
 ## Symmetric Matrices 
 
-A matrix $A$ is symmetric because $A = A^T$ 
+A matrix $A$ is symmetric because $A = A^T$. So we can see that symmetric matrices correspond to transformations that don't twist space, only stretch, squash or reflect it 
 
- Let $A$ be an $n \times n$ **symmetric** matrix with real entries. Then $A$ has $n$ linear independent eigenvectors, and all eigenvalues of $A$ are real. This is a result of Spectral Theorem, but the proof was omitted. 
+ Let $A$ be an $n \times n$ **symmetric** matrix with real entries. Then: 
+ - $A$ has $n$ linear independent eigenvectors
+ - All eigenvalues of $A$ are real. 
+ - There exists an orthonormal basis of eigenvectors (more on this this later)
+ - $A$ is diagonalisable by an orthogonal matrix 
 
-So as $I_n$ is a symmetric matrix, all the eigenvectors are just the basis vectors 
+We can also think about this as the dot product with matrix product as scalar product 
+ 
+ This is a result of Spectral Theorem, but the proof was omitted. 
 
-What’s an eigenbasis? #finishexplaination
+So as $I_n$ is a symmetric matrix, all the eigenvectors are just the basis vectors. And an **eigenbasis** is just a basis of the space consisting entirely of eigenvectors of $A$. So if $A$ has an eigenbasis, then every vector can be written as a combination of eigenvectors 
 
-Why do we find linearly independent vectors for eigenvalues? #finishexplaination 
+We want to find linearly independent eigenvectors because a basis must be definition be linearly independent and geometrically, we need enough directions to describe the whole space. So if eigenvectors are dependent, they don't span enough directions. 
 
-how does row operations change the eigenvalues? Can’t we just use row ops to turn EVeryoen into any upper triangular? #finishexplaination
+### Multiplicity 
 
-What does multiplicity mean? #finishexplaination - larges power of $\lambda$? 
+Multiplicity just tells us how many times an eigenvalue appears as a root of the characteristic polynomial. This is algebraic multiplicity.
+Eg: $(\lambda - 2)^3) (\lambda +1)$ has eigenvalue $2$ and algebraic multiplicity $3$ 
 
-How to interpret/determine set of solutions? #finishexplaination - link to multiplicity 
-### Eigenvalues being orthogonal for symmetric matrices?  - Thm 7.27 
-#finishexplaination
-Matrix product as scalar product 
+Then there is geometric multiplicity, which tells us the dimension of the eigenspace (number of independent eigenvectors). 
 
-Summarise link between symmetric matrices and link between linear indecency #finishexplaination
+The key rule is that $1 \leq$ geometric multiplicity $\leq$ algebraic multiplicity 
 
-## Diagonalisation of a Matrix 
+However for symmetric matrices, the geometric multiplicity $=$ algebraic multiplicity 
+### Orthogonality of eigenvectors - Thm 7.27 
 
-#finishexplaination
+For symmetric matrices - eigenvectors corresponding to distinct eigenvalues are orthogonal. 
 
-Thm 7.30 
+Recall that two vectors being orthogonal means that they essentially meet at right angles and are in completely independent directions. So movement in one direction has no component in the other. So transformations by the eigenvectors stretches space along perpendicular directions for symmetric matrices. 
 
-Can any matrix be diagonalised? 
-What’s the use of it? 
-Why are powers of a diagonal matrix powers of the diagonal? 
+## Diagonalisation of a Matrix - Thm 7.30 
 
-Finding solutions - guessing solutions which are orthogonal? How does this work? #finishexplaination 
+At its core, diagonalisation is trying to answer a fairly simple question: can we find a coordinate system where the linear transformation acts in the simplest possible way? i.e. just stretching along axes without rotating or shearing? 
 
+So a diagonal matrix $D$ is a matrix s.t. 
+$$D =  \begin{pmatrix}
+\lambda_{1} & 0 & 0 \\ 
+0 & \lambda_{2} & 0 \\
+0 & 0 & \lambda_{3}\\
 
-# 8. Orthogonal sets and quadratic forms 
+\end{pmatrix} \implies \quad D \begin{pmatrix}
+x \\ 
+y \\ 
+z 
+\end{pmatrix} = \begin{pmatrix}
+\lambda_{1} x \\
+\lambda_{2} y \\
+\lambda_{3} z
+\end{pmatrix}$$
+Geometrically, each coordinate directions moves independently, and no direction interferes with another. Most matrices are not in this form because diagonalisation is about changing basis to one that the transformation works well with, and that basis being the eigenbasis 
 
-[[Tags/Definition\|Definition]] of orthogonal set and orthonormal #finishexplaination 
+Recall that $Av = \lambda v$ 
+So applying $A$ to $v$ just stretches $v$, so all eigenvectors are directions where the matrix already behaves diagonally. So if we choose all our basis vectors to be eigenvectors, then the matrix must be diagonal in that basis. 
+
+### Change of basis 
+
+Suppose that $v_1, ... v_n$ are all eigenvectors of $A$ and they form a basis 
+
+Let $P$ be a matrix with these eigenvectors as columns: 
+$$  P = \begin{bmatrix}
+v_{1} & v_{2} & \dots & v_{n}
+\end{bmatrix}$$
+Then all $P$ does is converts coordinates in the eigenbasis into standard coordinates. So $P^{-1}$ converts standard coordinates into eigenbasis coordinates 
+
+Now consider taking a vector in standard coordinates of a matrix $A$
+- Convert it into eigenbasis coordinates $P^{-1}$ 
+- Apply the transformation in that basis to get a diagonal matrix $D$ 
+- Convert back to standard coordinates $P$ 
+
+Writing this as a composite transformation, we have that: 
+$$ A = P D P^{-1} $$
+$$ D  = P^{-1} A P$$
+
+So finding a diagonal matrix just means finding perpendicular directions where the transformation acts by pure scaling. 
+
+### Powers 
+
+Diagonalising also helps us computing large powers: 
+$$ A = PDP^{-1} \implies A^k = PD^kP^{-1} \implies D^k = P^{-1}A^kP = \begin{pmatrix}
+\lambda_{1}^k & 0 & 0 \\
+0 & \lambda_{2}^k & 0 \\ 
+0 & 0 & \lambda_{3}^k
+\end{pmatrix}$$
+This is also why symmetric matrices also diagonalise, because they have enough linearly independent vectors 
+
+# 8. Orthogonal sets and Quadratic forms 
+
+Orthogonal vectors are essentially directions that don't overlap. So they're independent in the geometric sense. Think of the $x$ and $y$ axis for example. 
+
+[[Tags/Definition\|Definition]] A set of vectors $\set{v1,... v_n} \in \mathbb{R}^n$ is **orthogonal** if
+$$ v_{i} \cdot v_{j} = 0, \ \ \forall i \neq j  $$
+Therefore, we can see that orthogonal vectors are automatically linearly independent, this will help us compute projections, eigenvectors, and simplify quadratic forms 
+
+[[Tags/Definition\|Definition]] An **orthonormal set** is the same as orthogonal, but now each vector has a **unit length**, i.e. we have normalised the vectors 
+
+So a set is **orthonormal** if: 
+$$ v_{i} \cdot v_{j} = 0, \ \ \forall i \neq j \text{ and } ||v_{i}|| = 1 \ \ \forall i$$
+
+Orthonormal is more useful than just orthogonal because the coordinate along $v_i = x \cdot v_i$ 
+So we just have to deal with dot products instead of worrying about scaling 
+
+## Orthogonal matrices 
+
+Intuitively, an orthogonal matrix (thinking in terms of transformations):
+- Rotates spaces 
+- Reflects space 
+- never stretches or squashes space 
+
+So the lengths and angles are preserved 
 
 [[Tags/Definition\|Definition]]
-Orthogonal matrix 
+A matrix $P \in \mathbb{R}^{n \times n}$ is orthogonal if: 
+$$ P^TP = I$$
 
-Explain prop 8.4-8.5 #finishexplaination
+Then the following are all equivalent: 
+- Columns of $P$ form an orthonormal basis 
+- $P^{-1} = P^T$ 
+- $||Px|| = ||x||  \ \ \forall x$ 
+
+The reason for why $P^TP = I$ is because: 
+- Dot products of columns give the identity 
+- Diagonal has a unit length (1) 
 
 
-## Gram-Schmidt orthogonalisation process 
+## Gram-Schmidt Orthogonalisation  
 
-#finishexplaination
+Before diving into the algorithm, it's good to think about the problem this process is trying to solve. 
 
-Explain what an orthogonal basis is 
+Consider vectors spanning a space, most of them are messy and angled, and what we want is the same space, but having all directions be perpendicular. 
 
-WHAT DOES IT MEAN IF VECTORS FORM A BASIS IN R^N? 
+So the intuition behind Gram-Schmidt is given the vectors $v_1... v_n$: 
+- Keel $\vec{v_1}$ 
+- From $\vec{v_2}$, subtract the part pointing in the direction of $\vec{v_1}$ (the projection)
+- From $\vec{v_3}$, subtract the projection of $\vec{v_1}, \vec{v_2}$ 
+- Normalise everything 
 
-Explain Thm 8.11 #finishexplaination
+So we remove the overlap of vectors step by step without changing the span. 
 
-Every subspace of $\mathbb{R}^n$ has an orthogonal basis - #finishexplaination
+I will not be covering the proof as that is given in the lecture notes, and my notes are just to cover a bit of the intuition that I find isn't in the notes, but it's also worth watching some YT videos to understand the intuition behind it. Tom Crawford has a nice video on it. 
+
+### Orthonormal basis 
+
+A basis, as talked about briefly earlier, is just a coordinate system. Recall that for a set of vectors to form a basis of $\mathbb{R}^n$, the vectors must: 
+- Span $\mathbb{R}^n$ 
+- Be linearly independent 
+
+With that, an **orthogonal basis** is just a basis where all directions are perpendicular 
+
+Now for an important Theorem: **Every subspace of $\mathbb{R}^n$ has an orthonormal basis**
+
+What this means is that no matter how tilted or messy as subspace is: 
+- We can always choose perpendicular axes inside it 
+- Geometry is always recoverable 
+
+This isn't obvious, but Gram-Schmidt process constructs it 
+
 
 ## Diagonalising Orthogonal Symmetric Matrices 
 
-#finishexplaination 
+Recall from previous chapter that diagonalisation is simply finding a coordinate system where the matrix acts simply. 
 
-## Conic Sections 
+For an orthogonal symmetric matrix, $A = A^T$: 
+- Eigenvalues are real
+- Eigenvectors are orthogonal 
+
+Symmetric matrices also respect the dot product. 
+
+## Quadratic Forms 
+
+[[Tags/Definition\|Definition]]
+
+A quadratic form is a function: 
+$$ Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} \ \ \forall \mathbf{x} \in \mathbb{R}^n$$
+They are used to measure curvature and distance-like behaviour, so they describe shapes instead of transformations. 
+
+So every quadratic form becomes a sum of squares 
+
+Michael Penn has a good video on quadratic forms under the Number Theory playlist. Most of these notes, especially for the final two chapters were completed during the holidays, so the priority is given to doing past papers and building sufficient intuition instead of copying proofs into my own notes. 
+## Definiteness 
+
+When working with quadratic forms, definiteness is a property of the sign of $\mathbf{x}^T A \mathbf{x}$
+
+We want to think of $\mathbf{x}^T A \mathbf{x}$ as a function that takes a vector $x$ and output a single number, and definiteness is about whether the sign of that number is consistent. 
+
+There are 4 kinds of definite. So we let $A$ be a symmetric matrix and define: 
+
+### Positive/Negative definite 
+
+$$\mathbf{x}^T A \mathbf{x} > 0 \ \ \forall x \neq 0 \text{ or } \mathbf{x}^T A \mathbf{x} < 0 \ \ \forall x \neq 0$$
+This means that no matter which direction we go in, it is strictly positive/negative 
+
+### Positive/Negative semi-definite 
+
+$$\mathbf{x}^T A \mathbf{x} \geq 0 \ \ \forall x \neq 0  \text{ or } \mathbf{x}^T A \mathbf{x} \leq 0 \ \ \forall x \neq 0 $$
+
+Never positive/negative, but can be zero is some directions 
+
+### Indefinite 
+
+$$\mathbf{x}^T A \mathbf{x} \text{ can be positive for some $x$, negative for others} $$
+
+So the sign depends on the direction 
+
+### Link to eigenvalues 
+
+This is also nice reason for why diagonalisation exists: 
+
+For a symmetric matrix, we have: 
+
+$$ A = PDP^T \implies x^TAx = \lambda_{1}y_{1}^2 + \dots + \lambda_{n}y_{n}^2$$
+
+where: 
+- $\lambda_i$ are eigenvalues 
+- $y$ is $x$ written in the eigenvector basis 
+
+Now, $y_i^2 \geq 0$, so the sign of each term comes from the $\lambda_i$, so eigenvalues control definiteness 
+
+The lectures skipped the section on conic sections as that will not be assessed, and that concludes Linear Algebra I 
