@@ -709,9 +709,7 @@ And then we can differentiate implicitly:
 
 $$ \cos y \cdot y^` = 1$$
 $$ \implies y^` = \frac{1}{\cos y}$$
-We know by the trig identity that $\cos^2y + \sin^2y = 1 \implies \cos y = \sqrt{1 - \sin
-{ #2}
- y}$
+We know by the trig identity that $\cos^2y + \sin^2y = 1 \implies \cos y = \sqrt{1 - \sin^2 y}$
 
 Hence, after substituting, we get the inverse of the trig functions: 
 $$ (\sin^{-1}x)^` = \frac{1}{\sqrt{1-x^2}} $$
