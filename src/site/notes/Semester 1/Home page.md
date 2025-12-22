@@ -19,5 +19,5 @@ Always cross-check with official lecture notes, textbooks, or lecturers’ guida
 
 If you spot a mistake or think something could be explained better, feel free to open an **issue** or submit a **pull request**!
 
-
-Shub :)
+Shub 
+*[Student | School of Mathematical Sciences | Southampton ](https://gravatar.com/18shubhangeedas)*
