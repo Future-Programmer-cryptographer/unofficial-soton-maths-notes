@@ -27,10 +27,6 @@ This is a predicate unless we specify $\forall n, \in \mathbb{Z}$
 $$ \sum_{i=1}^{n} i= \frac{n(n+1)}{2} $$
 [[Tags/Definition\|Definition]] A **set** is a collection of elements which can be any type of mathematical objects 
 
-- A set of sets that contains no set? - Russel’s paradox 
-- How is a collection not a set? [[Tags/questions\|questions]] 
-	- Let S be the collection of all sets that are not members of themselves (not a set)??
-
 ## Set notation 
 
 The notation $x \in X$ means that $x$ is an element of the set $X$. 
@@ -1206,41 +1202,112 @@ And since $p$ and $(p-1)!$ are coprime, we have that $a^{p-1} \mod p \equiv 1$
 
 This helps us finding roots of polynomials congruent to polynomials mod primes 
 
-## Wilson's Theorem 
+## Wilson's Theorem
 [[Tags/Definition\|Definition]]
 $$ \text{ An integer } n > 1 \text{ is prime} \iff (n-1)! \equiv -1 \mod n$$
-This is an application of Fermat's Little Theorem, and it was first actually proved by Lagrange 
-#finishexplaination - talk more about the proof of it? 
+This is an application of Fermat's Little Theorem, and it was first actually proved by Lagrange. 
 
-Square roots of -1 - what this means #finishexplainationi
+What this means is that when we are working $\mod p$, we multiply all the nonzero elements: $1, 2, 3... p-1$
+
+So if $p$ is prime, that means everything cancels except $-1$, so all the elements have a multiplicative inverse. i.e. in the set $\set{1,2... p-1}$ every element can be paired with its inverse so they cancel out 
+
+For instance, take $p=7$, and then take all the set of numbers mod 7: $\{ 1,2,3,4,5,6 \}$
+- $2^{-1} \equiv 4$ 
+- $3^{-1} \equiv 5$ 
+- $1^{-1} \equiv 1$
+- $6^{-1} \equiv 6$
+
+This gives us the pairings: $(2 \cdot 4) (3 \cdot 5) (1)(6) \equiv 1 \cdot 1 \cdot 1 \cdot (-1)$
+
+This gives us: 
+$6! \equiv -1 \mod 7$ 
+
+It's important to think for understanding why this won't work for composite numbers, because if $n$ was composite, then not every nonzero element would have any inverse, so we wouldn't have the pairings that lead to the cancellations. 
+
+For some supplementary resources/notes, I highly recommend watching Michael Penn videos which go through the proof of CRT, and everything else below. 
 
 ## Square roots $\mod pq$
 
-#finishexplaination 
+Let $p$ be an odd prime, then: 
+$$ x^2 \equiv -1 \mod p \text{ has a solution } \iff p \equiv 1 \mod 4   $$
+Instead of thinking of this as a new theorem, consider the question that for $x^2 \equiv a \mod p$ to have solutions, we want to know if $a$ is a square in the multiplicative system mod $p$ 
 
-Odd primes 
- 3 mod 4 - why, congruent to classes of square roots #finishexplainationi
-How does FLIT link to it? 
+ We want a formula for square roots: $x^2 \equiv a \mod p$ 
+ Using FilT, we have that $a^{p-1} \equiv 1 \mod p$ 
 
-MICHAEL PENN VIDEOSSS 
+And if $a$ is a square, we have that 
+$$ a^{\frac{p-1}{2}} \equiv 1 \implies a^{\frac{p+1}{2}} \equiv a \implies (a^{\frac{p+1}{4}})^2 = a^{\frac{p+1}{2}}$$
+So we have that $a^{\frac{p+1}{2}}$ is a square root of $a$ only if $\frac{p+1}{4}$ is an integer, and this only happens when $p \equiv 3 \mod 4$ 
+
+Linking back to Wilson's theorem, we have that: 
+$$ (p-1)! \equiv -1 \implies (-1)^{\frac{p-1}{2}} \equiv -1 \mod p $$
+Now, if $x^2 \equiv -1 \implies x^4 \equiv 1$. So the order of $x$ divides $4$ which can only happen if: 
+$$ 4 | (p-1) \iff p \equiv 1 \mod 4 $$
 
 
 # 7. Euler's Function 
 
-**watch Michael Penn videos**
+This section does not contain any proofs as they were covered in good detail in the lectures notes. 
 
 ## Euler’s Totient Function 
-#finishexplaination
+
+When working $\mod n$, we want to know how many of those numbers are coprime to $n$, because those numbers behave nicely under multiplication. And all Euler's function does is count how many of such numbers exist: 
+
+$$ \phi(n) = \text{ number of integers } 1 \leq k \leq n \text{ that are co-prime to n} $$
 
 ## Euler’s Theorem 
-#finishexplaination
 
-Defn 7.1 
+$$ \gcd(a,n) = 1 \implies a^{\phi(n)} \equiv 1 \mod n $$
+When $n=p$ is prime, we can see that every $1 \leq a \leq p -1$ is co-prime to $p$ 
+So $\phi(p) = p-1$ 
 
-Fermat’s Little Theorem is just a special case of Euler’s 
+And by Euler's theorem, we have that: $a^{p-1} \equiv 1 \mod p$ 
+
+Which is just Fermat's Little Theorem! So FLT is just a special case of Euler's 
 
 ## Euler’s Product Formula 
 
-How to compute $\phi(n)$ 
+This formula tells us how to compute $\phi(n)$ 
 
-#finishexplaination
+$$ n = p_{1}^{k_{1}}\dots p_{r}^{k_{r}} \implies \phi(n) = n \prod_{p|n} \left( 1 - \frac{1}{p} \right)$$
+
+$m,n$ coprime $\implies \phi(mn) = \phi(m) \phi(n)$ 
+
+
+# 8. Applications to Cryptography  
+
+RSA is a type of encryption which is essentially solving the problem of - how can two people communicate using only public information. You might've heard that RSA works well assuming that it's really hard to factorise really large prime numbers. 
+
+We we want to a function that is: 
+- Easy to compute 
+- Hard to reverse unless we know something 
+
+And exponentiation $\mod n$ is the perfect solution for this 
+
+We already know that computing $x^k \mod n$ is easy, and with Euler's Theorem, we know that exponents cycle modulo $\phi (n)$ 
+
+Suppose we choose two exponents $e$ and $d$ such that: 
+
+$$ ed \equiv 1  \mod \phi(n) \implies ed = 1 + k \phi(n)$$
+
+Now take any message $m$ with $\gcd(m,n) = 1$ and compute: 
+$$ (m^e)^d = m^{ed} = m^{1 + k \phi(n)} \implies m \cdot (m^{\phi(n)})^k$$
+Euler's theorem gives us: 
+$$ m^{\phi (n)} \equiv 1 \mod n \implies m^{ed} \equiv \mod n$$
+What this tells us that we can encrypt with $e$ and decrypt with $d$ 
+
+If we want to apply Euler's Theorem, we need control over $\phi(n)$, and the invertibility of exponents $\mod \phi(n)$, therefore, we must choose $n = pq$ with $p,q$ being prime numbers as then: 
+$$ \phi(n) = (p-1)(q-1)$$
+So to summarise, it's easy to: 
+- Multiply two big primes $n = pq$  - this is public 
+- Compute $m^e \mod n$ 
+
+And it's hard to: 
+- Factor $n$ back into $pq$ 
+- Compute $\phi (n)$ from $n$ 
+- Find the inverse of $e \mod \phi (n)$ 
+
+Therefore the public key in RSA is $(n,e)$ is the private key is $d$ or equivalently $(p,q)$ 
+
+
+
